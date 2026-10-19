@@ -1,0 +1,26 @@
+{
+  "name": "kov4-explainer",
+  "version": "1.0.0",
+  "private": true,
+  "description": "kov4 explainer video (Remotion + React Three Fiber)",
+  "scripts": {
+    "studio": "remotion studio",
+    "render": "remotion render Kov4Explainer out/kov4-explainer.mp4 --gl=angle",
+    "still": "remotion still Kov4Explainer --gl=angle"
+  },
+  "dependencies": {
+    "@react-three/fiber": "9.8.2",
+    "@remotion/cli": "4.0.536",
+    "@remotion/google-fonts": "4.0.536",
+    "@remotion/three": "4.0.536",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "remotion": "4.0.536",
+    "three": "0.186.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/three": "^0.186.0",
+    "typescript": "^5.6.0"
+  }
+}

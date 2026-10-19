@@ -1,0 +1,4 @@
+node_modules/
+# Renders and preview stills
+out/
+__pycache__/

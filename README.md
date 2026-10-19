@@ -103,7 +103,20 @@ Imported as Tailwind tokens in `src/app/globals.css`, so utilities such as `bg-w
 
 ### Explainer video
 
-[`media/kov4-explainer.mp4`](media/kov4-explainer.mp4): about 92 seconds, 1920×1080, with a Bulgarian voiceover. It was produced separately and isn't part of the site build (`.vercelignore` keeps `media/` and `docs/` out of deployments).
+[`media/kov4-explainer.mp4`](media/kov4-explainer.mp4): about 92 seconds, 1920×1080, with a Bulgarian voiceover.
+
+Its full source is in [`video/`](video/): a separate [Remotion](https://www.remotion.dev) project (React Three Fiber scenes), the voiceover takes, the music, and the Python tools that build the audio and timing. [`video/README.md`](video/README.md) covers the pipeline and common edits. To preview or re-render it:
+
+```bash
+cd video
+npm install
+npm run studio     # live preview in the browser
+npm run render     # writes out/kov4-explainer.mp4
+```
+
+Changing the voiceover or timing also needs Python with `video/tools/requirements.txt` installed and `ffmpeg` on your PATH. After a new render, copy `video/out/kov4-explainer.mp4` over `media/kov4-explainer.mp4` to update the copy linked here.
+
+`media/`, `docs/` and `video/` aren't part of the site build: `.vercelignore` keeps them out of deployments, and `tsconfig.json` and ESLint skip `video/`.
 
 ## Deployment
 
@@ -138,6 +151,7 @@ Set environment variables in the Vercel project settings, not in the repository.
 | `src/app/api/contact/route.ts` | Form endpoint |
 | `src/app/globals.css` | Colour tokens and type scale |
 | `media/` | Explainer video and its thumbnail |
+| `video/` | Editable source of the explainer video (Remotion project) |
 | `docs/` | Palette swatches used in this README |
 
 ## Contributors

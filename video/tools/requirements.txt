@@ -1,0 +1,7 @@
+# Python tools for the voiceover and audio pipeline (see ../README.md).
+# ffmpeg must also be on PATH.
+numpy
+scipy
+edge-tts
+faster-whisper
+pillow
