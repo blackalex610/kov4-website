@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="872" height="132" viewBox="0 0 872 132" role="img" aria-label="kov4 site palette">
+<title>kov4 site palette</title>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif}</style>
+<rect x="0" y="0" width="168" height="132" rx="14" fill="#bac1b8"/>
+<text x="14" y="96" font-size="15" font-weight="600" fill="#1b1e24">Ash</text>
+<text x="14" y="116" font-size="13" fill="#1b1e24" opacity="0.85">#BAC1B8</text>
+<rect x="176" y="0" width="168" height="132" rx="14" fill="#58a4b0"/>
+<text x="190" y="96" font-size="15" font-weight="600" fill="#1b1e24">Moonstone</text>
+<text x="190" y="116" font-size="13" fill="#1b1e24" opacity="0.85">#58A4B0</text>
+<rect x="352" y="0" width="168" height="132" rx="14" fill="#0c7c59"/>
+<text x="366" y="96" font-size="15" font-weight="600" fill="#ffffff">Green</text>
+<text x="366" y="116" font-size="13" fill="#ffffff" opacity="0.85">#0C7C59</text>
+<rect x="528" y="0" width="168" height="132" rx="14" fill="#2b303a"/>
+<text x="542" y="96" font-size="15" font-weight="600" fill="#ffffff">Gunmetal</text>
+<text x="542" y="116" font-size="13" fill="#ffffff" opacity="0.85">#2B303A</text>
+<rect x="704" y="0" width="168" height="132" rx="14" fill="#d64933"/>
+<text x="718" y="96" font-size="15" font-weight="600" fill="#ffffff">Cinnabar</text>
+<text x="718" y="116" font-size="13" fill="#ffffff" opacity="0.85">#D64933</text>
+</svg>

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="872" height="132" viewBox="0 0 872 132" role="img" aria-label="kov4 warm palette">
+<title>kov4 warm palette</title>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif}</style>
+<rect x="0" y="0" width="168" height="132" rx="14" fill="#ffc69b"/>
+<text x="14" y="96" font-size="15" font-weight="600" fill="#1b1e24">Peach</text>
+<text x="14" y="116" font-size="13" fill="#1b1e24" opacity="0.85">#FFC69B</text>
+<rect x="176" y="0" width="168" height="132" rx="14" fill="#c67445"/>
+<text x="190" y="96" font-size="15" font-weight="600" fill="#ffffff">Copper</text>
+<text x="190" y="116" font-size="13" fill="#ffffff" opacity="0.85">#C67445</text>
+<rect x="352" y="0" width="168" height="132" rx="14" fill="#e29f58"/>
+<text x="366" y="96" font-size="15" font-weight="600" fill="#1b1e24">Sand</text>
+<text x="366" y="116" font-size="13" fill="#1b1e24" opacity="0.85">#E29F58</text>
+<rect x="528" y="0" width="168" height="132" rx="14" fill="#98061f"/>
+<text x="542" y="96" font-size="15" font-weight="600" fill="#ffffff">Crimson</text>
+<text x="542" y="116" font-size="13" fill="#ffffff" opacity="0.85">#98061F</text>
+<rect x="704" y="0" width="168" height="132" rx="14" fill="#4e1313"/>
+<text x="718" y="96" font-size="15" font-weight="600" fill="#ffffff">Maroon</text>
+<text x="718" y="116" font-size="13" fill="#ffffff" opacity="0.85">#4E1313</text>
+</svg>

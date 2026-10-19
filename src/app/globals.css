@@ -1,26 +1,290 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --font-serif: var(--font-instrument), Georgia, "Times New Roman", serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@theme {
+  /* Palette: ash #bac1b8 · moonstone #58a4b0 · green #0c7c59 · gunmetal #2b303a · cinnabar #d64933 */
+  --color-paper: #ffffff;
+  --color-mist: #f1f3f0;
+  --color-mist-deep: #e6e9e4;
+  --color-surface: #ffffff;
+  --color-ink: #2b303a;
+  --color-ink-soft: #565d67;
+  --color-ink-faint: #6b717a;
+  /* Second line of two-tone headlines; large text only (3.3:1 on white). */
+  --color-ink-mute: #868c94;
+  --color-line: #dfe3dd;
+  --color-line-strong: #bac1b8;
+
+  --color-brand: #0c7c59;
+  --color-brand-hover: #09664a;
+  --color-brand-tint: #e1efe8;
+  --color-sky: #58a4b0;
+  --color-sky-light: #8cc3cb;
+  --color-sky-tint: #e2eff1;
+  --color-signal: #d64933;
+
+  --color-night: #2b303a;
+  --color-night-deep: #22262d;
+  --color-night-ink: #1b1e24;
+  --color-night-raised: #353b46;
+  --color-night-line: #474e5a;
+  --color-on-dark: #eceee9;
+  --color-on-dark-soft: #aab1a9;
+
+  /* Warm palette: peach #ffc69b · copper #c67445 · sand #e29f58 · crimson #98061f · maroon #4e1313
+   * (coolors.co/ffc69b-c67445-e29f58-98061f-4e1313). Available as utilities such as bg-warm-copper;
+   * not used on the page yet. */
+  --color-warm-peach: #ffc69b;
+  --color-warm-copper: #c67445;
+  --color-warm-sand: #e29f58;
+  --color-warm-crimson: #98061f;
+  --color-warm-maroon: #4e1313;
+
+  --color-glovo: #ffc244;
+  --color-wolt: #00a3e0;
+  --color-bolt: #2ad17f;
+
+  --color-danger: #a8321f;
+  --color-danger-tint: #fbefec;
+
+  --container-page: 80rem;
+
+  --ease-out-soft: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 4.5rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  letter-spacing: -0.011em;
+  font-optical-sizing: auto;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-sky-light);
+  color: var(--color-night);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.on-dark :focus-visible {
+  outline-color: var(--color-sky-light);
+}
+
+/* ---------- Type and photography ----------
+ * Inter's opsz axis follows font-size, so headlines render in the Display cut
+ * and body copy in the Text cut. Tracking tightens as size grows.
+ * In the components layer so utilities (radius, colour) can still override.
+ */
+
+@layer components {
+  .type-display {
+    font-size: clamp(2.875rem, 1.25rem + 6.2vw, 6.25rem);
+    line-height: 0.96;
+    letter-spacing: -0.05em;
+    font-weight: 680;
+    text-wrap: balance;
+  }
+
+  .type-h2 {
+    font-size: clamp(2.25rem, 1.3rem + 3.4vw, 4.5rem);
+    line-height: 1;
+    letter-spacing: -0.045em;
+    font-weight: 670;
+    text-wrap: balance;
+  }
+
+  .type-tile {
+    font-size: clamp(1.5rem, 1.15rem + 0.9vw, 2rem);
+    line-height: 1.08;
+    letter-spacing: -0.034em;
+    font-weight: 650;
+    text-wrap: balance;
+  }
+
+  .type-h3 {
+    font-size: 1.375rem;
+    line-height: 1.2;
+    letter-spacing: -0.024em;
+    font-weight: 620;
+  }
+
+  .type-lede {
+    font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+    line-height: 1.45;
+    letter-spacing: -0.018em;
+    text-wrap: pretty;
+  }
+
+  .type-label {
+    font-size: 0.875rem;
+    line-height: 1.3;
+    font-weight: 560;
+    letter-spacing: -0.006em;
+  }
+
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .photo-frame {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1.75rem;
+    background: var(--color-mist-deep);
+    isolation: isolate;
+  }
+
+  /* A hairline inside the frame keeps light photos from bleeding into white pages. */
+  .photo-frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 0 0 1px rgb(43 48 58 / 0.08);
+    pointer-events: none;
+  }
+
+  /* Horizontal rail of cards: native scrolling with snap, no visible scrollbar. */
+  .rail {
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+  }
+
+  .rail::-webkit-scrollbar {
+    display: none;
+  }
+
+  .rail > * {
+    scroll-snap-align: start;
+  }
+}
+
+/* ---------- Scroll-triggered sequence ----------
+ * One orchestrated moment: the order showcase plays once when it scrolls into
+ * view. Held only when JS is running and motion is welcome.
+ */
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-reveal]:not([data-inview]) .seq-rise {
+    opacity: 0;
+  }
+
+  .js [data-reveal]:not([data-inview]) .seq-draw path {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+  }
+
+  [data-inview] .seq-rise {
+    animation: rise 0.6s var(--ease-out-soft) both;
+    animation-delay: var(--d, 0s);
+  }
+
+  [data-inview] .seq-draw path {
+    stroke-dasharray: 1;
+    animation: draw 0.55s cubic-bezier(0.4, 0, 0.2, 1) both;
+    animation-delay: var(--d, 0s);
+  }
+}
+
+/* Printed ticket: torn thermal-paper edge. Layered so padding utilities can lengthen it. */
+@layer components {
+  .ticket {
+    --zig: 5px;
+    mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / calc(2 * var(--zig)) 100%;
+    padding-bottom: calc(0.75rem + var(--zig));
+  }
+}
+
+/* ---------- Disclosures (FAQ, industry details) ---------- */
+
+.disclosure summary {
+  list-style: none;
+}
+
+.disclosure summary::-webkit-details-marker {
+  display: none;
+}
+
+.disclosure .disclosure-icon {
+  transition: transform 0.25s var(--ease-out-soft);
+}
+
+.disclosure[open] .disclosure-icon {
+  transform: rotate(45deg);
+}
+
+/* ---------- Form controls ---------- */
+
+.select-chevron {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5 6 6.5l5-5' stroke='%23565d67' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.75rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  animation: spin 0.8s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation-duration: 2.4s;
+  }
 }
