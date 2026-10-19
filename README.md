@@ -103,7 +103,7 @@ Imported as Tailwind tokens in `src/app/globals.css`, so utilities such as `bg-w
 
 ### Explainer video
 
-[`media/kov4-explainer.mp4`](media/kov4-explainer.mp4): about 92 seconds, 1920×1080, with a Bulgarian voiceover.
+[`media/kov4-explainer.mp4`](media/kov4-explainer.mp4): about 84 seconds, 1920×1080, with a Bulgarian voiceover.
 
 Its full source is in [`video/`](video/): a separate [Remotion](https://www.remotion.dev) project (React Three Fiber scenes), the voiceover takes, the music, and the Python tools that build the audio and timing. [`video/README.md`](video/README.md) covers the pipeline and common edits. To preview or re-render it:
 

@@ -1,6 +1,6 @@
 # kov4 explainer video
 
-~92 s, 1920×1080, 30 fps. Bulgarian voiceover by ElevenLabs voice **Milena**
+~84 s, 1920×1080, 30 fps. Bulgarian voiceover by ElevenLabs voice **Milena**
 (`M1ydWt7KnBCiuv4CnEDC`, model `eleven_v4`), score composed with ElevenLabs Music,
 3D scenes in React Three Fiber, rendered with Remotion. Sound effects are synthesized
 in code. A film layer (`src/ui/Film.tsx`) adds the grade, vignette, light leaks and grain.
@@ -45,7 +45,7 @@ npm run render                                       # -> out/kov4-explainer.mp4
 node tools/stills.mjs 12.5s 40s 1500                 # quick stills -> out/stills
 ```
 
-Spoken brand names are written phonetically in Cyrillic (`Ков фор`, `Глово, Волт, Болт`)
+Spoken brand names are written phonetically in Cyrillic (`Ков четири`, `Глово, Волт, Болт`)
 so the voice pronounces them naturally. On screen they stay `kov4`, `Glovo`, `Wolt`, `Bolt`.
 
 ## Scenes

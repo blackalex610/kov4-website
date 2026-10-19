@@ -24,7 +24,7 @@ from gen_vo import BEATS, DATA, OUT_DIR, SR, THRESH, PAD_IN, PAD_OUT, write_wav 
 
 # Hand-checked cut points (seconds into the take) where Whisper's timing is too far
 # off for the snap to find the right pause: {"<beat before>": cut}.
-CUT_OVERRIDES = {"v08": 32.1, "v09": 34.3}
+CUT_OVERRIDES = {"v08": 28.1, "v09": 30.05}
 
 
 def norm(w: str) -> str:
