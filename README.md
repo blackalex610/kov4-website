@@ -2,6 +2,8 @@
 
 Marketing site for kov4: delivery platform integration for merchants (Glovo, Wolt, Bolt Food and comparable marketplaces).
 
+**Live:** https://kov4-website.vercel.app
+
 [![Watch the kov4 explainer video](media/kov4-explainer-thumbnail.png)](media/kov4-explainer.mp4)
 
 React 19 and Tailwind CSS 4 on Next.js 16 (App Router, Cache Components). The homepage and privacy page are prerendered as static HTML; the only server code is the contact form endpoint.
