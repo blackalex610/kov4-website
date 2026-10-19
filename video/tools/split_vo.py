@@ -47,9 +47,9 @@ def main() -> None:
     segs, _ = model.transcribe(str(src), language="bg", beam_size=5, word_timestamps=True)
     heard = []
     for w in (w for s in segs for w in s.words):
-        if re.fullmatch(r"(kof|kov|коф|ков)4", norm(w.word)):  # "Ков фор" heard as one token
+        if re.fullmatch(r"(kof|kov|коф|ков)4", norm(w.word)):  # "Ков четири" heard as one token
             mid = (w.start + w.end) / 2
-            heard += [("ков", w.start, mid), ("фор", mid, w.end)]
+            heard += [("ков", w.start, mid), ("четири", mid, w.end)]
         else:
             heard.append((w.word.strip(), w.start, w.end))
     print("heard:", " ".join(h[0] for h in heard))
@@ -99,7 +99,7 @@ def main() -> None:
         est = (spans[beat_ids[n]][1] + spans[beat_ids[n + 1]][0]) / 2
         cand = [g for g in gaps if (g[0] + g[1]) / 2 > cuts[-1] + 0.2]
         # the longest pause near the guess: pauses between lines outlast those
-        # inside them (e.g. the little gap in "Ков | фор")
+        # inside them (e.g. the little gap in "Ков | четири")
         near = [g for g in cand if abs((g[0] + g[1]) / 2 - est) < 1.6] or cand
         g = max(near, key=lambda g: g[1] - g[0])
         cuts.append(CUT_OVERRIDES.get(beat_ids[n], (g[0] + g[1]) / 2))

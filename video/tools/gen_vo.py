@@ -4,7 +4,7 @@ Each beat becomes public/audio/vo/<id>.wav (silence-trimmed, 48 kHz). Durations
 and word timings land in src/data/vo.json so the timeline can sync visuals to
 individual words.
 
-Spoken text uses Cyrillic phonetics for brand names ("Ков фор", "Глово")
+Spoken text uses Cyrillic phonetics for brand names ("Ков четири", "Глово")
 so the Bulgarian voice pronounces them the way people actually say them.
 """
 
@@ -37,9 +37,9 @@ BEATS = [
     ("v07", "А в пиковия час това означава забавяне, грешки и изнервени куриери."),
     # 3 - Reveal
     ("v08", "Има по-лесен начин."),
-    ("v09", "Ков фор."),
+    ("v09", "Ков четири."),
     # 4 - How it works
-    ("v10", "Ков фор събира поръчките от всички платформи в един общ поток."),
+    ("v10", "Ков четири събира поръчките от всички платформи в един общ поток."),
     ("v11", "В момента, в който натиснете „Приеми“, поръчката отива директно в кухнята."),
     ("v12", "Готвачите я виждат веднага, а касовата бележка се разпечатва сама."),
     ("v13", "Без преписване. Без чакане."),
@@ -50,7 +50,7 @@ BEATS = [
     ("v16", "Това са четиридесет часа всеки месец."),
     ("v17", "Време, което екипът ви връща там, където има значение. В кухнята и при клиентите."),
     # 7 - CTA
-    ("v18", "Ков фор."),
+    ("v18", "Ков четири."),
     ("v19", "Вие приемате. Ние се грижим за останалото."),
 ]
 
