@@ -597,24 +597,31 @@ body {
   aspect-ratio: 1;
   translate: -50% -50%;
   filter: drop-shadow(0 0 2.5cqw rgb(229 115 47 / 0.55));
-  animation: intro-gulp 0.9s ease 1.18s both;
+  animation:
+    intro-gulp 0.9s ease 1.18s both,
+    intro-turn 1s cubic-bezier(0.45, 0, 0.2, 1) 1.18s both;
 }
 
 .intro-mark {
   width: 100%;
   height: 100%;
-  animation:
-    intro-vortex-in 1s cubic-bezier(0.2, 0.8, 0.2, 1) both,
-    spin 7s linear infinite;
+  animation: intro-vortex-in 1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
 @keyframes intro-vortex-in {
   from {
     opacity: 0;
     scale: 0.3;
-    rotate: -220deg;
+    rotate: -90deg;
     filter: blur(10px);
   }
+/* The emblem acknowledges the orders with one short turn that settles back. */
+@keyframes intro-turn {
+  40% {
+    rotate: 14deg;
+  }
+}
+
 }
 
 @keyframes intro-gulp {
@@ -657,14 +664,6 @@ body {
   width: 70cqw;
   translate: -50% 0;
   text-align: center;
-}
-
-.intro-wordmark {
-  width: var(--word-w);
-  height: auto;
-  margin-inline: auto;
-  filter: drop-shadow(0 0 1.5cqw rgb(229 115 47 / 0.5));
-  animation: intro-rise 0.6s var(--ease-out-soft) 1.05s both;
 }
 
 .intro-word p {
@@ -994,13 +993,20 @@ body {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .os-spin {
-    animation: spin 16s linear infinite;
+  .os-hub-turn {
+    animation: os-hub-turn 0.9s cubic-bezier(0.45, 0, 0.2, 1) both;
   }
 
   .os-live {
     animation: os-live 1.8s ease-out infinite;
   }
+@keyframes os-hub-turn {
+  40% {
+    rotate: 14deg;
+    filter: drop-shadow(0 0 22px rgb(255 154 82 / 0.9));
+  }
+}
+
 }
 
 @keyframes os-live {

@@ -2,13 +2,12 @@
 
 import Image from "next/image";
 import { useEffect, useState, type CSSProperties } from "react";
-import mark from "@/assets/brand/kov4-mark.png";
-import wordmark from "@/assets/brand/kov4-wordmark.png";
+import flame from "@/assets/brand/kov4-flame.png";
 import { platformOrder, platforms } from "@/content/orders";
 
 /**
  * The welcome sequence on the homepage. Glovo, Wolt and Bolt Food each send an order into the
- * kov4 vortex, which passes them straight on to three restaurants' POS terminals, and each
+ * kov4 flame, which passes them straight on to three restaurants' POS terminals, and each
  * terminal prints a receipt. Then it opens onto the hero.
  *
  * Whether it plays is decided before first paint by the script in the root layout (it adds
@@ -127,11 +126,10 @@ export function Intro() {
           <span className="intro-ripple" style={v({ "--i": 0 })} />
           <span className="intro-ripple" style={v({ "--i": 1 })} />
           <span className="intro-ripple" style={v({ "--i": 2 })} />
-          <Image src={mark} alt="" width={320} height={320} preload className="intro-mark" />
+          <Image src={flame} alt="" width={320} height={320} preload className="intro-mark" />
         </div>
 
         <div className="intro-word">
-          <Image src={wordmark} alt="" width={240} height={102} preload className="intro-wordmark" />
           <p>Every order. Every terminal. Instantly.</p>
         </div>
 

@@ -2,8 +2,6 @@
 
 import Image from "next/image";
 import { Fragment, useEffect, useRef, useState, type CSSProperties } from "react";
-import mark from "@/assets/brand/kov4-mark.png";
-import wordmark from "@/assets/brand/kov4-wordmark.png";
 import {
   itemCount,
   makeOrder,
@@ -14,6 +12,7 @@ import {
   type Order,
   type PlatformId,
 } from "@/content/orders";
+import flame from "@/assets/brand/kov4-flame.png";
 import { cx } from "./ui";
 
 /**
@@ -301,13 +300,18 @@ function Hub({ hit }: { hit: number | null }) {
   return (
     <div className="absolute" style={{ left: HUB.x - HUB.r, top: HUB.y - HUB.r, width: size, height: size }}>
       <div className="absolute -inset-6 rounded-full bg-[radial-gradient(circle,rgb(229_115_47/0.32),transparent_68%)]" />
-      <div className="absolute inset-0 rounded-full bg-[#0b0908] shadow-[0_0_0_1px_rgb(229_115_47/0.45),0_0_40px_-6px_rgb(229_115_47/0.6),inset_0_0_20px_rgb(229_115_47/0.18)]" />
+      {/* Each order lands with a short turn and settle; remounting on `hit` replays it. */}
       <Image
-        src={mark}
+        key={hit ?? "idle"}
+        src={flame}
         alt=""
-        width={92}
-        height={92}
-        className="os-spin absolute inset-[8px] size-[calc(100%-16px)]"
+        width={size}
+        height={size}
+        className={cx(
+          "absolute inset-0 size-full drop-shadow-[0_0_14px_rgb(229_115_47/0.55)]",
+          hit !== null && "os-hub-turn",
+        )}
+        style={{ animationDelay: ms(T.hub) }}
       />
       {hit !== null ? (
         <Fragment key={hit}>
@@ -349,7 +353,7 @@ function Terminal({ rows, counts, total }: { rows: Order[]; counts: Record<Platf
         <div className="relative flex size-full flex-col overflow-hidden rounded-[12px] bg-[linear-gradient(180deg,#1a1512,#110e0c)] text-[#efe6dd]">
           <div className="flex h-[42px] shrink-0 items-center justify-between border-b border-white/[0.06] px-5 text-[14px]">
             <span className="flex items-center gap-2 font-semibold tracking-[-0.01em]">
-              <Image src={mark} alt="" width={20} height={20} className="size-5" />
+              <Image src={flame} alt="" width={20} height={20} className="size-5" />
               Restaurant POS
             </span>
             <span className="flex items-center gap-2 text-[#ab9e92]">
@@ -426,7 +430,7 @@ function Terminal({ rows, counts, total }: { rows: Order[]; counts: Record<Platf
 
         {/* Lettering on the bezel */}
         <div className="absolute inset-x-0 bottom-[9px] flex justify-center">
-          <Image src={wordmark} alt="" width={66} height={28} className="h-[28px] w-[66px] opacity-90" />
+          <Image src={flame} alt="" width={30} height={30} className="size-[30px] opacity-90" />
         </div>
       </div>
     </div>
