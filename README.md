@@ -152,7 +152,7 @@ Set environment variables in the Vercel project settings, not in the repository.
 | `src/app/globals.css` | Colour tokens and type scale |
 | `media/` | Explainer video and its thumbnail |
 | `video/` | Editable source of the explainer video (Remotion project) |
-| `docs/` | Palette swatches used in this README |
+| `docs/` | Palette swatches used in this README, and the [website content plan](docs/website-content-plan.md) (what the site should say to earn trust and convert) |
 
 ## Contributors
 
