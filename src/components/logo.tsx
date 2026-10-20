@@ -1,33 +1,37 @@
+import Image from "next/image";
+import emblem from "@/assets/brand/kov4-emblem.png";
+import mark from "@/assets/brand/kov4-mark.png";
+import wordmark from "@/assets/brand/kov4-wordmark.png";
 import { site } from "@/content/site";
 import { cx } from "./ui";
 
-/** Three incoming lines merging into one: the brand mark. */
+// width/height are the display size, so the optimizer only makes 1x and 2x copies.
+
+/** The vortex on a dark tile: the brand at icon size. */
 export function LogoMark({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 28 28" aria-hidden className={cx("size-7 shrink-0", className)}>
-      <rect width="28" height="28" rx="7.5" fill="var(--color-night)" />
-      <g fill="none" strokeLinecap="round" strokeWidth="2.2">
-        <path d="M6.5 8.5c4.6 0 5.4 5.5 9.3 5.5" stroke="#fff" />
-        <path d="M6.5 14h9.3" stroke="#fff" />
-        <path d="M6.5 19.5c4.6 0 5.4-5.5 9.3-5.5" stroke="#fff" />
-        <path d="M15.8 14h5.7" stroke="var(--color-signal)" />
-      </g>
-    </svg>
+    <span
+      aria-hidden
+      className={cx("inline-flex size-7 shrink-0 items-center justify-center rounded-[7px] bg-night-ink", className)}
+    >
+      <Image src={mark} alt="" width={28} height={28} className="size-[82%]" />
+    </span>
   );
 }
 
-export function Logo({ className, inverse = false }: { className?: string; inverse?: boolean }) {
+/** Vortex and KOV4 lettering side by side, for the header. Reads on light and dark backgrounds. */
+export function Logo({ className }: { className?: string }) {
   return (
-    <span className={cx("inline-flex items-center gap-2.5", className)}>
-      <LogoMark className={inverse ? "rounded-[7.5px] ring-1 ring-night-line" : undefined} />
-      <span
-        className={cx(
-          "text-[1.3125rem] leading-none font-[680] tracking-[-0.045em]",
-          inverse ? "text-white" : "text-ink",
-        )}
-      >
-        {site.name}
-      </span>
+    <span className={cx("inline-flex items-center gap-2", className)}>
+      <Image src={mark} alt="" width={48} height={48} loading="eager" className="size-12" />
+      <Image src={wordmark} alt={site.name} width={80} height={34} loading="eager" className="h-[34px] w-[80px]" />
     </span>
+  );
+}
+
+/** The full stacked emblem: KOV4 lettering over the vortex. */
+export function LogoEmblem({ className }: { className?: string }) {
+  return (
+    <Image src={emblem} alt={site.name} width={132} height={160} className={cx("h-40 w-[132px]", className)} />
   );
 }

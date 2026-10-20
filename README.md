@@ -77,6 +77,7 @@ Never commit API keys. Set them as environment variables in your hosting provide
 - All current photos are from [Unsplash](https://unsplash.com/license): free for commercial use, no permission needed. Photographers are credited in the footer. The three photos used only by the fictional case studies (`sample: true`) are credited only when the sample flag is on.
 - To swap a photo, replace the file and keep the same name, or add a new import in `photos.ts`. Each frame chooses its crop with a `position` value, so check the framing after swapping.
 - Order screens, tickets, tables and logs on the page are drawn in code, not screenshots. They use example data and are labelled as illustrations; keep it that way until you have a real product screen to show.
+- Logo: the KOV4 vortex emblem, cut out of the original artwork onto a transparent background (the "SLOGAN HERE" placeholder from the artwork is left out). PNGs live in `src/assets/brand/`: `kov4-emblem.png` (the full stacked logo, used in the footer), `kov4-mark.png` (the vortex alone) and `kov4-wordmark.png` (the KOV4 lettering). The header pairs the mark with the wordmark. The favicon and home-screen icon are `src/app/icon.png` and `src/app/apple-icon.png`. Exports for social profiles and print are in `docs/brand/`.
 - Type: Inter with its optical-size axis (headlines automatically use the Display cut) and IBM Plex Mono for the printed tickets. Both support Cyrillic for a Bulgarian version.
 
 ### Colour palettes

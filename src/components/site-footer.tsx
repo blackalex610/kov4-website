@@ -2,7 +2,7 @@ import Link from "next/link";
 import { photos, type Photo } from "@/content/photos";
 import { showSampleProof } from "@/content/sample-proof";
 import { navigation, site } from "@/content/site";
-import { Logo } from "./logo";
+import { LogoEmblem } from "./logo";
 import { Container } from "./ui";
 
 const credits = (Object.values(photos) as Photo[]).filter((p) => showSampleProof || !p.sample);
@@ -20,7 +20,7 @@ export function SiteFooter() {
             <span className="block text-on-dark-soft">One order flow.</span>
           </p>
           <div className="lg:col-span-4 lg:justify-self-end lg:pb-2">
-            <Logo inverse />
+            <LogoEmblem />
           </div>
         </div>
 
