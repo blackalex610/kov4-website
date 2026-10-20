@@ -2,3 +2,4 @@ node_modules/
 # Renders and preview stills
 out/
 __pycache__/
+public/audio/mix.wav

@@ -15,7 +15,9 @@ Timing has a single source of truth, so picture and sound always stay in sync:
 tools/gen_vo.py          script (BEATS) -> public/audio/vo/*.wav + src/data/vo.json (edge-tts path)
 tools/split_vo.py        or: one long ElevenLabs take -> the same vo/*.wav + vo.json
 tools/build_timeline.py  vo.json -> src/data/timeline.json (beats, scenes, cues)
-tools/gen_audio.py       timeline.json -> public/audio/master.wav (VO + music + SFX, ducked)
+tools/gen_audio.py       timeline.json -> public/audio/mix.wav (VO + music + SFX, ducked, low end cleaned per bus)
+tools/master.py          mix.wav -> public/audio/master.wav (mono bass, EQ, glue compression,
+                         -14 LUFS / -1 dBTP); gen_audio.py runs it automatically
                          uses public/audio/score_a.mp3 (up to the logo) + score_b.mp3 (from the logo)
                          when both exist, otherwise the synthesized music
 src/                     Remotion scenes read timeline.json for every animation cue
@@ -28,6 +30,7 @@ src/                     Remotion scenes read timeline.json for every animation 
 | Voiceover wording | edit `BEATS` in `tools/gen_vo.py`, then run all three tools |
 | Pauses between lines | edit `GAPS` in `tools/build_timeline.py`, then run it and `gen_audio.py` |
 | Music / SFX levels | `tools/gen_audio.py` (see the `place(...)` gains) |
+| Final loudness / tone | `TARGET_LUFS`, `TONE` in `tools/master.py`, then `python tools/master.py` |
 | Restaurant / order on receipts | `ORDER` in `src/theme.ts` |
 | Brand colours | `C` / `BRAND_GRADIENT` in `src/theme.ts`, icon in `src/screens/misc.ts` |
 

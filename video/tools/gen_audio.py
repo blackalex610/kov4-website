@@ -1,8 +1,8 @@
 """Build the full soundtrack: voiceover + original synthesized music + sound design.
 
 Everything is placed from src/data/timeline.json (the same cues the visuals use),
-the music ducks under the voice, and the result is written to
-public/audio/master.wav for Remotion to play.
+the music ducks under the voice, and the result is written to public/audio/mix.wav,
+then mastered (tools/master.py) into public/audio/master.wav for Remotion to play.
 """
 
 import json
@@ -12,12 +12,14 @@ import wave
 from pathlib import Path
 
 import numpy as np
-from scipy.signal import lfilter
+from scipy.signal import butter, lfilter, sosfiltfilt
+
+from master import master as master_mix
 
 ROOT = Path(__file__).resolve().parent.parent
 TL = json.loads((ROOT / "src" / "data" / "timeline.json").read_text(encoding="utf-8"))
 VO_DIR = ROOT / "public" / "audio" / "vo"
-OUT = ROOT / "public" / "audio" / "master.wav"
+OUT = ROOT / "public" / "audio" / "mix.wav"
 # Optional composed score (ElevenLabs Music): cue A plays up to the kov4 logo hit,
 # cue B starts on it. If both files exist they replace the synthesized music.
 SCORE_A = ROOT / "public" / "audio" / "score_a.mp3"
@@ -542,6 +544,25 @@ if not SCORED:  # the composed score already carries its own space
 sfx = sfx * 0.85 + convolve(sfx, make_ir(1.6, 0.45, 2)) * 0.25
 vo = vo * 0.95 + convolve(vo, make_ir(0.7, 0.16, 3, bright=5000)) * 0.07
 
+# Clean the low end per bus: the voice has nothing useful under 90 Hz, the score's
+# sub rumble goes, and a dip around 300 Hz in the music leaves room for the voice.
+def hp(x, f):
+    return sosfiltfilt(butter(4, f, "high", fs=SR, output="sos"), x, axis=0)
+
+
+def bell(x, f, gain_db, q=1.0):
+    """RBJ peaking EQ."""
+    A, w = 10 ** (gain_db / 40), 2 * np.pi * f / SR
+    al = np.sin(w) / (2 * q)
+    b = [1 + al * A, -2 * np.cos(w), 1 - al * A]
+    a = [1 + al / A, -2 * np.cos(w), 1 - al / A]
+    return lfilter(b, a, x, axis=0)
+
+
+vo = hp(vo, 90)
+music = bell(hp(music, 32), 300, -3.0, 0.8)
+sfx = hp(sfx, 40)
+
 vo_peak = np.abs(vo).max()
 vo *= 0.6 / vo_peak
 
@@ -560,3 +581,4 @@ with wave.open(str(OUT), "wb") as w:
     w.setframerate(SR)
     w.writeframes(pcm.tobytes())
 print("wrote", OUT, f"{DUR:.2f}s")
+master_mix(OUT)
