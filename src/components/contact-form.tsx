@@ -308,7 +308,7 @@ export function ContactForm() {
               <span
                 className={cx(
                   "tabular flex h-12 cursor-pointer items-center justify-center rounded-xl border bg-surface text-[0.95rem] font-medium transition-colors",
-                  "peer-checked:border-ink peer-checked:bg-ink peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-brand peer-focus-visible:ring-offset-2",
+                  "peer-checked:border-brand peer-checked:bg-brand peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-brand peer-focus-visible:ring-offset-2",
                   errors.locations ? "border-danger" : "border-line-strong hover:border-ink-faint",
                 )}
               >

@@ -17,10 +17,10 @@ const buttonBase =
   "inline-flex h-12 items-center justify-center gap-2 rounded-full px-6 text-[1rem] font-medium tracking-[-0.014em] whitespace-nowrap transition-colors duration-150";
 
 const buttonVariants: Record<ButtonVariant, string> = {
-  primary: "bg-brand text-white hover:bg-brand-hover",
+  primary: "bg-brand text-white shadow-[0_10px_30px_-10px_rgb(229_115_47/0.65)] hover:bg-brand-hover",
   secondary: "border border-line-strong text-ink hover:border-ink-faint hover:bg-mist",
-  dark: "bg-ink text-white hover:bg-night-ink",
-  inverse: "bg-white text-night hover:bg-sky-tint",
+  dark: "border border-brand text-ink hover:bg-brand hover:text-white",
+  inverse: "bg-ink text-night hover:bg-sky-light",
   "ghost-dark": "border border-night-line text-on-dark hover:border-on-dark-soft hover:text-white",
 };
 
@@ -122,6 +122,22 @@ export function SplitIntro({
         {children}
       </div>
     </div>
+  );
+}
+
+/** A right arrow for calls to action. */
+export function Arrow({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 16 16" aria-hidden className={cx("size-4 shrink-0", className)}>
+      <path
+        d="M2.5 8h10.5M9 3.5 13.5 8 9 12.5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
   );
 }
 

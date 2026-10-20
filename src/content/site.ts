@@ -14,11 +14,12 @@ export const site = {
 };
 
 export const navigation = [
-  { href: "/#what-it-does", label: "What it does" },
-  { href: "/#solutions", label: "Solutions" },
+  { href: "/", label: "Home" },
   { href: "/#how-it-works", label: "How it works" },
+  { href: "/#what-it-does", label: "Features" },
+  { href: "/#solutions", label: "For restaurants" },
   { href: "/#integrations", label: "Integrations" },
-  { href: "/#faq", label: "FAQ" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export const channels = [

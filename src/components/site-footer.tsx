@@ -2,7 +2,7 @@ import Link from "next/link";
 import { photos, type Photo } from "@/content/photos";
 import { showSampleProof } from "@/content/sample-proof";
 import { navigation, site } from "@/content/site";
-import { Logo } from "./logo";
+import { LogoEmblem } from "./logo";
 import { Container } from "./ui";
 
 const credits = (Object.values(photos) as Photo[]).filter((p) => showSampleProof || !p.sample);
@@ -17,10 +17,10 @@ export function SiteFooter() {
         <div className="grid gap-10 lg:grid-cols-12 lg:items-end lg:gap-10">
           <p className="type-h2 text-white lg:col-span-8">
             <span className="block">Fewer tablets.</span>
-            <span className="block text-on-dark-soft">One order flow.</span>
+            <span className="block text-brand">One order flow.</span>
           </p>
           <div className="lg:col-span-4 lg:justify-self-end lg:pb-2">
-            <Logo inverse />
+            <LogoEmblem />
           </div>
         </div>
 

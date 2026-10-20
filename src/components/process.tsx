@@ -44,7 +44,7 @@ export function Process() {
                   {step.no}
                 </span>
                 {step.conditional ? (
-                  <span className="rounded-full bg-signal/10 px-3 py-1 text-[0.8125rem] font-medium text-[#b23a26]">
+                  <span className="rounded-full bg-signal/10 px-3 py-1 text-[0.8125rem] font-medium text-signal">
                     Only if 02 and 03 say yes
                   </span>
                 ) : null}
