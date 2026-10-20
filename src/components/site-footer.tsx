@@ -17,7 +17,7 @@ export function SiteFooter() {
         <div className="grid gap-10 lg:grid-cols-12 lg:items-end lg:gap-10">
           <p className="type-h2 text-white lg:col-span-8">
             <span className="block">Fewer tablets.</span>
-            <span className="block text-on-dark-soft">One order flow.</span>
+            <span className="block text-brand">One order flow.</span>
           </p>
           <div className="lg:col-span-4 lg:justify-self-end lg:pb-2">
             <LogoEmblem />

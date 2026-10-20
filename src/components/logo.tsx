@@ -23,8 +23,15 @@ export function LogoMark({ className }: { className?: string }) {
 export function Logo({ className }: { className?: string }) {
   return (
     <span className={cx("inline-flex items-center gap-2", className)}>
-      <Image src={mark} alt="" width={48} height={48} loading="eager" className="size-12" />
-      <Image src={wordmark} alt={site.name} width={80} height={34} loading="eager" className="h-[34px] w-[80px]" />
+      <Image
+        src={mark}
+        alt=""
+        width={44}
+        height={44}
+        loading="eager"
+        className="size-11 drop-shadow-[0_0_14px_rgb(229_115_47/0.45)]"
+      />
+      <Image src={wordmark} alt={site.name} width={94} height={40} loading="eager" className="h-10 w-[94px]" />
     </span>
   );
 }

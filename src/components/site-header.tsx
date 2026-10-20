@@ -1,14 +1,49 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { navigation } from "@/content/site";
 import { Logo } from "./logo";
-import { ButtonLink, Container, cx } from "./ui";
+import { Arrow, ButtonLink, Container, cx } from "./ui";
+
+/** Which nav item matches the part of the homepage being read: the section whose top most recently passed the header. */
+function useActiveHref() {
+  const pathname = usePathname();
+  const [active, setActive] = useState("/");
+
+  useEffect(() => {
+    if (pathname !== "/") return;
+    const targets = navigation
+      .filter((n) => n.href.startsWith("/#"))
+      .map((n) => ({ href: n.href, el: document.getElementById(n.href.slice(2)) }))
+      .filter((t): t is { href: string; el: HTMLElement } => t.el !== null);
+
+    const onScroll = () => {
+      // Nav order isn't page order, so take the passed section nearest the top.
+      let current = "/";
+      let nearest = -Infinity;
+      for (const t of targets) {
+        const top = t.el.getBoundingClientRect().top;
+        if (top < 140 && top > nearest) {
+          nearest = top;
+          current = t.href;
+        }
+      }
+      setActive(current);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [pathname]);
+
+  return pathname === "/" ? active : null;
+}
 
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const active = useActiveHref();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -36,33 +71,46 @@ export function SiteHeader() {
   return (
     <header
       className={cx(
-        "sticky top-0 z-50 border-b bg-paper transition-colors duration-200",
-        scrolled || open ? "border-line" : "border-transparent",
+        "sticky top-0 z-50 border-b transition-colors duration-300",
+        scrolled || open
+          ? "border-line bg-paper/85 backdrop-blur-xl backdrop-saturate-150"
+          : "border-white/[0.06] bg-paper/40 backdrop-blur-md",
       )}
     >
-      <Container className="flex h-16 items-center justify-between gap-6">
+      <Container className="flex h-[4.5rem] items-center justify-between gap-6">
         <Link href="/" aria-label="kov4 home" className="rounded-md" onClick={() => setOpen(false)}>
           <Logo />
         </Link>
 
         <nav aria-label="Main" className="hidden lg:block">
-          <ul className="flex items-center gap-1">
-            {navigation.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className="rounded-full px-3.5 py-2 text-[0.9375rem] text-ink-soft transition-colors hover:text-ink"
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
+          <ul className="flex items-center gap-1 xl:gap-3">
+            {navigation.map((item) => {
+              const isActive = active === item.href;
+              return (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    aria-current={isActive ? "location" : undefined}
+                    className={cx(
+                      "relative block px-3 py-2 text-[0.9375rem] transition-colors",
+                      "after:absolute after:inset-x-3 after:-bottom-[0.95rem] after:h-0.5 after:origin-center after:rounded-full after:bg-brand after:transition-transform after:duration-300",
+                      isActive
+                        ? "text-brand after:scale-x-100"
+                        : "text-ink-soft after:scale-x-0 hover:text-ink",
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </nav>
 
         <div className="flex items-center gap-2">
-          <ButtonLink href="/#contact" variant="dark" className="h-10 px-5 text-[0.9375rem] max-sm:hidden">
-            Book an assessment
+          <ButtonLink href="/#contact" variant="dark" className="group h-11 px-6 text-[0.9375rem] max-sm:hidden">
+            Get started
+            <Arrow className="transition-transform group-hover:translate-x-0.5" />
           </ButtonLink>
           <button
             type="button"
@@ -101,7 +149,8 @@ export function SiteHeader() {
             </ul>
           </nav>
           <ButtonLink href="/#contact" onClick={() => setOpen(false)} className="mt-4 mb-2 w-full">
-            Book an assessment
+            Get started
+            <Arrow />
           </ButtonLink>
         </Container>
       </div>

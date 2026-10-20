@@ -4,41 +4,41 @@
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
   --font-serif: var(--font-instrument), Georgia, "Times New Roman", serif;
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
 }
 
 @theme {
-  /* Palette: ash #bac1b8 · moonstone #58a4b0 · green #0c7c59 · gunmetal #2b303a · cinnabar #d64933 */
-  --color-paper: #ffffff;
-  --color-mist: #f1f3f0;
-  --color-mist-deep: #e6e9e4;
-  --color-surface: #ffffff;
-  --color-ink: #2b303a;
-  --color-ink-soft: #565d67;
-  --color-ink-faint: #6b717a;
-  /* Second line of two-tone headlines; large text only (3.3:1 on white). */
-  --color-ink-mute: #868c94;
-  --color-line: #dfe3dd;
-  --color-line-strong: #bac1b8;
+  /* Warm dark palette: espresso-black surfaces, cream text, ember-orange accent.
+   * Token names are kept from the original light theme, so every section switches together. */
+  --color-paper: #0c0a09;
+  --color-mist: #171310;
+  --color-mist-deep: #1f1a16;
+  --color-surface: #13100e;
+  --color-ink: #f5eee7;
+  --color-ink-soft: #c4b8ad;
+  --color-ink-faint: #9b8f84;
+  /* Second line of two-tone headlines; large text only. */
+  --color-ink-mute: #8a7e74;
+  --color-line: #2a231e;
+  --color-line-strong: #40362f;
 
-  --color-brand: #0c7c59;
-  --color-brand-hover: #09664a;
-  --color-brand-tint: #e1efe8;
-  --color-sky: #58a4b0;
-  --color-sky-light: #8cc3cb;
-  --color-sky-tint: #e2eff1;
-  --color-signal: #d64933;
+  --color-brand: #e5732f;
+  --color-brand-hover: #f08646;
+  --color-brand-tint: #35200f;
+  --color-sky: #e29f58;
+  --color-sky-light: #ffc69b;
+  --color-sky-tint: #2f2216;
+  --color-signal: #ff6a3d;
 
-  --color-night: #2b303a;
-  --color-night-deep: #22262d;
-  --color-night-ink: #1b1e24;
-  --color-night-raised: #353b46;
-  --color-night-line: #474e5a;
-  --color-on-dark: #eceee9;
-  --color-on-dark-soft: #aab1a9;
+  --color-night: #120f0d;
+  --color-night-deep: #0f0c0a;
+  --color-night-ink: #080706;
+  --color-night-raised: #1e1915;
+  --color-night-line: #3a312a;
+  --color-on-dark: #efe6dd;
+  --color-on-dark-soft: #ab9e92;
 
-  /* Warm palette: peach #ffc69b · copper #c67445 · sand #e29f58 · crimson #98061f · maroon #4e1313
-   * (coolors.co/ffc69b-c67445-e29f58-98061f-4e1313). Available as utilities such as bg-warm-copper;
-   * not used on the page yet. */
+  /* Warm palette: peach #ffc69b · copper #c67445 · sand #e29f58 · crimson #98061f · maroon #4e1313 */
   --color-warm-peach: #ffc69b;
   --color-warm-copper: #c67445;
   --color-warm-sand: #e29f58;
@@ -49,8 +49,8 @@
   --color-wolt: #00a3e0;
   --color-bolt: #2ad17f;
 
-  --color-danger: #a8321f;
-  --color-danger-tint: #fbefec;
+  --color-danger: #ff8a73;
+  --color-danger-tint: #2f1612;
 
   --container-page: 80rem;
 
@@ -58,7 +58,7 @@
 }
 
 :root {
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 html {
@@ -85,8 +85,8 @@ body {
 }
 
 ::selection {
-  background: var(--color-sky-light);
-  color: var(--color-night);
+  background: var(--color-brand);
+  color: #fff;
 }
 
 :focus-visible {
@@ -106,19 +106,24 @@ body {
  */
 
 @layer components {
+  /* Headlines are set in Fraunces, a high-contrast serif, like the printed menu of a good restaurant. */
   .type-display {
-    font-size: clamp(2.875rem, 1.25rem + 6.2vw, 6.25rem);
-    line-height: 0.96;
-    letter-spacing: -0.05em;
-    font-weight: 680;
+    font-family: var(--font-display);
+    font-size: clamp(2.75rem, 1.5rem + 4.2vw, 5.25rem);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    font-weight: 600;
+    font-variation-settings: "SOFT" 0, "WONK" 0;
     text-wrap: balance;
   }
 
   .type-h2 {
-    font-size: clamp(2.25rem, 1.3rem + 3.4vw, 4.5rem);
-    line-height: 1;
-    letter-spacing: -0.045em;
-    font-weight: 670;
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 1.3rem + 3vw, 4.25rem);
+    line-height: 1.04;
+    letter-spacing: -0.022em;
+    font-weight: 600;
+    font-variation-settings: "SOFT" 0, "WONK" 0;
     text-wrap: balance;
   }
 
@@ -169,7 +174,7 @@ body {
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    box-shadow: inset 0 0 0 1px rgb(43 48 58 / 0.08);
+    box-shadow: inset 0 0 0 1px rgb(255 240 225 / 0.07);
     pointer-events: none;
   }
 
@@ -267,7 +272,7 @@ body {
 
 .select-chevron {
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5 6 6.5l5-5' stroke='%23565d67' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5 6 6.5l5-5' stroke='%23c4b8ad' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 1rem center;
   padding-right: 2.75rem;
@@ -286,5 +291,725 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .spinner {
     animation-duration: 2.4s;
+  }
+}
+
+/* ================= Homepage motion: hero entrance, intro, order scene ================= */
+
+/* ---------- Hero entrance ----------
+ * Hero copy and the order scene rise in on load. When the intro plays they wait for it
+ * (--intro-delay); skipping the intro drops the wait to zero.
+ */
+
+:root {
+  --intro-delay: 0s;
+}
+
+.intro {
+  --intro-delay: 2.75s;
+}
+
+.intro-skip {
+  --intro-delay: 0s;
+}
+
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-in {
+    animation: hero-in 0.9s var(--ease-out-soft) both;
+    animation-delay: calc(var(--intro-delay) + var(--d, 0s));
+  }
+}
+
+/* ---------- Intro ----------
+ * Full-screen welcome: platforms → kov4 vortex → restaurant terminals → receipts.
+ * Shown only while <html> has the `intro` class (set before first paint by the root layout).
+ * Elements are placed with position variables on .intro-box, swapped for tall screens.
+ */
+
+.intro-overlay {
+  display: none;
+}
+
+.intro .intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #080605;
+  cursor: pointer;
+  animation: intro-out 0.65s cubic-bezier(0.6, 0, 0.2, 1) 2.75s both;
+}
+
+.intro-skip .intro-overlay {
+  animation: intro-out-fast 0.35s ease both;
+}
+
+@keyframes intro-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes intro-out-fast {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes intro-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes intro-rise {
+  from {
+    opacity: 0;
+    transform: translateY(40%);
+  }
+}
+
+.intro-glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(38% 42% at 50% 45%, rgb(229 115 47 / 0.24), transparent 72%),
+    linear-gradient(rgb(255 255 255 / 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.035) 1px, transparent 1px);
+  background-size:
+    100% 100%,
+    64px 64px,
+    64px 64px;
+  mask: radial-gradient(70% 70% at 50% 45%, #000 30%, transparent 85%);
+  animation: intro-fade 0.9s ease both;
+}
+
+.intro-box {
+  position: relative;
+  container-type: inline-size;
+  width: min(92vw, 1320px, 150vh);
+  aspect-ratio: 16 / 9;
+
+  --p0x: 11%;
+  --p0y: 22%;
+  --p1x: 11%;
+  --p1y: 50%;
+  --p2x: 11%;
+  --p2y: 78%;
+  --vx: 50%;
+  --vy: 44%;
+  --t0x: 89%;
+  --t0y: 24%;
+  --t1x: 89%;
+  --t1y: 52%;
+  --t2x: 89%;
+  --t2y: 80%;
+  --wy: 71%;
+
+  --tile-w: 13.5cqw;
+  --tile-radius: 1.7cqw;
+  --vortex: 25cqw;
+  --pos-w: 9.5cqw;
+  --paper-h: 7.4cqw;
+  --paper-font: 0.8cqw;
+  --name-size: 0.95cqw;
+  --dot: 1.3cqw;
+  --word-w: 13cqw;
+  --tag-size: 1.05cqw;
+  --enter: -4cqw, 0;
+}
+
+@media (max-aspect-ratio: 4 / 5) {
+  .intro-box {
+    width: min(92vw, 58vh);
+    aspect-ratio: 9 / 15;
+
+    --p0x: 18%;
+    --p0y: 9%;
+    --p1x: 50%;
+    --p1y: 9%;
+    --p2x: 82%;
+    --p2y: 9%;
+    --vx: 50%;
+    --vy: 39%;
+    --t0x: 18%;
+    --t0y: 87%;
+    --t1x: 50%;
+    --t1y: 87%;
+    --t2x: 82%;
+    --t2y: 87%;
+    --wy: 56.5%;
+
+    --tile-w: 27cqw;
+    --tile-radius: 3.4cqw;
+    --vortex: 50cqw;
+    --pos-w: 22cqw;
+    --paper-h: 15cqw;
+    --paper-font: 1.8cqw;
+    --name-size: 2.6cqw;
+    --dot: 2.8cqw;
+    --word-w: 30cqw;
+    --tag-size: 2.5cqw;
+    --enter: 0, -4cqw;
+  }
+}
+
+.intro-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.intro-lines path {
+  fill: none;
+  stroke: #e5732f;
+  stroke-opacity: 0.45;
+  stroke-width: 0.22;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.intro-lines .in {
+  animation: draw 0.45s ease both;
+  animation-delay: calc(0.5s + var(--i) * 0.08s);
+}
+
+.intro-lines .out {
+  animation: draw 0.45s ease both;
+  animation-delay: calc(1.25s + var(--i) * 0.08s);
+}
+
+.intro-lines--tall {
+  display: none;
+}
+
+@media (max-aspect-ratio: 4 / 5) {
+  .intro-lines--wide {
+    display: none;
+  }
+  .intro-lines--tall {
+    display: block;
+  }
+}
+
+.intro-tile {
+  position: absolute;
+  z-index: 2;
+  left: var(--x);
+  top: var(--y);
+  width: var(--tile-w);
+  aspect-ratio: 1.45;
+  translate: -50% -50%;
+  display: grid;
+  place-items: center;
+  border-radius: var(--tile-radius);
+  font-size: calc(var(--tile-w) * 0.16);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.35),
+    0 2cqw 4cqw -2cqw rgb(0 0 0 / 0.9);
+  animation:
+    intro-tile-in 0.5s var(--ease-out-soft) both,
+    intro-send 0.35s ease both;
+  animation-delay: calc(0.2s + var(--i) * 0.09s), calc(0.78s + var(--i) * 0.12s);
+}
+
+@keyframes intro-tile-in {
+  from {
+    opacity: 0;
+    transform: translate(var(--enter));
+  }
+}
+
+@keyframes intro-send {
+  40% {
+    scale: 1.08;
+  }
+}
+
+.intro-dot {
+  position: absolute;
+  z-index: 3;
+  width: var(--dot);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  translate: -50% -50%;
+  background: radial-gradient(circle, #fff 0 30%, var(--c) 32%);
+  box-shadow: 0 0 calc(var(--dot) * 0.9) calc(var(--dot) * 0.25) var(--c);
+  opacity: 0;
+  animation: intro-fly 0.45s cubic-bezier(0.5, 0, 0.3, 1) both;
+}
+
+.intro-dot--in {
+  animation-delay: calc(0.8s + var(--i) * 0.12s);
+}
+
+.intro-dot--out {
+  animation-delay: calc(1.5s + var(--i) * 0.1s);
+}
+
+@keyframes intro-fly {
+  0% {
+    left: var(--x1);
+    top: var(--y1);
+    opacity: 0;
+  }
+  15%,
+  85% {
+    opacity: 1;
+  }
+  100% {
+    left: var(--x2);
+    top: var(--y2);
+    opacity: 0;
+  }
+}
+
+.intro-vortex {
+  position: absolute;
+  z-index: 4;
+  left: var(--vx);
+  top: var(--vy);
+  width: var(--vortex);
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  filter: drop-shadow(0 0 2.5cqw rgb(229 115 47 / 0.55));
+  animation: intro-gulp 0.9s ease 1.18s both;
+}
+
+.intro-mark {
+  width: 100%;
+  height: 100%;
+  animation:
+    intro-vortex-in 1s cubic-bezier(0.2, 0.8, 0.2, 1) both,
+    spin 7s linear infinite;
+}
+
+@keyframes intro-vortex-in {
+  from {
+    opacity: 0;
+    scale: 0.3;
+    rotate: -220deg;
+    filter: blur(10px);
+  }
+}
+
+@keyframes intro-gulp {
+  15% {
+    scale: 1.08;
+  }
+  40% {
+    scale: 0.97;
+  }
+  60% {
+    scale: 1.05;
+  }
+}
+
+.intro-ripple {
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  border: 0.25cqw solid #ff9a52;
+  opacity: 0;
+  animation: intro-ripple 0.8s ease-out both;
+  animation-delay: calc(1.22s + var(--i) * 0.12s);
+}
+
+@keyframes intro-ripple {
+  from {
+    opacity: 0.9;
+    scale: 0.6;
+  }
+  to {
+    opacity: 0;
+    scale: 1.7;
+  }
+}
+
+.intro-word {
+  position: absolute;
+  left: var(--vx);
+  top: var(--wy);
+  width: 70cqw;
+  translate: -50% 0;
+  text-align: center;
+}
+
+.intro-wordmark {
+  width: var(--word-w);
+  height: auto;
+  margin-inline: auto;
+  filter: drop-shadow(0 0 1.5cqw rgb(229 115 47 / 0.5));
+  animation: intro-rise 0.6s var(--ease-out-soft) 1.05s both;
+}
+
+.intro-word p {
+  margin-top: calc(var(--tag-size) * 0.9);
+  font-size: var(--tag-size);
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #e5732f;
+  animation: intro-rise 0.6s var(--ease-out-soft) 1.25s both;
+}
+
+.intro-pos {
+  position: absolute;
+  z-index: 1;
+  left: var(--x);
+  top: var(--y);
+  width: var(--pos-w);
+  translate: -50% -50%;
+  animation: intro-fade 0.5s ease both;
+  animation-delay: calc(0.5s + var(--i) * 0.1s);
+}
+
+.intro-screen {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 9%;
+  aspect-ratio: 1.35;
+  padding: 10%;
+  border-radius: calc(var(--pos-w) * 0.1);
+  border: calc(var(--pos-w) * 0.035) solid #2c2520;
+  background: linear-gradient(#1d1814, #0f0c0a);
+  box-shadow: 0 2cqw 4cqw -2cqw #000;
+  animation: intro-screen-hit 0.7s ease both;
+  animation-delay: calc(1.9s + var(--i) * 0.1s);
+}
+
+@keyframes intro-screen-hit {
+  30% {
+    border-color: #e5732f;
+    box-shadow: 0 0 3cqw -0.5cqw rgb(229 115 47 / 0.8);
+  }
+}
+
+.intro-screen-bar {
+  height: 16%;
+  border-radius: 99px;
+  background: #e5732f;
+}
+
+.intro-screen-row {
+  height: 12%;
+  border-radius: 99px;
+  background: rgb(255 255 255 / 0.13);
+}
+
+.intro-screen-row.short {
+  width: 60%;
+}
+
+.intro-pos-name {
+  display: block;
+  margin-top: calc(var(--name-size) * 0.7);
+  text-align: center;
+  font-size: var(--name-size);
+  color: #ab9e92;
+  white-space: nowrap;
+}
+
+/* The receipt comes up out of the top of the terminal. */
+.intro-paper-clip {
+  position: absolute;
+  left: 16%;
+  right: 16%;
+  bottom: calc(100% - var(--name-size) * 1.9);
+  height: var(--paper-h);
+  overflow: hidden;
+}
+
+.intro-paper {
+  --zig: calc(var(--pos-w) * 0.03);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8%;
+  padding-top: 8%;
+  background: #fbf8f3;
+  color: #211c18;
+  font-family: var(--font-mono);
+  font-size: var(--paper-font);
+  font-weight: 600;
+  white-space: nowrap;
+  mask: conic-gradient(from 135deg at top, #0000, #000 1deg 89deg, #0000 90deg) top / calc(2 * var(--zig)) 100%;
+  transform: translateY(100%);
+  animation: intro-paper 0.55s steps(9, end) both;
+  animation-delay: calc(1.95s + var(--i) * 0.1s);
+}
+
+@keyframes intro-paper {
+  to {
+    transform: none;
+  }
+}
+
+.intro-smile {
+  width: 36%;
+  height: auto;
+}
+
+.intro-skip-hint {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  translate: -50% 0;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: rgb(255 255 255 / 0.35);
+  white-space: nowrap;
+  animation: intro-fade 0.6s ease 0.8s both;
+}
+
+/* ---------- Hero order scene (order-stage.tsx) ---------- */
+
+/* Torn top edge for receipts coming up out of a printer. */
+.receipt-paper {
+  --zig: 6px;
+  mask: conic-gradient(from 135deg at top, #0000, #000 1deg 89deg, #0000 90deg) top / calc(2 * var(--zig)) 100%;
+}
+
+@keyframes os-travel {
+  0% {
+    offset-distance: 0%;
+    opacity: 0;
+  }
+  12%,
+  88% {
+    opacity: 1;
+  }
+  100% {
+    offset-distance: 100%;
+    opacity: 0;
+  }
+}
+
+.os-dot {
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0 28%, var(--c) 31%);
+  box-shadow: 0 0 16px 5px var(--c);
+  offset-rotate: 0deg;
+  offset-anchor: center;
+  opacity: 0;
+  animation-name: os-travel;
+  animation-timing-function: cubic-bezier(0.5, 0, 0.3, 1);
+  animation-fill-mode: both;
+}
+
+.os-flash {
+  fill: none;
+  stroke-dasharray: 0.22 2;
+  stroke-dashoffset: 0.22;
+  filter: drop-shadow(0 0 6px currentColor);
+  animation-name: os-flash;
+  animation-timing-function: cubic-bezier(0.5, 0, 0.3, 1);
+  animation-fill-mode: both;
+}
+
+@keyframes os-flash {
+  from {
+    stroke-dashoffset: 0.22;
+  }
+  to {
+    stroke-dashoffset: -1;
+  }
+}
+
+.os-bump {
+  animation: os-bump 0.5s cubic-bezier(0.3, 1.6, 0.5, 1) both;
+}
+
+@keyframes os-bump {
+  35% {
+    scale: 1.08;
+  }
+}
+
+.os-ring {
+  animation: os-ring 0.8s ease-out both;
+}
+
+@keyframes os-ring {
+  from {
+    box-shadow: 0 0 0 0 currentColor;
+    opacity: 0.9;
+  }
+  to {
+    box-shadow: 0 0 0 24px currentColor;
+    opacity: 0;
+  }
+}
+
+.os-badge {
+  animation: os-badge 2.6s ease both;
+}
+
+@keyframes os-badge {
+  0% {
+    opacity: 0;
+    scale: 0;
+  }
+  10% {
+    opacity: 1;
+    scale: 1.2;
+  }
+  18%,
+  80% {
+    opacity: 1;
+    scale: 1;
+  }
+  100% {
+    opacity: 0;
+    scale: 0.8;
+  }
+}
+
+.os-ripple {
+  border: 3px solid #ff9a52;
+  opacity: 0;
+  animation: os-ripple 0.9s ease-out both;
+}
+
+@keyframes os-ripple {
+  from {
+    opacity: 0.9;
+    scale: 1;
+  }
+  to {
+    opacity: 0;
+    scale: 1.9;
+  }
+}
+
+.os-hub-bump {
+  animation: os-hub-bump 0.9s ease both;
+}
+
+@keyframes os-hub-bump {
+  30% {
+    box-shadow: 0 0 60px 12px rgb(255 154 82 / 0.55);
+  }
+}
+
+.os-count {
+  display: inline-block;
+  animation: os-count 0.45s cubic-bezier(0.3, 1.6, 0.5, 1) both;
+}
+
+@keyframes os-count {
+  from {
+    scale: 1.35;
+  }
+}
+
+.os-row-in {
+  overflow: hidden;
+  animation:
+    os-row-in 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both,
+    os-row-glow 2.4s ease-out both;
+}
+
+@keyframes os-row-in {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes os-row-glow {
+  from {
+    background: rgb(229 115 47 / 0.24);
+  }
+  to {
+    background: rgb(229 115 47 / 0);
+  }
+}
+
+.os-print {
+  animation: os-print 1.5s steps(26, end) both;
+}
+
+@keyframes os-print {
+  from {
+    transform: translateY(100%);
+  }
+}
+
+.os-tear {
+  animation: os-tear 0.7s cubic-bezier(0.5, 0, 0.75, 0) both;
+}
+
+@keyframes os-tear {
+  to {
+    transform: translate(-16px, -80px) rotate(-7deg);
+    opacity: 0;
+  }
+}
+
+.os-led {
+  animation: os-led 0.2s steps(2, jump-none) 8;
+}
+
+@keyframes os-led {
+  to {
+    background: #ff9a52;
+    box-shadow: 0 0 10px #ff9a52;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .os-spin {
+    animation: spin 16s linear infinite;
+  }
+
+  .os-live {
+    animation: os-live 1.8s ease-out infinite;
+  }
+}
+
+@keyframes os-live {
+  from {
+    opacity: 0.7;
+    scale: 1;
+  }
+  to {
+    opacity: 0;
+    scale: 2.6;
   }
 }

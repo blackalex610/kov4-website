@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { IBM_Plex_Mono, Inter, Instrument_Serif } from "next/font/google";
+import { Fraunces, IBM_Plex_Mono, Inter, Instrument_Serif } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { site } from "@/content/site";
@@ -18,6 +18,14 @@ const plexMono = IBM_Plex_Mono({
   variable: "--font-plex-mono",
   subsets: ["latin", "cyrillic"],
   weight: ["400", "500", "600"],
+  display: "swap",
+});
+
+// Headlines: a high-contrast serif with an optical-size axis.
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
+  subsets: ["latin", "latin-ext"],
+  axes: ["opsz", "SOFT", "WONK"],
   display: "swap",
 });
 
@@ -47,8 +55,21 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image" },
 };
 
+/**
+ * Runs before first paint. Marks JS as available, and decides whether the homepage intro plays:
+ * once per tab session, never with reduced motion. Add ?intro to the URL to replay it.
+ */
+const headScript = [
+  "(function(){var d=document.documentElement;d.classList.add('js');",
+  "try{if(location.pathname!=='/')return;",
+  "if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;",
+  "var force=location.search.indexOf('intro')>-1;",
+  "if(!force&&sessionStorage.getItem('kov4-intro'))return;",
+  "sessionStorage.setItem('kov4-intro','1');d.classList.add('intro')}catch(e){}})()",
+].join("");
+
 export const viewport: Viewport = {
-  themeColor: "#ffffff",
+  themeColor: "#0c0a09",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -56,16 +77,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${inter.variable} ${plexMono.variable} ${instrument.variable} antialiased`}
+      className={`${inter.variable} ${fraunces.variable} ${plexMono.variable} ${instrument.variable} antialiased`}
     >
       <head>
         {/* Lets CSS hold scroll-triggered sequences until they're in view; without JS everything simply shows. */}
-        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+        <script dangerouslySetInnerHTML={{ __html: headScript }} />
       </head>
       <body className="flex min-h-dvh flex-col font-sans">
         <a
           href="#main"
-          className="sr-only z-[60] rounded-full bg-ink px-4 py-2 text-white focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
+          className="sr-only z-[60] rounded-full bg-brand px-4 py-2 text-white focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
         >
           Skip to content
         </a>

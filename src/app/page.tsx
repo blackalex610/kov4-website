@@ -3,6 +3,7 @@ import { Contact } from "@/components/contact";
 import { Faq } from "@/components/faq";
 import { Features } from "@/components/features";
 import { Hero } from "@/components/hero";
+import { Intro } from "@/components/intro";
 import { Integrations } from "@/components/integrations";
 import { Market } from "@/components/market";
 import { Platforms } from "@/components/platforms";
@@ -15,6 +16,7 @@ import { Solutions } from "@/components/solutions";
 export default function Home() {
   return (
     <>
+      <Intro />
       <Hero />
       <Platforms />
       <Problem />

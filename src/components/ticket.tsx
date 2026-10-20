@@ -21,7 +21,7 @@ export function Ticket({
   return (
     <div
       className={cx(
-        "ticket bg-[#fbfbf8] px-4 pt-3 font-mono text-[0.78rem] leading-[1.55] text-ink shadow-[0_18px_30px_-22px_rgba(0,0,0,0.9)]",
+        "ticket bg-[#fbf8f3] px-4 pt-3 font-mono text-[0.78rem] leading-[1.55] text-[#211c18] shadow-[0_18px_30px_-22px_rgba(0,0,0,0.9)]",
         className,
       )}
       style={style}
@@ -29,11 +29,11 @@ export function Ticket({
       <div className="flex items-baseline justify-between gap-3">
         <span>
           <span className="font-semibold">#{ticket.no}</span>
-          <span className="ml-2 text-ink-faint">{ticket.channel}</span>
+          <span className="ml-2 text-[#6f665e]">{ticket.channel}</span>
         </span>
-        <span className="tabular text-ink-soft">{ticket.time}</span>
+        <span className="tabular text-[#4f4740]">{ticket.time}</span>
       </div>
-      <div className="my-1.5 border-t border-dashed border-line-strong" />
+      <div className="my-1.5 border-t border-dashed border-[#b9b0a6]" />
       {ticket.items.map((item) => (
         <div key={item.name}>
           <p>
@@ -41,7 +41,7 @@ export function Ticket({
             {item.name}
           </p>
           {item.mods.map((mod) => (
-            <p key={mod} className="pl-5 text-ink-soft">
+            <p key={mod} className="pl-5 text-[#4f4740]">
               {mod}
             </p>
           ))}
