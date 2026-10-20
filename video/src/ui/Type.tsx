@@ -1,5 +1,5 @@
 import React from 'react';
-import { useCurrentFrame } from 'remotion';
+import { staticFile, useCurrentFrame } from 'remotion';
 import { FONT } from '../fonts';
 import { easeInOut, easeOut, prog } from '../lib/anim';
 import { BRAND_GRADIENT, C } from '../theme';
@@ -163,7 +163,7 @@ export const Wordmark: React.FC<{ size: number; color?: string; style?: React.CS
       ...style,
     }}
   >
-    <span>kov</span>
+    <span>KOV</span>
     <span
       style={{
         backgroundImage: BRAND_GRADIENT,
@@ -178,23 +178,9 @@ export const Wordmark: React.FC<{ size: number; color?: string; style?: React.CS
   </div>
 );
 
-/** Flat SVG version of the app icon (used where a 3D icon would be overkill). */
+/** Flat version of the app icon: the KOV4 flame emblem on its dark tile. */
 export const IconMark: React.FC<{ size: number }> = ({ size }) => (
-  <svg width={size} height={size} viewBox="0 0 100 100">
-    <defs>
-      <linearGradient id="kg" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0" stopColor={C.indigo} />
-        <stop offset="0.55" stopColor={C.purple} />
-        <stop offset="1" stopColor={C.violet} />
-      </linearGradient>
-    </defs>
-    <rect width="100" height="100" rx="22.5" fill="url(#kg)" />
-    <g stroke="#fff" strokeWidth="7.2" strokeLinecap="round" fill="none">
-      <path d="M22 30 C42 30 44 50 56 50" />
-      <path d="M22 50 L56 50" />
-      <path d="M22 70 C42 70 44 50 56 50" />
-      <path d="M56 50 L77 50" />
-    </g>
-    <circle cx="80" cy="50" r="7" fill="#fff" />
-  </svg>
+  <div style={{ width: size, height: size, borderRadius: size * 0.225, background: 'linear-gradient(135deg,#1e1712,#0b0806)', display: 'grid', placeItems: 'center' }}>
+    <img src={staticFile('brand/kov4-flame.png')} width={size * 0.9} height={size * 0.9} alt="KOV4" />
+  </div>
 );

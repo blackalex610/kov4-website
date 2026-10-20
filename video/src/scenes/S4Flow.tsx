@@ -24,7 +24,7 @@ const KDS_POS = [5.25, 1.35, -0.3] as const;
 const KDS_SCALE = 0.64;
 const PRN_POS = [5.0, -3.05, 0.4] as const;
 const PRN_SCALE = 0.78;
-const BRAND = '#8b5cf6';
+const BRAND = '#e5732f';
 
 const WIDE: Cam = { pos: [0, 0.2, 17], target: [0, 0, 0], fov: 30 };
 

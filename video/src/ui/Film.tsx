@@ -17,10 +17,10 @@ const LEAKS: [number, string, number, number, number][] = [
   [cue('ping_glovo'), '#ffc244', 22, 40, 0.35],
   [cue('twice'), '#ff6a3d', 80, 25, 0.4],
   [cue('peak'), C.red, 50, 90, 0.35],
-  [cue('logo'), C.violet, 50, 48, 0.9],
-  [cue('accept'), C.indigo, 30, 60, 0.3],
-  [cue('n40'), C.purple, 50, 30, 0.3],
-  [cue('logo_end'), C.violet, 50, 45, 0.55],
+  [cue('logo'), C.gold, 50, 48, 0.9],
+  [cue('accept'), C.ember, 30, 60, 0.3],
+  [cue('n40'), C.brand, 50, 30, 0.3],
+  [cue('logo_end'), C.gold, 50, 45, 0.55],
 ];
 
 const Leak: React.FC<{ frame: number; at: number; color: string; x: number; y: number; k: number }> = ({

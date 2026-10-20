@@ -2,23 +2,24 @@ export const W = 1920;
 export const H = 1080;
 
 export const C = {
-  ink: '#1d1d1f',
+  ink: '#1c1511',
   inkSoft: '#6e6e73',
   inkFaint: '#a1a1a6',
   light: '#f5f5f7',
   white: '#ffffff',
   dark: '#050507',
   graphite: '#2b2b30',
-  indigo: '#5e5ce6',
-  purple: '#9b5cf6',
-  violet: '#bf5af2',
+  ember: '#c9561f',
+  brand: '#e5732f',
+  gold: '#f2a14a',
+  warmInk: '#1c1511',
   red: '#ff453a',
   amber: '#ff9f0a',
   green: '#30d158',
   paper: '#fbfaf6',
 };
 
-export const BRAND_GRADIENT = `linear-gradient(120deg, ${C.indigo} 0%, ${C.purple} 55%, ${C.violet} 100%)`;
+export const BRAND_GRADIENT = `linear-gradient(120deg, ${C.ember} 0%, ${C.brand} 55%, ${C.gold} 100%)`;
 
 export type PlatformKey = 'glovo' | 'wolt' | 'bolt';
 
@@ -74,4 +75,4 @@ export const KDS_ORDERS = [
   },
 ];
 
-export const LIGHT_BG = 'radial-gradient(90% 80% at 50% 38%, #ffffff 0%, #f5f5f7 55%, #e9e9ee 100%)';
+export const LIGHT_BG = 'radial-gradient(90% 80% at 50% 38%, #fffdf9 0%, #f8f3ec 55%, #ede4d8 100%)';

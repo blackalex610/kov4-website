@@ -1,3 +1,4 @@
+import { continueRender, delayRender, staticFile } from 'remotion';
 import { C, Platform } from '../theme';
 import { Ctx, rr, text } from './draw';
 
@@ -19,28 +20,30 @@ export const drawOrderCard = (ctx: Ctx, p: Platform, no: string) => {
 
 export const ICON_TEX = 1024;
 
-/**
- * kov4 app icon: three incoming lines (the platforms) merging into one stream.
- * Drawn on a transparent canvas so the rounded-square silhouette stays crisp.
- */
+// The official KOV4 flame emblem (same asset as the website), loaded once before any frame renders.
+const flame = new Image();
+const flameHandle = delayRender('kov4 flame emblem');
+flame.onload = () => continueRender(flameHandle);
+flame.onerror = () => continueRender(flameHandle);
+flame.src = staticFile('brand/kov4-flame.png');
+
+/** KOV4 app icon: the flame emblem on the website's warm near-black tile. */
 export const drawIconFace = (ctx: Ctx, s = ICON_TEX) => {
   const g = ctx.createLinearGradient(0, 0, s, s);
-  g.addColorStop(0, C.indigo);
-  g.addColorStop(0.55, C.purple);
-  g.addColorStop(1, C.violet);
+  g.addColorStop(0, '#1e1712');
+  g.addColorStop(1, '#0b0806');
   rr(ctx, 0, 0, s, s, s * 0.225);
   ctx.fillStyle = g;
   ctx.fill();
 
-  // Soft top highlight
-  const hl = ctx.createLinearGradient(0, 0, 0, s * 0.6);
-  hl.addColorStop(0, 'rgba(255,255,255,0.28)');
-  hl.addColorStop(1, 'rgba(255,255,255,0)');
-  ctx.fillStyle = hl;
-  rr(ctx, 0, 0, s, s, s * 0.225);
-  ctx.fill();
+  // Thin amber rim, like the site's emblem tile
+  rr(ctx, s * 0.006, s * 0.006, s * 0.988, s * 0.988, s * 0.22);
+  ctx.strokeStyle = 'rgba(242,161,74,0.35)';
+  ctx.lineWidth = s * 0.008;
+  ctx.stroke();
 
-  drawGlyph(ctx, s, '#ffffff');
+  const e = s * 0.9;
+  ctx.drawImage(flame, (s - e) / 2, (s - e) / 2, e, e);
 };
 
 export const drawGlyph = (ctx: Ctx, s: number, color: string) => {

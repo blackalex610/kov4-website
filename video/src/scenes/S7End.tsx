@@ -36,7 +36,7 @@ export const S7End: React.FC = () => {
       <Scene3D>
         <CameraRig cam={CAM} />
         <Studio {...LIGHT_STUDIO} />
-        <Glow position={[0, 0, -0.8]} size={6.5} color="#8b5cf6" opacity={0.3 * t} />
+        <Glow position={[0, 0, -0.8]} size={6.5} color="#e5732f" opacity={0.3 * t} />
         {frame >= spinAt && (
           <Hub position={[0, float, 0]} rotation={[mix(-0.6, 0.06, t), mix(2.8, 0, t) + idle, 0]} scale={Math.max(0.001, t)} />
         )}

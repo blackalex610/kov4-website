@@ -203,7 +203,7 @@ export const Hub: React.FC<Placement & { glow?: number }> = ({ position, rotatio
   const bodyMat = useMemo(
     () =>
       new THREE.MeshPhysicalMaterial({
-        color: '#7a5cf2',
+        color: '#7d4220',
         metalness: 0.15,
         roughness: 0.22,
         clearcoat: 1,
@@ -219,7 +219,7 @@ export const Hub: React.FC<Placement & { glow?: number }> = ({ position, rotatio
           map={face}
           emissiveMap={face}
           emissive="#ffffff"
-          emissiveIntensity={0.45}
+          emissiveIntensity={0.3}
           roughness={0.18}
           clearcoat={1}
           clearcoatRoughness={0.05}

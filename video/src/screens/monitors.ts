@@ -53,7 +53,7 @@ export const drawPos = (ctx: Ctx, s: PosState) => {
     if (cursorPlaced) return;
     cursorPlaced = true;
     if (!s.cursorOn) return;
-    ctx.fillStyle = '#5e5ce6';
+    ctx.fillStyle = '#e5732f';
     ctx.fillRect(x + 5, y - size * 0.82, 5, size * 1.05);
   };
 

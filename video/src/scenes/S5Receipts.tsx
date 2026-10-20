@@ -98,7 +98,7 @@ export const S5Receipts: React.FC = () => {
       </Scene3D>
 
       <Chip frame={frame} at={cue('rec_platform', -0.15)} out={cue('stack', -0.2)} x={lTop.x} y={lTop.y} label="Бележка от платформата" accent={PLATFORMS.glovo.color} size={30} />
-      <Chip frame={frame} at={cue('rec_fiscal', -0.15)} out={cue('stack', -0.2)} x={rTop.x} y={rTop.y} label="Касова бележка" accent={C.indigo} size={30} />
+      <Chip frame={frame} at={cue('rec_fiscal', -0.15)} out={cue('stack', -0.2)} x={rTop.x} y={rTop.y} label="Касова бележка" accent={C.ember} size={30} />
 
       <div
         style={{
