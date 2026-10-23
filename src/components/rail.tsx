@@ -59,7 +59,7 @@ export function Rail({ children, label, aside }: { children: ReactNode; label: s
                 type="button"
                 onClick={() => step(dir)}
                 disabled={disabled}
-                aria-label={dir === -1 ? "Previous" : "Next"}
+                aria-label={dir === -1 ? "Назад" : "Напред"}
                 className={cx(
                   "inline-flex size-11 items-center justify-center rounded-full bg-mist-deep text-ink transition-colors",
                   disabled ? "opacity-40" : "hover:bg-line-strong",

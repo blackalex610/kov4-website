@@ -17,10 +17,10 @@ import { Container, PhotoFrame, SectionIntro } from "./ui";
 function Facts({ study }: { study: CaseStudy }) {
   const client = getClient(study.client);
   const facts = [
-    { label: "Business", value: client.segment },
-    { label: "Locations", value: `${client.locations} in ${client.city}` },
-    { label: "Channels", value: study.channels.join(", ") },
-    { label: "Connected to", value: study.system },
+    { label: "Бизнес", value: client.segment },
+    { label: "Обекти", value: `${client.locations} в ${client.city}` },
+    { label: "Канали", value: study.channels.join(", ") },
+    { label: "Свързано с", value: study.system },
   ];
   return (
     <dl className="grid grid-cols-2 gap-x-6 gap-y-3 text-[0.875rem] sm:grid-cols-4">
@@ -48,8 +48,8 @@ export function CaseStudies() {
   return (
     <section id="work" aria-labelledby="work-title" className="py-24 lg:py-32">
       <Container>
-        <SectionIntro id="work-title" title="Kitchens already running one order flow.">
-          <p>A few of the operators whose marketplace orders now reach their own systems without re-typing.</p>
+        <SectionIntro id="work-title" title="Кухни, които вече работят с един поток от поръчки.">
+          <p>Няколко от операторите, чиито поръчки от платформите вече стигат до собствените им системи без преписване.</p>
         </SectionIntro>
 
         <article className="mt-14 grid overflow-hidden rounded-[1.75rem] bg-mist lg:mt-20 lg:grid-cols-12">
@@ -68,11 +68,11 @@ export function CaseStudies() {
             </div>
             <div className="mt-8 grid gap-6 border-t border-line-strong/60 pt-8 sm:grid-cols-2">
               <div>
-                <h3 className="type-label text-ink-faint">Before</h3>
+                <h3 className="type-label text-ink-faint">Преди</h3>
                 <p className="mt-2 text-ink-soft">{featuredCase.before}</p>
               </div>
               <div>
-                <h3 className="type-label text-brand">After</h3>
+                <h3 className="type-label text-brand">След</h3>
                 <p className="mt-2">{featuredCase.after}</p>
               </div>
             </div>
@@ -106,11 +106,11 @@ export function CaseStudies() {
                   <p className="mt-3">{study.after}</p>
                   <dl className="mt-6 grid grid-cols-2 gap-4 border-t border-line pt-5 text-[0.875rem]">
                     <div>
-                      <dt className="text-ink-faint">Channels</dt>
+                      <dt className="text-ink-faint">Канали</dt>
                       <dd className="mt-0.5 font-medium">{study.channels.join(", ")}</dd>
                     </div>
                     <div>
-                      <dt className="text-ink-faint">Connected to</dt>
+                      <dt className="text-ink-faint">Свързано с</dt>
                       <dd className="mt-0.5 font-medium">{study.system}</dd>
                     </div>
                   </dl>

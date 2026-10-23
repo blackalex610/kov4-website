@@ -3,44 +3,52 @@ import { Container } from "./ui";
 
 const faqs = [
   {
-    q: "Are you an official partner of Glovo, Wolt or Bolt Food?",
-    a: "No. kov4 is independent and isn’t affiliated with or endorsed by any delivery platform. We work only through the access each platform makes available to merchants and integration partners, and we’ll tell you plainly what that access allows for your account.",
+    q: "Трябва ли да сменя касата си?",
+    a: "Не. Целта е да се свържем с касата, която вече ползвате, а не да я заменим. Работим по конектори за български системи като Microinvest, Barsy, BeMODY и Eltrade. Кажете ни коя е вашата и ще ви кажем честно докъде сме с нея.",
   },
   {
-    q: "Is there a ready-made product we can sign up for?",
-    a: "Not off the shelf. Setups differ too much between businesses, so we start with an assessment of your workflow and systems. Where it makes sense we reuse proven integration components, but the scope is always agreed with you.",
+    q: "Ще спрат ли таблетите?",
+    a: "Не. Те остават включени като резерва през пилота. Уеб приложението на Glovo така или иначе остава нужно за проблеми с куриер, чанти, промени в графика и поддръжка.",
   },
   {
-    q: "Which POS and business systems do you work with?",
-    a: "We assess compatibility case by case. What matters is whether your software can receive data, through an API, an import or another supported mechanism, and whether the delivery platform provides authorized access for your account.",
+    q: "Колко струва и има ли договор?",
+    a: "Първият месец е безплатен, без договор и можете да спрете по всяко време. Месечната цена за обект още не е публикувана тук. Попитайте ни и ще ви я кажем, преди да започнем.",
   },
   {
-    q: "What does the assessment cost?",
-    a: "Nothing. The workflow assessment is free and carries no obligation. If a pilot makes sense, you’ll get a written scope and price before any work starts.",
+    q: "Какво става, ако системата спре в петък вечер?",
+    a: "Таблетите на платформите остават включени, така че поръчките пак идват. Ако поръчка остане неприета 3 минути, мениджърът получава SMS или обаждане. Ако връзката с платформа прекъсне, ние получаваме сигнал. Всяко събитие се записва, а неуспешните изпращания се повтарят.",
   },
   {
-    q: "How long does it take?",
-    a: "The assessment usually takes one call and a written follow-up. Pilot timelines depend on platform approval and on your systems, so we give you an estimate once feasibility is confirmed rather than guessing upfront.",
+    q: "Официални ли сте за Glovo, Wolt и Bolt Food?",
+    a: "Все още не. Свързваме се през официалните партньорски API на трите платформи, а одобрението за България е в процес. KOV4 е независима и не е свързана с платформите. Когато някоя ни одобри, ще го напишем тук.",
   },
   {
-    q: "Will this replace our POS or affect fiscal receipts?",
-    a: "No. The aim is to connect the systems you already use, not replace them. Fiscal receipts stay with your registered POS or cash register; an integration passes order data to it.",
+    q: "Влияе ли на комисионните на платформите?",
+    a: "Не. Комисионните остават непроменени, ние не ги пипаме.",
   },
   {
-    q: "Do you scrape the platforms or use unofficial workarounds?",
-    a: "No. We don’t scrape apps or dashboards, bypass platform controls or intercept app traffic. If authorized access isn’t available for what you need, we’ll tell you that instead.",
+    q: "Колко време отнема свързването?",
+    a: "Още не даваме обещания за срок. Той зависи от одобрението на платформите и от вашата каса, а всяка платформа пуска нова интеграция първо с един пилотен обект. След първия пилот ще посочим реален срок.",
   },
   {
-    q: "What happens if an order fails to come through?",
-    a: "Integrations we scope are designed with retries, logging and alerts, so a failed order is visible rather than silently lost. The exact behaviour depends on the platform and your systems, and is agreed during the pilot.",
+    q: "Как става фискалният бон?",
+    a: "Фискалният бон остава във вашата каса. Сертифицираната каса го издава по Наредба Н-18, а ние предаваме към нея данните за поръчката.",
   },
   {
-    q: "How do you handle our data?",
-    a: "We only access the data an integration needs, under a written agreement with you. Personal data is processed in line with the GDPR, and data-handling terms are agreed before a pilot begins.",
+    q: "Какво точно може и какво не може за всяка платформа?",
+    a: "Не е еднакво за всички. Например поръчка в Glovo не може да се отхвърли или отмени през API, това става в уеб приложението на Glovo. Подробна таблица за всяка платформа ще публикуваме, след като проверим всяка възможност в тестова среда.",
   },
   {
-    q: `Do you work outside ${site.market}?`,
-    a: `We’re starting with businesses in ${site.market}. If you operate elsewhere and use comparable platforms, get in touch and we can talk it through.`,
+    q: "Кой има достъп до данните ни?",
+    a: "Достъпваме само данните, нужни на интеграцията, с най-малките възможни права. Лични данни се обработват съгласно GDPR, с хостинг в ЕС, а споразумение за обработка на данни предоставяме при поискване.",
+  },
+  {
+    q: "Работите ли извън София?",
+    a: "Започваме със София. Пловдив и Варна са възможни по заявка, пишете ни.",
+  },
+  {
+    q: "Ползвате ли скрейпване или неофициални заобиколни пътища?",
+    a: "Не. Не скрейпваме приложения или табла, не заобикаляме ограниченията на платформите и не прихващаме трафик. Ако за нещо няма разрешен достъп, ще ви го кажем.",
   },
 ];
 
@@ -51,11 +59,11 @@ export function Faq() {
         <div className="lg:col-span-5">
           <div className="lg:sticky lg:top-28">
             <h2 id="faq-title" className="type-h2">
-              <span className="block">Questions,</span>
-              <span className="block text-ink-mute">answered plainly.</span>
+              <span className="block">Въпроси,</span>
+              <span className="block text-ink-mute">отговорени ясно.</span>
             </h2>
             <p className="mt-6 max-w-sm text-ink-soft">
-              Something not covered here? Write to{" "}
+              Нещо, което не е тук? Пишете на{" "}
               <a
                 href={`mailto:${site.contactEmail}`}
                 className="font-medium text-ink underline decoration-line-strong underline-offset-4 hover:decoration-ink"

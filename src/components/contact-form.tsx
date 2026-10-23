@@ -45,7 +45,7 @@ function Field({
     <div>
       <label htmlFor={id} className="flex items-baseline justify-between gap-3 text-[0.925rem] font-medium">
         {label}
-        {optional ? <span className="text-[0.8125rem] font-normal text-ink-faint">Optional</span> : null}
+        {optional ? <span className="text-[0.8125rem] font-normal text-ink-faint">По желание</span> : null}
       </label>
       {hint ? (
         <p id={`${id}-hint`} className="mt-0.5 text-[0.8125rem] text-ink-faint">
@@ -148,13 +148,13 @@ export function ContactForm() {
       setStatus({
         kind: "error",
         code: data?.code ?? "unknown",
-        message: data?.message ?? "Your details couldn’t be sent.",
+        message: data?.message ?? "Данните ви не можаха да бъдат изпратени.",
       });
     } catch {
       setStatus({
         kind: "error",
         code: "network",
-        message: "Your details couldn’t be sent because the connection dropped.",
+        message: "Данните ви не можаха да бъдат изпратени, защото връзката прекъсна.",
       });
     }
   }
@@ -173,10 +173,10 @@ export function ContactForm() {
             strokeLinejoin="round"
           />
         </svg>
-        <h3 className="type-h3 mt-6">Thanks, {status.name}. Your details are with us.</h3>
+        <h3 className="type-h3 mt-6">Благодарим, {status.name}. Получихме вашите данни.</h3>
         <p className="mt-3 max-w-md text-ink-soft">
-          We&rsquo;ll read through your setup and reply by email to arrange a short call. If anything changes in the
-          meantime, write to{" "}
+          Ще прегледаме вашата настройка и ще ви отговорим по имейл, за да уговорим кратък разговор. Ако междувременно
+          нещо се промени, пишете ни на{" "}
           <a className="font-medium text-ink underline underline-offset-4" href={`mailto:${site.contactEmail}`}>
             {site.contactEmail}
           </a>
@@ -188,7 +188,7 @@ export function ContactForm() {
 
   const submitting = status.kind === "submitting";
   const mailto = `mailto:${site.contactEmail}?subject=${encodeURIComponent(
-    `Workflow assessment request: ${values.businessName || "new enquiry"}`,
+    `Заявка за пилот: ${values.businessName || "ново запитване"}`,
   )}&body=${encodeURIComponent(summarizeLead(values))}`;
 
   return (
@@ -209,17 +209,17 @@ export function ContactForm() {
           <p className="font-semibold text-danger">{status.message}</p>
           <p className="mt-1 text-ink-soft">
             {status.code === "not_configured" || status.code === "delivery_failed" || status.code === "network"
-              ? "Send the same details by email instead. We’ve written the message for you."
-              : "Check the form and try again, or email us directly."}
+              ? "Изпратете същите данни по имейл. Вече сме написали съобщението вместо вас."
+              : "Проверете формуляра и опитайте отново или ни пишете директно по имейл."}
           </p>
           <a href={mailto} className="mt-3 inline-flex font-medium text-ink underline underline-offset-4">
-            Email {site.contactEmail}
+            Пишете на {site.contactEmail}
           </a>
         </div>
       ) : null}
 
       <div className="grid gap-6 sm:grid-cols-2">
-        <Field id="name" label="Name" error={errors.name}>
+        <Field id="name" label="Име" error={errors.name}>
           <input
             id="name"
             data-field="name"
@@ -233,7 +233,7 @@ export function ContactForm() {
             required
           />
         </Field>
-        <Field id="email" label="Work email" error={errors.email}>
+        <Field id="email" label="Служебен имейл" error={errors.email}>
           <input
             id="email"
             data-field="email"
@@ -249,7 +249,7 @@ export function ContactForm() {
             required
           />
         </Field>
-        <Field id="businessName" label="Business name" error={errors.businessName}>
+        <Field id="businessName" label="Име на бизнеса" error={errors.businessName}>
           <input
             id="businessName"
             data-field="businessName"
@@ -263,7 +263,7 @@ export function ContactForm() {
             required
           />
         </Field>
-        <Field id="businessType" label="Type of business" error={errors.businessType}>
+        <Field id="businessType" label="Вид бизнес" error={errors.businessType}>
           <select
             id="businessType"
             data-field="businessType"
@@ -276,7 +276,7 @@ export function ContactForm() {
             required
           >
             <option value="" disabled>
-              Choose one
+              Изберете
             </option>
             {BUSINESS_TYPES.map((o) => (
               <option key={o.value} value={o.value} className="text-ink">
@@ -292,7 +292,7 @@ export function ContactForm() {
         aria-invalid={!!errors.locations}
         aria-describedby={errors.locations ? "locations-error" : undefined}
       >
-        <legend className="text-[0.925rem] font-medium">Number of locations</legend>
+        <legend className="text-[0.925rem] font-medium">Брой обекти</legend>
         <div className="mt-2 grid grid-cols-4 gap-2">
           {LOCATION_RANGES.map((o, i) => (
             <label key={o.value} className="relative">
@@ -325,9 +325,9 @@ export function ContactForm() {
         aria-invalid={!!errors.platforms}
         aria-describedby={["platforms-hint", errors.platforms ? "platforms-error" : ""].join(" ").trim()}
       >
-        <legend className="text-[0.925rem] font-medium">Delivery platforms you sell on</legend>
+        <legend className="text-[0.925rem] font-medium">Платформи за доставка, през които продавате</legend>
         <p id="platforms-hint" className="mt-0.5 text-[0.8125rem] text-ink-faint">
-          Choose all that apply.
+          Изберете всички, които се отнасят за вас.
         </p>
         <div className="mt-2 flex flex-wrap gap-2">
           {PLATFORMS.map((o, i) => {
@@ -381,13 +381,13 @@ export function ContactForm() {
 
       {(values.platforms as string[]).includes("other") ? (
         <div className="mt-4">
-          <Field id="otherPlatforms" label="Which other platforms?" error={errors.otherPlatforms}>
+          <Field id="otherPlatforms" label="Кои други платформи?" error={errors.otherPlatforms}>
             <input
               id="otherPlatforms"
               data-field="otherPlatforms"
               name="otherPlatforms"
               className={inputClass}
-              placeholder="For example, your own web ordering"
+              placeholder="Например собствен уебсайт за поръчки"
               value={values.otherPlatforms as string}
               onChange={(e) => set("otherPlatforms", e.target.value)}
               aria-invalid={!!errors.otherPlatforms}
@@ -400,9 +400,9 @@ export function ContactForm() {
       <div className="mt-6 grid gap-6 sm:grid-cols-2">
         <Field
           id="software"
-          label="POS or business software"
+          label="Каса или бизнес софтуер"
           optional
-          hint="Name it if you know it, or write “not sure”."
+          hint="Посочете го, ако го знаете, или напишете „не съм сигурен“."
           error={errors.software}
         >
           <input
@@ -416,7 +416,7 @@ export function ContactForm() {
             aria-describedby={describedBy("software", true, errors.software)}
           />
         </Field>
-        <Field id="challenge" label="Main challenge" hint="The one that costs you most today." error={errors.challenge}>
+        <Field id="challenge" label="Основен проблем" hint="Този, който ви струва най-много днес." error={errors.challenge}>
           <select
             id="challenge"
             data-field="challenge"
@@ -429,7 +429,7 @@ export function ContactForm() {
             required
           >
             <option value="" disabled>
-              Choose one
+              Изберете
             </option>
             {CHALLENGES.map((o) => (
               <option key={o.value} value={o.value} className="text-ink">
@@ -443,9 +443,9 @@ export function ContactForm() {
       <div className="mt-6">
         <Field
           id="details"
-          label="Anything else we should know"
+          label="Нещо друго, което бихме искали да знаем"
           optional
-          hint="Order volumes, current workarounds, timing. Whatever helps."
+          hint="Обем на поръчките, текущи заобиколни решения, срокове — всичко, което помага."
           error={errors.details}
         >
           <textarea
@@ -464,7 +464,7 @@ export function ContactForm() {
 
       {/* Honeypot: hidden from people and assistive tech, tempting to bots. */}
       <div aria-hidden className="absolute -left-[9999px] h-px w-px overflow-hidden">
-        <label htmlFor="website">Website</label>
+        <label htmlFor="website">Уебсайт</label>
         <input
           id="website"
           name="website"
@@ -477,9 +477,9 @@ export function ContactForm() {
 
       <div className="mt-8 flex flex-col gap-4 border-t border-line-strong/60 pt-6 sm:flex-row sm:items-center sm:justify-between">
         <p className="max-w-sm text-[0.8125rem] leading-relaxed text-ink-faint">
-          We use these details only to reply to your enquiry. See our{" "}
+          Използваме тези данни само за да отговорим на запитването ви. Вижте нашата{" "}
           <a href="/privacy" className="underline underline-offset-2 hover:text-ink">
-            privacy notice
+            политика за поверителност
           </a>
           .
         </p>
@@ -501,15 +501,15 @@ export function ContactForm() {
                   strokeLinecap="round"
                 />
               </svg>
-              Sending…
+              Изпращане…
             </>
           ) : (
-            "Send my details"
+            "Изпратете данните"
           )}
         </button>
       </div>
       <p className="sr-only" aria-live="polite">
-        {submitting ? "Sending your details" : ""}
+        {submitting ? "Данните ви се изпращат" : ""}
       </p>
     </form>
   );

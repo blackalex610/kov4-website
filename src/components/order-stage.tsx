@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { Fragment, useEffect, useRef, useState, type CSSProperties } from "react";
 import {
   itemCount,
@@ -12,8 +11,8 @@ import {
   type Order,
   type PlatformId,
 } from "@/content/orders";
-import flame from "@/assets/brand/kov4-flame.png";
 import { cx } from "./ui";
+import { K4Mark } from "./wordmark";
 
 /**
  * The hero scene: orders leave Glovo, Wolt and Bolt Food, pass through the kov4 hub,
@@ -76,9 +75,9 @@ type Status = "new" | "preparing" | "ready";
 const statusFor = (i: number): Status => (i === 0 ? "new" : i < 3 ? "preparing" : "ready");
 
 const statusStyle: Record<Status, { label: string; className: string }> = {
-  new: { label: "New", className: "bg-[#e5732f] text-white" },
-  preparing: { label: "Preparing", className: "bg-[#3a2819] text-[#ffc69b]" },
-  ready: { label: "Ready", className: "bg-[#18291f] text-[#86dfaa]" },
+  new: { label: "Нова", className: "bg-[#e5732f] text-white" },
+  preparing: { label: "Приготвя се", className: "bg-[#3a2819] text-[#ffc69b]" },
+  ready: { label: "Готова", className: "bg-[#18291f] text-[#86dfaa]" },
 };
 
 export function OrderStage({ className }: { className?: string }) {
@@ -171,7 +170,7 @@ export function OrderStage({ className }: { className?: string }) {
     <div
       ref={outer}
       role="img"
-      aria-label="Animated illustration: orders from Glovo, Wolt and Bolt Food pass through kov4 straight to a restaurant's POS terminal, which prints a receipt for each one."
+      aria-label="Анимирана илюстрация: поръчките от Glovo, Wolt и Bolt Food минават през KOV4 направо към POS терминала на ресторанта, който печата бележка за всяка от тях."
       className={cx("relative aspect-[1000/800] w-full", className)}
     >
       <div
@@ -301,18 +300,16 @@ function Hub({ hit }: { hit: number | null }) {
     <div className="absolute" style={{ left: HUB.x - HUB.r, top: HUB.y - HUB.r, width: size, height: size }}>
       <div className="absolute -inset-6 rounded-full bg-[radial-gradient(circle,rgb(229_115_47/0.32),transparent_68%)]" />
       {/* Each order lands with a short turn and settle; remounting on `hit` replays it. */}
-      <Image
+      <div
         key={hit ?? "idle"}
-        src={flame}
-        alt=""
-        width={size}
-        height={size}
         className={cx(
-          "absolute inset-0 size-full drop-shadow-[0_0_14px_rgb(229_115_47/0.55)]",
+          "absolute inset-0 drop-shadow-[0_0_14px_rgb(242_140_78/0.55)]",
           hit !== null && "os-hub-turn",
         )}
         style={{ animationDelay: ms(T.hub) }}
-      />
+      >
+        <K4Mark className="size-full" />
+      </div>
       {hit !== null ? (
         <Fragment key={hit}>
           <span className="os-ripple absolute inset-0 rounded-full" style={{ animationDelay: ms(T.hub) }} />
@@ -323,7 +320,7 @@ function Hub({ hit }: { hit: number | null }) {
         </Fragment>
       ) : null}
       <span className="absolute bottom-full left-1/2 mb-4 -translate-x-1/2 rounded-full border border-[#e5732f]/35 bg-[#120e0b]/90 px-3 py-1 text-[13px] font-semibold tracking-[0.14em] whitespace-nowrap text-[#ffb27a] uppercase">
-        kov4 hub
+        KOV4 център
       </span>
     </div>
   );
@@ -353,22 +350,22 @@ function Terminal({ rows, counts, total }: { rows: Order[]; counts: Record<Platf
         <div className="relative flex size-full flex-col overflow-hidden rounded-[12px] bg-[linear-gradient(180deg,#1a1512,#110e0c)] text-[#efe6dd]">
           <div className="flex h-[42px] shrink-0 items-center justify-between border-b border-white/[0.06] px-5 text-[14px]">
             <span className="flex items-center gap-2 font-semibold tracking-[-0.01em]">
-              <Image src={flame} alt="" width={20} height={20} className="size-5" />
-              Restaurant POS
+              <K4Mark className="size-5" />
+              POS на ресторанта
             </span>
             <span className="flex items-center gap-2 text-[#ab9e92]">
               <span className="relative flex size-2">
                 <span className="os-live absolute inset-0 rounded-full bg-[#3ddc84]" />
                 <span className="relative size-2 rounded-full bg-[#3ddc84]" />
               </span>
-              Live
+              На живо
               <span className="tabular ml-2 text-[#efe6dd]">{latest.time}</span>
             </span>
           </div>
 
           <div className="flex h-[48px] shrink-0 items-center gap-6 border-b border-white/[0.06] px-5 text-[16px] text-[#ab9e92]">
             <span className="flex items-center gap-2 font-semibold text-[#efe6dd]">
-              All orders
+              Всички поръчки
               <span
                 key={total}
                 className="os-count tabular rounded-[7px] bg-[#e5732f] px-2 py-0.5 text-[14px] font-bold text-white"
@@ -409,7 +406,7 @@ function Terminal({ rows, counts, total }: { rows: Order[]; counts: Record<Platf
                     <span className="truncate">{p.name}</span>
                   </span>
                   <span className="text-[#c4b8ad]">
-                    {itemCount(o)} {itemCount(o) === 1 ? "item" : "items"}
+                    {itemCount(o)} {itemCount(o) === 1 ? "артикул" : "артикула"}
                   </span>
                   <span className="tabular text-[#c4b8ad]">{o.time}</span>
                   <span className="justify-self-end">
@@ -430,7 +427,7 @@ function Terminal({ rows, counts, total }: { rows: Order[]; counts: Record<Platf
 
         {/* Lettering on the bezel */}
         <div className="absolute inset-x-0 bottom-[9px] flex justify-center">
-          <Image src={flame} alt="" width={30} height={30} className="size-[30px] opacity-90" />
+          <K4Mark className="size-[30px] opacity-90" />
         </div>
       </div>
     </div>
@@ -462,7 +459,7 @@ function Printer({ receipt }: { receipt: { current: Order; prev: Order | null } 
               key={receipt.current.seq}
               className={cx("size-[9px] rounded-full bg-[#3ddc84] shadow-[0_0_8px_#3ddc84]", printing && "os-led")}
             />
-            Printer
+            Принтер
           </div>
           <div className="absolute right-[24px] bottom-[26px] flex gap-[6px]">
             {Array.from({ length: 6 }, (_, i) => (
@@ -491,33 +488,33 @@ function Receipt({ order, className }: { order: Order; className?: string }) {
   return (
     <div className={cx("absolute inset-x-0 bottom-0", className)}>
       <div className="receipt-paper bg-[#fbf8f3] px-[15px] pt-[20px] pb-[14px] font-mono text-[13px] leading-[1.4] text-[#211c18] shadow-[0_-10px_30px_-12px_rgb(0_0_0/0.6)]">
-        <p className="text-center text-[15px] font-semibold tracking-[0.04em]">ORDER #{order.seq}</p>
+        <p className="text-center text-[15px] font-semibold tracking-[0.04em]">ПОРЪЧКА №{order.seq}</p>
         <p className="text-center text-[#5b524b]">
           {p.name} · {order.ref}
         </p>
-        <p className="text-center text-[#5b524b]">{order.time} · Delivery</p>
+        <p className="text-center text-[#5b524b]">{order.time} · Доставка</p>
         <div className="my-[7px] border-t border-dashed border-[#b9b0a6]" />
         {order.lines.map((l) => (
           <div key={l.name}>
             <p className="flex justify-between gap-2">
               <span>
-                {l.qty}x {l.name}
+                {l.qty}× {l.name}
               </span>
-              <span className="tabular shrink-0">{(l.qty * l.price).toFixed(2)}</span>
+              <span className="tabular shrink-0">{(l.qty * l.price).toFixed(2).replace(".", ",")}</span>
             </p>
             {l.mod ? <p className="pl-[18px] text-[#5b524b]">{l.mod}</p> : null}
           </div>
         ))}
         <div className="my-[7px] border-t border-dashed border-[#b9b0a6]" />
         <p className="flex justify-between text-[14px] font-semibold">
-          <span>TOTAL</span>
+          <span>ОБЩО</span>
           <span className="tabular">{money(order.total)}</span>
         </p>
-        {order.note ? <p className="mt-[2px] text-[#5b524b] italic">Note: {order.note}</p> : null}
+        {order.note ? <p className="mt-[2px] text-[#5b524b] italic">Бележка: {order.note}</p> : null}
         <div className="my-[8px] border-t border-dashed border-[#b9b0a6]" />
         <Smiley />
-        <p className="mt-[5px] text-center font-semibold">Thank you, {order.customer}!</p>
-        <p className="text-center text-[#5b524b]">Enjoy your meal</p>
+        <p className="mt-[5px] text-center font-semibold">Благодарим, {order.customer}!</p>
+        <p className="text-center text-[#5b524b]">Приятен апетит</p>
       </div>
     </div>
   );

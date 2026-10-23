@@ -26,18 +26,18 @@ export function Market() {
       <Container className="flex min-h-[38rem] items-end py-16 lg:min-h-[48rem] lg:py-20">
         <div className="max-w-xl">
           <h2 id="market-title" className="type-h2 text-white">
-            Starting in {site.market}.
+            Започваме в България.
           </h2>
           <p className="type-lede mt-6 text-on-dark">
-            We work with businesses in {site.market} first, in {site.languages}, and talk to merchants elsewhere who use
-            comparable platforms.
+            Първо работим с бизнеси в България, на български и английски, и разговаряме с търговци другаде, които
+            използват сходни платформи.
           </p>
           <div className="mt-9 flex flex-wrap gap-3">
             <ButtonLink href="#contact" variant="inverse">
-              Book a free assessment
+              Заявете безплатен пилот
             </ButtonLink>
             <ButtonLink href={`mailto:${site.contactEmail}`} variant="ghost-dark" className="max-sm:hidden">
-              Email {site.contactEmail}
+              Пишете на {site.contactEmail}
             </ButtonLink>
           </div>
         </div>

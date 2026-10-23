@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { CSSProperties, ReactNode } from "react";
 import { photos } from "@/content/photos";
 import { OrderStage } from "./order-stage";
+import { Wordmark } from "./wordmark";
 import { Arrow, ButtonLink, Container, cx } from "./ui";
 
 const delay = (s: number) => ({ "--d": `${s}s` }) as CSSProperties;
@@ -30,10 +31,10 @@ const icon = {
 };
 
 const benefits: { icon: keyof typeof icon; title: ReactNode }[] = [
-  { icon: "sync", title: <>Automatic order sync</> },
-  { icon: "printer", title: <>Direct to POS terminal</> },
-  { icon: "bars", title: <>Fewer errors, faster service</> },
-  { icon: "clock", title: <>More time for your business</> },
+  { icon: "sync", title: <>Автоматичен синхрон на поръчките</> },
+  { icon: "printer", title: <>Директно в касата и принтера</> },
+  { icon: "bars", title: <>По-малко грешки, по-бързо обслужване</> },
+  { icon: "clock", title: <>Повече време за бизнеса</> },
 ];
 
 export function Hero() {
@@ -58,8 +59,10 @@ export function Hero() {
 
       <Container className="grid gap-x-8 gap-y-14 pt-14 pb-20 sm:pt-20 lg:grid-cols-12 lg:grid-rows-[1fr_auto] lg:pt-24 lg:pb-24">
         <div className="lg:col-span-5 lg:row-start-1 lg:self-center">
+          {/* The intro animation ends exactly here (intro.tsx measures this element). */}
+          <Wordmark id="hero-wordmark" className="hero-wordmark mb-10 h-auto w-full max-w-[30rem]" />
           <p className="hero-in text-[0.8125rem] font-semibold tracking-[0.32em] text-brand uppercase">
-            One system. All orders.
+            Една система. Всички поръчки.
           </p>
 
           <h1
@@ -67,17 +70,19 @@ export function Hero() {
             className="hero-in type-display mt-6 text-[clamp(2.75rem,1.9rem+2.6vw,4.375rem)] text-white"
             style={delay(0.08)}
           >
-            Connect Glovo, Wolt and Bolt to your <span className="text-brand">POS terminal.</span>
+            Glovo, Wolt и Bolt Food — <span className="text-brand">на един екран.</span>
           </h1>
 
           <p className="hero-in type-lede mt-7 max-w-xl text-ink-soft" style={delay(0.16)}>
-            Every Glovo, Wolt and Bolt Food order lands on your restaurant&rsquo;s POS terminal the moment it&rsquo;s
-            placed, and prints in the kitchen on its own. No extra tablets, no retyping, everything in one place.
+            Поръчките влизат директно в касата и в кухнята. Без преписване.
+          </p>
+          <p className="hero-in mt-4 max-w-xl text-[1.0625rem] leading-relaxed text-ink-soft" style={delay(0.2)}>
+            Изчерпан продукт спирате веднъж — и трите приложения се обновяват. За ресторанти и кафенета в София.
           </p>
 
           <div className="hero-in mt-10 flex flex-wrap items-center gap-x-8 gap-y-4" style={delay(0.24)}>
             <ButtonLink href="#contact" className="group h-14 px-8 text-[1.0625rem]">
-              Get started
+              Заявете безплатен пилот
               <Arrow className="transition-transform group-hover:translate-x-0.5" />
             </ButtonLink>
             <Link
@@ -89,9 +94,12 @@ export function Hero() {
                   <path d="M2.5 1.5v9l8-4.5-8-4.5Z" fill="currentColor" />
                 </svg>
               </span>
-              See how it works
+              Вижте как работи
             </Link>
           </div>
+          <p className="hero-in mt-6 max-w-xl text-[0.9375rem] text-ink-faint" style={delay(0.28)}>
+            Първи месец безплатно · Без договор · Таблетите остават като резерва.
+          </p>
         </div>
 
         <div

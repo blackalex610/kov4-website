@@ -4,7 +4,7 @@
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
   --font-serif: var(--font-instrument), Georgia, "Times New Roman", serif;
-  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-display: var(--font-display-serif), Georgia, "Times New Roman", serif;
 }
 
 @theme {
@@ -65,6 +65,8 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 4.5rem;
   -webkit-text-size-adjust: 100%;
+  /* The intro locks scrolling; a stable gutter keeps the page (and the logo) from shifting when it does. */
+  scrollbar-gutter: stable;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -109,22 +111,23 @@ body {
   /* Headlines are set in Fraunces, a high-contrast serif, like the printed menu of a good restaurant. */
   .type-display {
     font-family: var(--font-display);
+    /* Source Serif's Bulgarian letterforms turn и into a u and д into a g; the standard forms read better. */
+    font-feature-settings: "locl" off;
     font-size: clamp(2.75rem, 1.5rem + 4.2vw, 5.25rem);
     line-height: 1.02;
     letter-spacing: -0.025em;
     font-weight: 600;
-    font-variation-settings: "SOFT" 0, "WONK" 0;
-    text-wrap: balance;
+        text-wrap: balance;
   }
 
   .type-h2 {
     font-family: var(--font-display);
+    font-feature-settings: "locl" off;
     font-size: clamp(2.25rem, 1.3rem + 3vw, 4.25rem);
     line-height: 1.04;
     letter-spacing: -0.022em;
     font-weight: 600;
-    font-variation-settings: "SOFT" 0, "WONK" 0;
-    text-wrap: balance;
+        text-wrap: balance;
   }
 
   .type-tile {
@@ -306,7 +309,7 @@ body {
 }
 
 .intro {
-  --intro-delay: 2.75s;
+  --intro-delay: 10.8s;
 }
 
 .intro-skip {
@@ -334,9 +337,16 @@ body {
 }
 
 /* ---------- Intro ----------
- * Full-screen welcome: platforms → kov4 vortex → restaurant terminals → receipts.
+ * Full-screen welcome: platforms → K4 → laptop and POS terminal → K4 becomes the KOV4 wordmark.
  * Shown only while <html> has the `intro` class (set before first paint by the root layout).
  * Elements are placed with position variables on .intro-box, swapped for tall screens.
+ *
+ * Timeline (seconds). Change these together with DURATION in intro.tsx and --intro-delay above.
+ *   0.1   platform tiles appear                    3.8   the scene fades, K4 starts to rise
+ *   0.7   orders fly from the platforms to K4      4.8   K4 steps out as the K
+ *   1.35  K4 turns and lights up                   8.3   the oval opens in the O
+ *   2.45  orders fly on to laptop and POS          6.0   the V slides out
+ *   3.0   the devices receive them                 7.1   the 4 jumps out, glowing · 10.8 done, overlay fades
  */
 
 .intro-overlay {
@@ -350,9 +360,9 @@ body {
   display: grid;
   place-items: center;
   overflow: hidden;
-  background: #080605;
+  background: var(--color-paper);
   cursor: pointer;
-  animation: intro-out 0.65s cubic-bezier(0.6, 0, 0.2, 1) 2.75s both;
+  animation: intro-out 0.5s ease var(--intro-delay) both;
 }
 
 .intro-skip .intro-overlay {
@@ -363,7 +373,6 @@ body {
   to {
     opacity: 0;
     visibility: hidden;
-    transform: scale(1.08);
   }
 }
 
@@ -387,11 +396,28 @@ body {
   }
 }
 
+/* The hero's own wordmark waits for the intro, then appears exactly where the intro's one ended. */
+.intro .hero-wordmark {
+  visibility: hidden;
+  animation: intro-reveal 0s linear var(--intro-delay) forwards;
+}
+
+.intro-skip .hero-wordmark {
+  visibility: visible;
+  animation: none;
+}
+
+@keyframes intro-reveal {
+  to {
+    visibility: visible;
+  }
+}
+
 .intro-glow {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(38% 42% at 50% 45%, rgb(229 115 47 / 0.24), transparent 72%),
+    radial-gradient(38% 42% at 50% 45%, rgb(242 140 78 / 0.2), transparent 72%),
     linear-gradient(rgb(255 255 255 / 0.035) 1px, transparent 1px),
     linear-gradient(90deg, rgb(255 255 255 / 0.035) 1px, transparent 1px);
   background-size:
@@ -407,6 +433,7 @@ body {
   container-type: inline-size;
   width: min(92vw, 1320px, 150vh);
   aspect-ratio: 16 / 9;
+  animation: intro-scene-out 0.5s ease 3.8s both;
 
   --p0x: 11%;
   --p0y: 22%;
@@ -416,23 +443,21 @@ body {
   --p2y: 78%;
   --vx: 50%;
   --vy: 44%;
-  --t0x: 89%;
-  --t0y: 24%;
-  --t1x: 89%;
-  --t1y: 52%;
-  --t2x: 89%;
-  --t2y: 80%;
-  --wy: 71%;
+  --d0x: 89%;
+  --d0y: 30%;
+  --d1x: 89%;
+  --d1y: 66%;
+  --wy: 66%;
 
   --tile-w: 13.5cqw;
   --tile-radius: 1.7cqw;
-  --vortex: 25cqw;
-  --pos-w: 9.5cqw;
+  --hub: 17cqw;
+  --lap-w: 15cqw;
+  --pos-w: 10cqw;
   --paper-h: 7.4cqw;
   --paper-font: 0.8cqw;
   --name-size: 0.95cqw;
   --dot: 1.3cqw;
-  --word-w: 13cqw;
   --tag-size: 1.05cqw;
   --enter: -4cqw, 0;
 }
@@ -450,25 +475,29 @@ body {
     --p2y: 9%;
     --vx: 50%;
     --vy: 39%;
-    --t0x: 18%;
-    --t0y: 87%;
-    --t1x: 50%;
-    --t1y: 87%;
-    --t2x: 82%;
-    --t2y: 87%;
-    --wy: 56.5%;
+    --d0x: 27%;
+    --d0y: 85%;
+    --d1x: 73%;
+    --d1y: 86%;
+    --wy: 56%;
 
     --tile-w: 27cqw;
     --tile-radius: 3.4cqw;
-    --vortex: 50cqw;
-    --pos-w: 22cqw;
-    --paper-h: 15cqw;
-    --paper-font: 1.8cqw;
-    --name-size: 2.6cqw;
+    --hub: 36cqw;
+    --lap-w: 38cqw;
+    --pos-w: 26cqw;
+    --paper-h: 17cqw;
+    --paper-font: 2cqw;
+    --name-size: 2.8cqw;
     --dot: 2.8cqw;
-    --word-w: 30cqw;
     --tag-size: 2.5cqw;
     --enter: 0, -4cqw;
+  }
+}
+
+@keyframes intro-scene-out {
+  to {
+    opacity: 0;
   }
 }
 
@@ -482,7 +511,7 @@ body {
 
 .intro-lines path {
   fill: none;
-  stroke: #e5732f;
+  stroke: #f28c4e;
   stroke-opacity: 0.45;
   stroke-width: 0.22;
   stroke-linecap: round;
@@ -491,13 +520,13 @@ body {
 }
 
 .intro-lines .in {
-  animation: draw 0.45s ease both;
-  animation-delay: calc(0.5s + var(--i) * 0.08s);
+  animation: draw 0.4s ease both;
+  animation-delay: calc(0.45s + var(--i) * 0.08s);
 }
 
 .intro-lines .out {
-  animation: draw 0.45s ease both;
-  animation-delay: calc(1.25s + var(--i) * 0.08s);
+  animation: draw 0.4s ease both;
+  animation-delay: calc(2.35s + var(--i) * 0.1s);
 }
 
 .intro-lines--tall {
@@ -532,9 +561,9 @@ body {
     inset 0 1px 0 rgb(255 255 255 / 0.35),
     0 2cqw 4cqw -2cqw rgb(0 0 0 / 0.9);
   animation:
-    intro-tile-in 0.5s var(--ease-out-soft) both,
+    intro-tile-in 0.45s var(--ease-out-soft) both,
     intro-send 0.35s ease both;
-  animation-delay: calc(0.2s + var(--i) * 0.09s), calc(0.78s + var(--i) * 0.12s);
+  animation-delay: calc(0.1s + var(--i) * 0.09s), calc(0.7s + var(--i) * 0.12s);
 }
 
 @keyframes intro-tile-in {
@@ -560,15 +589,16 @@ body {
   background: radial-gradient(circle, #fff 0 30%, var(--c) 32%);
   box-shadow: 0 0 calc(var(--dot) * 0.9) calc(var(--dot) * 0.25) var(--c);
   opacity: 0;
-  animation: intro-fly 0.45s cubic-bezier(0.5, 0, 0.3, 1) both;
+  animation: intro-fly 0.5s cubic-bezier(0.5, 0, 0.3, 1) both;
 }
 
 .intro-dot--in {
-  animation-delay: calc(0.8s + var(--i) * 0.12s);
+  animation-delay: calc(0.7s + var(--i) * 0.12s);
 }
 
+/* Dots 0 and 2 go to the laptop, 1 and 3 to the POS terminal; the second pair follows the first. */
 .intro-dot--out {
-  animation-delay: calc(1.5s + var(--i) * 0.1s);
+  animation-delay: calc(2.45s + var(--n) * 0.1s);
 }
 
 @keyframes intro-fly {
@@ -588,67 +618,51 @@ body {
   }
 }
 
-.intro-vortex {
+/* A marker for where the small K4 sits: the glow and ripples live here, the mark itself in the SVG layer. */
+.intro-hub {
   position: absolute;
   z-index: 4;
   left: var(--vx);
   top: var(--vy);
-  width: var(--vortex);
+  width: var(--hub);
   aspect-ratio: 1;
   translate: -50% -50%;
-  filter: drop-shadow(0 0 2.5cqw rgb(229 115 47 / 0.55));
-  animation:
-    intro-gulp 0.9s ease 1.18s both,
-    intro-turn 1s cubic-bezier(0.45, 0, 0.2, 1) 1.18s both;
+  pointer-events: none;
 }
 
-.intro-mark {
-  width: 100%;
-  height: 100%;
-  animation: intro-vortex-in 1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+.intro-hub-glow {
+  position: absolute;
+  inset: -45%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(242 140 78 / 0.5), transparent 62%);
+  opacity: 0;
+  animation: intro-glow 1.05s ease 1.35s both;
 }
 
-@keyframes intro-vortex-in {
-  from {
-    opacity: 0;
-    scale: 0.3;
-    rotate: -90deg;
-    filter: blur(10px);
-  }
-/* The emblem acknowledges the orders with one short turn that settles back. */
-@keyframes intro-turn {
-  40% {
-    rotate: 14deg;
-  }
-}
-
-}
-
-@keyframes intro-gulp {
-  15% {
+@keyframes intro-glow {
+  35% {
+    opacity: 1;
     scale: 1.08;
   }
-  40% {
-    scale: 0.97;
-  }
-  60% {
-    scale: 1.05;
+  to {
+    opacity: 0;
+    scale: 0.95;
   }
 }
 
 .intro-ripple {
   position: absolute;
-  inset: 12%;
+  inset: 8%;
   border-radius: 50%;
-  border: 0.25cqw solid #ff9a52;
+  border: 0.2cqw solid #ff9a52;
   opacity: 0;
   animation: intro-ripple 0.8s ease-out both;
-  animation-delay: calc(1.22s + var(--i) * 0.12s);
+  animation-delay: calc(1.3s + var(--i) * 0.12s);
 }
 
 @keyframes intro-ripple {
   from {
-    opacity: 0.9;
+    opacity: 0.8;
     scale: 0.6;
   }
   to {
@@ -667,57 +681,87 @@ body {
 }
 
 .intro-word p {
-  margin-top: calc(var(--tag-size) * 0.9);
   font-size: var(--tag-size);
   font-weight: 600;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: #e5732f;
-  animation: intro-rise 0.6s var(--ease-out-soft) 1.25s both;
+  color: #f28c4e;
+  animation: intro-rise 0.6s var(--ease-out-soft) 1.9s both;
 }
 
-.intro-pos {
+/* The laptop and the POS terminal. */
+.intro-dev {
   position: absolute;
   z-index: 1;
   left: var(--x);
   top: var(--y);
-  width: var(--pos-w);
   translate: -50% -50%;
   animation: intro-fade 0.5s ease both;
-  animation-delay: calc(0.5s + var(--i) * 0.1s);
+  animation-delay: 0.5s;
 }
 
+.intro-laptop {
+  width: var(--lap-w);
+  --hit: 2.95s;
+}
+
+.intro-pos {
+  width: var(--pos-w);
+  --hit: 3.05s;
+}
+
+.intro-lid,
 .intro-screen {
   position: relative;
   z-index: 1;
   display: flex;
   flex-direction: column;
   gap: 9%;
-  aspect-ratio: 1.35;
-  padding: 10%;
-  border-radius: calc(var(--pos-w) * 0.1);
-  border: calc(var(--pos-w) * 0.035) solid #2c2520;
+  padding: 9%;
   background: linear-gradient(#1d1814, #0f0c0a);
   box-shadow: 0 2cqw 4cqw -2cqw #000;
-  animation: intro-screen-hit 0.7s ease both;
-  animation-delay: calc(1.9s + var(--i) * 0.1s);
+  animation: intro-screen-hit 0.8s ease both;
+  animation-delay: var(--hit);
+}
+
+.intro-lid {
+  aspect-ratio: 1.6;
+  border-radius: calc(var(--lap-w) * 0.045) calc(var(--lap-w) * 0.045) 0 0;
+  border: calc(var(--lap-w) * 0.025) solid #2c2520;
+  border-bottom: 0;
+}
+
+.intro-screen {
+  aspect-ratio: 1.35;
+  border-radius: calc(var(--pos-w) * 0.1);
+  border: calc(var(--pos-w) * 0.035) solid #2c2520;
+}
+
+.intro-lap-base {
+  position: relative;
+  z-index: 1;
+  width: 112%;
+  height: calc(var(--lap-w) * 0.045);
+  margin-left: -6%;
+  border-radius: 0 0 calc(var(--lap-w) * 0.05) calc(var(--lap-w) * 0.05);
+  background: linear-gradient(#4a4037, #231d18);
 }
 
 @keyframes intro-screen-hit {
   30% {
-    border-color: #e5732f;
-    box-shadow: 0 0 3cqw -0.5cqw rgb(229 115 47 / 0.8);
+    border-color: #f28c4e;
+    box-shadow: 0 0 3cqw -0.5cqw rgb(242 140 78 / 0.8);
   }
 }
 
 .intro-screen-bar {
-  height: 16%;
+  height: 14%;
   border-radius: 99px;
-  background: #e5732f;
+  background: #f28c4e;
 }
 
 .intro-screen-row {
-  height: 12%;
+  height: 11%;
   border-radius: 99px;
   background: rgb(255 255 255 / 0.13);
 }
@@ -726,7 +770,21 @@ body {
   width: 60%;
 }
 
-.intro-pos-name {
+/* The order that just arrived lights up on the laptop. */
+.intro-screen-row.new {
+  background: rgb(242 140 78 / 0.85);
+  width: 75%;
+  animation: intro-row 0.5s ease both;
+  animation-delay: var(--hit);
+}
+
+@keyframes intro-row {
+  from {
+    background: rgb(255 255 255 / 0.13);
+  }
+}
+
+.intro-dev-name {
   display: block;
   margin-top: calc(var(--name-size) * 0.7);
   text-align: center;
@@ -764,7 +822,7 @@ body {
   mask: conic-gradient(from 135deg at top, #0000, #000 1deg 89deg, #0000 90deg) top / calc(2 * var(--zig)) 100%;
   transform: translateY(100%);
   animation: intro-paper 0.55s steps(9, end) both;
-  animation-delay: calc(1.95s + var(--i) * 0.1s);
+  animation-delay: calc(var(--hit) + 0.1s);
 }
 
 @keyframes intro-paper {
@@ -788,6 +846,157 @@ body {
   color: rgb(255 255 255 / 0.35);
   white-space: nowrap;
   animation: intro-fade 0.6s ease 0.8s both;
+}
+
+/* ---------- The K4 mark turning into the wordmark ----------
+ * One SVG over the whole screen, drawn in the wordmark's own units (see intro.tsx). The final state of
+ * every piece is the finished wordmark; the base styles below are the small K4 mark.
+ */
+
+.intro-brand {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.intro-brand path {
+  transform-box: view-box;
+  transform-origin: 0 0;
+}
+
+.wm-hub {
+  animation: intro-fade 0.5s ease 0.3s both;
+}
+
+/* The small mark rises from the middle of the screen to the O's place in the wordmark. */
+.wm-move {
+  transform: translate(var(--mx), var(--my)) scale(var(--ms));
+  animation: wm-settle 0.85s cubic-bezier(0.65, 0, 0.25, 1) 3.85s forwards;
+}
+
+@keyframes wm-settle {
+  to {
+    transform: none;
+  }
+}
+
+/* It pops in, then turns once and brightens when the orders arrive. */
+.wm-spin {
+  animation:
+    wm-pop 0.55s var(--ease-out-soft) 0.3s backwards,
+    wm-turn 1.05s cubic-bezier(0.5, 0, 0.2, 1) 1.35s both,
+    wm-gulp 1.05s ease 1.35s;
+}
+
+@keyframes wm-pop {
+  from {
+    scale: 0.5;
+  }
+}
+
+@keyframes wm-turn {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes wm-gulp {
+  35% {
+    scale: 1.07;
+  }
+}
+
+.wm-burst {
+  fill: var(--wm-orange);
+  animation: wm-lit 1.05s ease 1.35s;
+}
+
+@keyframes wm-lit {
+  35% {
+    fill: #ffc79d;
+  }
+}
+
+/* K: lifts out of the sunburst and settles at the left, turning cream. */
+.wm-k {
+  fill: var(--wm-dark);
+  transform: translate(var(--kx), var(--ky)) scale(var(--ks));
+  animation: wm-k 0.8s cubic-bezier(0.5, 0, 0.2, 1) 4.8s forwards;
+}
+
+@keyframes wm-k {
+  35% {
+    fill: var(--wm-cream);
+  }
+  to {
+    transform: none;
+    fill: var(--wm-cream);
+  }
+}
+
+/* O: after the 4 has left, the oval opens in the middle of the sunburst. */
+.wm-oval {
+  scale: 0;
+  rotate: -120deg;
+  animation: wm-oval 0.9s cubic-bezier(0.45, 0, 0.2, 1) 8.3s forwards;
+}
+
+.wm-oval path {
+  fill: var(--color-paper);
+}
+
+@keyframes wm-oval {
+  to {
+    scale: 1;
+    rotate: 0deg;
+  }
+}
+
+/* V: slides out from behind the sunburst. */
+.wm-v {
+  fill: var(--wm-cream);
+  opacity: 0;
+  transform: translate(var(--vx), var(--vy)) scale(var(--vs));
+  animation: wm-v 0.8s cubic-bezier(0.45, 0, 0.2, 1) 6s forwards;
+}
+
+@keyframes wm-v {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* 4: steps out over the top of the V and lands at the right, turning orange. */
+.wm-four {
+  fill: var(--wm-dark);
+  transform: translate(var(--fx), var(--fy)) scale(var(--fs));
+  animation:
+    wm-four 1s cubic-bezier(0.45, 0, 0.2, 1) 7.1s forwards,
+    wm-glow 1.4s ease-in-out 7.1s;
+}
+
+@keyframes wm-four {
+  30% {
+    fill: var(--wm-orange);
+  }
+  55% {
+    transform: translate(118.6px, -148.8px) scale(0.8);
+  }
+  to {
+    transform: none;
+    fill: var(--wm-orange);
+  }
+}
+
+/* The 4 glows softly while it jumps out and lands. */
+@keyframes wm-glow {
+  50% {
+    filter: drop-shadow(0 0 14px rgb(242 140 78 / 0.85));
+  }
 }
 
 /* ---------- Hero order scene (order-stage.tsx) ---------- */
@@ -1000,13 +1209,13 @@ body {
   .os-live {
     animation: os-live 1.8s ease-out infinite;
   }
+}
+
 @keyframes os-hub-turn {
   40% {
     rotate: 14deg;
     filter: drop-shadow(0 0 22px rgb(255 154 82 / 0.9));
   }
-}
-
 }
 
 @keyframes os-live {

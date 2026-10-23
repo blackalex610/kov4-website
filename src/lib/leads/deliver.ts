@@ -59,8 +59,8 @@ async function sendResend(lead: Lead, meta: LeadMeta) {
       from: process.env.LEAD_EMAIL_FROM,
       to: process.env.LEAD_EMAIL_TO!.split(",").map((s) => s.trim()),
       reply_to: lead.email,
-      subject: `Workflow assessment request: ${lead.businessName}`,
-      text: `${summarizeLead(lead)}\n\n---\nSubmitted ${meta.submittedAt}\nPage: ${meta.referer ?? "unknown"}`,
+      subject: `Заявка за пилот: ${lead.businessName}`,
+      text: `${summarizeLead(lead)}\n\n---\nИзпратено на ${meta.submittedAt}\nСтраница: ${meta.referer ?? "неизвестна"}`,
     }),
     signal: AbortSignal.timeout(10_000),
   });

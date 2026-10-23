@@ -3,23 +3,21 @@
  * (see .env.example) instead of editing components.
  */
 export const site = {
-  name: process.env.NEXT_PUBLIC_BRAND_NAME || "kov4",
+  name: process.env.NEXT_PUBLIC_BRAND_NAME || "KOV4",
   url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
   contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "hello@kov4.com",
-  market: "Bulgaria",
-  languages: "Bulgarian and English",
-  tagline: "Connect your delivery channels to the systems that run your business.",
+  tagline: "Glovo, Wolt и Bolt Food — на един екран.",
   description:
-    "We connect orders from delivery marketplaces such as Glovo, Wolt and Bolt Food to the POS, inventory and order systems merchants already use. Start with a free workflow assessment.",
+    "Поръчките от Glovo, Wolt и Bolt Food влизат директно в касата и в кухнята. Без преписване. За ресторанти и кафенета в София.",
 };
 
 export const navigation = [
-  { href: "/", label: "Home" },
-  { href: "/#how-it-works", label: "How it works" },
-  { href: "/#what-it-does", label: "Features" },
-  { href: "/#solutions", label: "For restaurants" },
-  { href: "/#integrations", label: "Integrations" },
-  { href: "/#contact", label: "Contact" },
+  { href: "/", label: "Начало" },
+  { href: "/#how-it-works", label: "Как работи" },
+  { href: "/#what-it-does", label: "Възможности" },
+  { href: "/#solutions", label: "За ресторанти" },
+  { href: "/#integrations", label: "Интеграции" },
+  { href: "/#contact", label: "Контакт" },
 ];
 
 export const channels = [

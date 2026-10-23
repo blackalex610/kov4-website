@@ -1,4 +1,4 @@
-import { channels } from "@/content/site";
+import { channels, site } from "@/content/site";
 import { LogoMark } from "./logo";
 import { ChannelDot, Container, SectionIntro } from "./ui";
 
@@ -9,40 +9,40 @@ import { ChannelDot, Container, SectionIntro } from "./ui";
  */
 
 const sources = [
-  ...channels.map((c) => ({ name: c.name, color: c.color as string, note: "Orders, status, menu" })),
-  { name: "Comparable marketplaces", color: "var(--color-line-strong)", note: "Where authorized access exists" },
+  ...channels.map((c) => ({ name: c.name, color: c.color as string, note: "Поръчки, статуси, меню" })),
+  { name: "Сходни платформи", color: "var(--color-line-strong)", note: "Където има разрешен достъп" },
 ];
 
 const destinations = [
-  { name: "POS and kitchen display", note: "Tickets, items, modifiers" },
-  { name: "ERP and inventory", note: "Stock out, sales in" },
-  { name: "Order management", note: "Routing by location" },
-  { name: "Accounting and custom APIs", note: "In the format each expects" },
+  { name: "Каса и кухненски екран", note: "Бележки, артикули, добавки" },
+  { name: "ERP и склад", note: "Наличности навън, продажби навътре" },
+  { name: "Управление на поръчки", note: "Насочване по обекти" },
+  { name: "Счетоводство и собствени API", note: "В очаквания от тях формат" },
 ];
 
-const steps = ["Receives each order", "Matches it to your menu", "Routes it to the right system", "Logs every event"];
+const steps = ["Приема всяка поръчка", "Съпоставя я с вашето меню", "Насочва я към правилната система", "Записва всяко събитие"];
 
 const capabilities = [
-  { title: "Order events", body: "New orders and status changes, as the platform publishes them." },
-  { title: "Product mapping", body: "Marketplace items and modifiers matched to your product codes." },
-  { title: "Data translation", body: "Each platform’s format converted into the one your system expects." },
-  { title: "Routing", body: "Each order sent to the right location, system or queue." },
-  { title: "Retries", body: "Failed deliveries re-attempted, orders held until your system responds." },
-  { title: "Duplicate protection", body: "Idempotency keys so one order isn’t processed twice, where supported." },
+  { title: "Събития по поръчките", body: "Нови поръчки и промени в статуса, както ги публикува платформата." },
+  { title: "Съпоставяне на продукти", body: "Артикулите и добавките от платформите, свързани с вашите продуктови кодове." },
+  { title: "Преобразуване на данни", body: "Форматът на всяка платформа се превръща в този, който очаква вашата система." },
+  { title: "Насочване", body: "Всяка поръчка отива в правилния обект, система или опашка." },
+  { title: "Повторни опити", body: "Неуспешните изпращания се повтарят, а поръчките се пазят, докато системата ви отговори." },
+  { title: "Защита от дублиране", body: "Уникални ключове, за да не се обработи една поръчка два пъти, където е поддържано." },
 ];
 
 const dependsOn = [
-  "API access and approval from each platform for your account",
-  "The permissions you grant as the merchant",
-  "Each platform’s terms and contractual requirements",
-  "What your POS or business software can receive",
+  "Достъп до API и одобрение от всяка платформа за вашия профил",
+  "Разрешенията, които вие давате като търговец",
+  "Условията и договорните изисквания на всяка платформа",
+  "Какво може да приеме вашата каса или бизнес софтуер",
 ];
 
 const wontDo = [
-  "Scrape marketplace apps or merchant dashboards",
-  "Bypass platform controls, limits or approvals",
-  "Intercept private app traffic",
-  "Promise an integration a platform doesn’t allow",
+  "Да извличаме данни от приложенията или търговските панели на платформите",
+  "Да заобикаляме контролите, ограниченията или одобренията на платформите",
+  "Да прехващаме личния трафик на приложенията",
+  "Да обещаваме интеграция, която платформата не позволява",
 ];
 
 const ROWS = [12.5, 37.5, 62.5, 87.5];
@@ -94,17 +94,17 @@ export function Integrations() {
       className="on-dark bg-night py-24 text-on-dark lg:py-32"
     >
       <Container>
-        <SectionIntro id="integrations-title" title="Connects what you sell on to what you run on." align="center" dark>
+        <SectionIntro id="integrations-title" title="Свързва мястото, където продавате, със системите, с които работите." align="center" dark>
           <p>
-            For operations and IT teams: how the integrations we scope fit together. Which parts apply depends on each
-            platform&rsquo;s APIs, permissions and terms, and on your software.
+            За оперативни и ИТ екипи: как се свързват интеграциите, които проектираме. Кои части се прилагат, зависи от
+            API, разрешенията и условията на всяка платформа, както и от вашия софтуер.
           </p>
         </SectionIntro>
 
         <figure className="m-0 mt-16 lg:mt-24">
           <div className="grid lg:grid-cols-[minmax(0,1fr)_5rem_minmax(0,1fr)_5rem_minmax(0,1fr)]">
             <div>
-              <p className="mb-4 text-[0.875rem] font-medium text-on-dark-soft">Where orders come from</p>
+              <p className="mb-4 text-[0.875rem] font-medium text-on-dark-soft">Откъде идват поръчките</p>
               <ul className="grid gap-3 sm:grid-cols-2 lg:h-[23rem] lg:grid-cols-1 lg:grid-rows-4 lg:gap-0">
                 {sources.map((s) => (
                   <li key={s.name} className="lg:py-1.5">
@@ -127,8 +127,8 @@ export function Integrations() {
                   <div className="flex items-center gap-3">
                     <LogoMark className="size-8 rounded-[8px] ring-1 ring-night-line" />
                     <div>
-                      <p className="leading-tight font-semibold text-white">kov4 middleware</p>
-                      <p className="text-[0.8125rem] text-on-dark-soft">Between the platforms and your systems</p>
+                      <p className="leading-tight font-semibold text-white">Посредникът на {site.name}</p>
+                      <p className="text-[0.8125rem] text-on-dark-soft">Между платформите и вашите системи</p>
                     </div>
                   </div>
                   <ol className="mt-6 space-y-2.5 border-t border-night-line pt-5">
@@ -156,7 +156,7 @@ export function Integrations() {
             <DownArrow />
 
             <div>
-              <p className="mb-4 text-[0.875rem] font-medium text-on-dark-soft">The systems you run</p>
+              <p className="mb-4 text-[0.875rem] font-medium text-on-dark-soft">Системите, с които работите</p>
               <ul className="grid gap-3 sm:grid-cols-2 lg:h-[23rem] lg:grid-cols-1 lg:grid-rows-4 lg:gap-0">
                 {destinations.map((d) => (
                   <li key={d.name} className="lg:py-1.5">
@@ -167,13 +167,13 @@ export function Integrations() {
             </div>
           </div>
           <figcaption className="mt-10 text-center text-[0.875rem] text-on-dark-soft">
-            Which connections are possible is confirmed per platform and per system during the assessment.
+            Кои връзки са възможни, се уточнява за всяка платформа и всяка система при първоначалния разговор.
           </figcaption>
         </figure>
 
         <div className="mt-20 grid gap-12 border-t border-night-line pt-14 lg:mt-28 lg:grid-cols-12 lg:gap-10">
           <div className="lg:col-span-6">
-            <h3 className="type-h3 text-white">What the middleware handles</h3>
+            <h3 className="type-h3 text-white">Какво поема посредникът</h3>
             <dl className="mt-6 grid gap-x-8 gap-y-5 sm:grid-cols-2">
               {capabilities.map((c) => (
                 <div key={c.title}>
@@ -184,8 +184,8 @@ export function Integrations() {
             </dl>
           </div>
 
-          <List title="What it depends on" items={dependsOn} className="lg:col-span-3" />
-          <List title="What we don’t do" items={wontDo} className="lg:col-span-3" negative />
+          <List title="От какво зависи" items={dependsOn} className="lg:col-span-3" />
+          <List title="Какво не правим" items={wontDo} className="lg:col-span-3" negative />
         </div>
       </Container>
     </section>

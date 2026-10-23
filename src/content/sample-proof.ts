@@ -27,11 +27,11 @@ export type Client = {
 };
 
 export const clients: Client[] = [
-  { id: "kvartal", name: "Kvartal Kitchen", segment: "Fast casual", city: "Sofia", locations: 3 },
-  { id: "forno", name: "Forno Sette", segment: "Pizzeria", city: "Plovdiv", locations: 1 },
-  { id: "oddbun", name: "Odd Bun", segment: "Burgers", city: "Sofia", locations: 2 },
-  { id: "kora", name: "Kora Bakehouse", segment: "Bakery and café", city: "Varna", locations: 1 },
-  { id: "wok", name: "Wok Theory", segment: "Asian kitchen", city: "Sofia", locations: 2 },
+  { id: "kvartal", name: "Kvartal Kitchen", segment: "Бързо хранене", city: "София", locations: 3 },
+  { id: "forno", name: "Forno Sette", segment: "Пицария", city: "Пловдив", locations: 1 },
+  { id: "oddbun", name: "Odd Bun", segment: "Бургери", city: "София", locations: 2 },
+  { id: "kora", name: "Kora Bakehouse", segment: "Пекарна и кафене", city: "Варна", locations: 1 },
+  { id: "wok", name: "Wok Theory", segment: "Азиатска кухня", city: "София", locations: 2 },
 ];
 
 export type CaseStudy = {
@@ -46,14 +46,14 @@ export type CaseStudy = {
 export const featuredCase: CaseStudy = {
   client: "kvartal",
   channels: ["Glovo", "Wolt", "Bolt Food"],
-  system: "Cloud POS at each location",
+  system: "Облачна каса във всеки обект",
   before:
-    "Three tablets on every counter. At lunch, one person did nothing but read marketplace orders and type them into the till, and sold-out dishes had to be paused on each app separately.",
+    "Три таблета на всеки тезгях. По обяд един човек само четеше поръчките от платформите и ги въвеждаше в касата, а изчерпаните ястия трябваше да се спират поотделно във всяко приложение.",
   after:
-    "Marketplace orders now arrive as POS tickets at the right location, with sizes, extras and notes matched item by item. Pausing a dish happens once and reaches every platform that supports it.",
+    "Поръчките от платформите вече стигат като бележки в касата на правилния обект, със съпоставени размери, добавки и бележки. Ястие се спира веднъж и промяната стига до всяка платформа, която я поддържа.",
   quote: {
-    text: "We used to have someone at lunch doing nothing but typing tablet orders into the till. That job is gone, and the kitchen gets the same ticket whichever app the order came from.",
-    attribution: "Operations manager, Kvartal Kitchen",
+    text: "По обяд имахме човек, който само пренаписваше поръчките от таблетите в касата. Тази работа вече я няма, а кухнята получава една и съща бележка, от което и приложение да идва поръчката.",
+    attribution: "Оперативен мениджър, Kvartal Kitchen",
   },
 };
 
@@ -61,17 +61,17 @@ export const compactCases: CaseStudy[] = [
   {
     client: "forno",
     channels: ["Glovo", "Wolt"],
-    system: "POS and kitchen printer",
-    before: "Half-and-half pizzas and extra toppings were keyed by hand and often reached the oven wrong.",
+    system: "Каса и кухненски принтер",
+    before: "Пици „половин на половин“ и допълнителни продукти се въвеждаха на ръка и често стигаха до пещта грешно.",
     after:
-      "Sizes, halves and toppings are mapped to POS items, so the kitchen ticket matches what the customer ordered.",
+      "Размерите, половинките и добавките са съпоставени с артикулите в касата, така че бележката в кухнята съвпада с поръчаното от клиента.",
   },
   {
     client: "wok",
     channels: ["Glovo", "Wolt", "Bolt Food"],
-    system: "POS and accounting export",
-    before: "Month-end meant reconciling three platform reports against two locations’ sales by hand.",
-    after: "A daily file brings orders from all three platforms together, matched against POS sales for each location.",
+    system: "Каса и експорт за счетоводство",
+    before: "В края на месеца се налагаше на ръка да се сверяват три отчета от платформите с продажбите на два обекта.",
+    after: "Дневен файл събира поръчките от трите платформи и ги съпоставя с продажбите в касата на всеки обект.",
   },
 ];
 

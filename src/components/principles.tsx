@@ -2,28 +2,28 @@ import { Container, SplitIntro, cx } from "./ui";
 
 const principles = [
   {
-    title: "Your workflow comes first",
-    body: "We map how orders actually move through your business before we suggest any software.",
+    title: "Първо вашият начин на работа",
+    body: "Първо разглеждаме как поръчките реално минават през вашия бизнес и чак тогава предлагаме софтуер.",
   },
   {
-    title: "Compatibility before promises",
-    body: "We confirm what each platform and system allows before we commit to a scope.",
+    title: "Съвместимост преди обещания",
+    body: "Уточняваме какво позволява всяка платформа и система, преди да се ангажираме с обхват.",
   },
   {
-    title: "Your systems stay",
-    body: "Wherever it’s feasible, we connect to the POS and tools your team already knows.",
+    title: "Вашите системи остават",
+    body: "Където е възможно, се свързваме с касата и инструментите, които екипът ви вече познава.",
   },
   {
-    title: "The smallest useful pilot",
-    body: "One location, one channel or one workflow first, so you see the result before you scale it.",
+    title: "Най-малкият полезен пилот",
+    body: "Първо един обект, един канал или един процес, за да видите резултата, преди да го разширите.",
   },
   {
-    title: "Success defined upfront",
-    body: "Before a pilot starts, we agree on what it should change and how we’ll measure it.",
+    title: "Успехът се определя предварително",
+    body: "Преди да започне пилотът, се договаряме какво трябва да промени и как ще го измерваме.",
   },
   {
-    title: "Open about limits",
-    body: "If something can’t be done properly through authorized access, we say so instead of working around it.",
+    title: "Открити сме за ограниченията",
+    body: "Ако нещо не може да се направи коректно чрез разрешен достъп, го казваме, вместо да го заобикаляме.",
   },
 ];
 
@@ -31,8 +31,8 @@ export function Principles() {
   return (
     <section aria-labelledby="principles-title" className="py-24 lg:py-32">
       <Container>
-        <SplitIntro id="principles-title" title="Careful about what we promise.">
-          <p>We would rather tell you an integration isn&rsquo;t worth it than sell you one that isn&rsquo;t.</p>
+        <SplitIntro id="principles-title" title="Внимателни сме какво обещаваме.">
+          <p>По-скоро ще ви кажем, че една интеграция не си струва, отколкото да ви продадем такава.</p>
         </SplitIntro>
 
         <ul className="mt-14 grid border-b border-line sm:grid-cols-2 lg:mt-20 lg:grid-cols-3">

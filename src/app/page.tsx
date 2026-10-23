@@ -7,6 +7,7 @@ import { Intro } from "@/components/intro";
 import { Integrations } from "@/components/integrations";
 import { Market } from "@/components/market";
 import { Platforms } from "@/components/platforms";
+import { Reliability } from "@/components/reliability";
 import { Principles } from "@/components/principles";
 import { Problem } from "@/components/problem";
 import { Process } from "@/components/process";
@@ -22,6 +23,7 @@ export default function Home() {
       <Problem />
       <Showcase />
       <Features />
+      <Reliability />
       <Solutions />
       <Process />
       <Integrations />

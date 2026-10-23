@@ -32,27 +32,27 @@ export type Order = {
 };
 
 const menu: { name: string; price: number; mods?: string[] }[] = [
-  { name: "Classic burger", price: 12.9, mods: ["+ Extra cheddar", "- No onion", "Medium rare"] },
-  { name: "Shopska salad", price: 7.5, mods: ["- No onion", "+ Extra sirene"] },
-  { name: "Margherita pizza", price: 11.4, mods: ["+ Buffalo mozzarella", "Thin crust"] },
-  { name: "Chicken doner", price: 8.9, mods: ["+ Garlic sauce", "+ Spicy"] },
-  { name: "Kebapcheta x3", price: 9.2, mods: ["+ Lyutenitsa"] },
-  { name: "Banitsa with sirene", price: 3.8 },
-  { name: "Tarator", price: 4.6 },
-  { name: "Sweet potato fries", price: 4.9, mods: ["+ Truffle mayo"] },
-  { name: "Pad thai", price: 13.5, mods: ["+ Spicy", "- No peanuts"] },
-  { name: "Salmon poke bowl", price: 14.2, mods: ["+ Avocado"] },
-  { name: "Halloumi wrap", price: 9.8 },
-  { name: "Sushi set (12 pcs)", price: 18.9, mods: ["+ Extra ginger"] },
-  { name: "Tiramisu", price: 6.5 },
-  { name: "Ayran", price: 2.2 },
-  { name: "Cola 0.5 L", price: 2.9 },
-  { name: "Lemonade", price: 3.5 },
+  { name: "Класически бургер", price: 12.9, mods: ["+ Допълнително чедър", "- Без лук", "Средно изпечен"] },
+  { name: "Шопска салата", price: 7.5, mods: ["- Без лук", "+ Повече сирене"] },
+  { name: "Пица Маргарита", price: 11.4, mods: ["+ Биволска моцарела", "Тънко тесто"] },
+  { name: "Пилешки дюнер", price: 8.9, mods: ["+ Чеснов сос", "+ Лют"] },
+  { name: "Кебапчета ×3", price: 9.2, mods: ["+ Лютеница"] },
+  { name: "Баница със сирене", price: 3.8 },
+  { name: "Таратор", price: 4.6 },
+  { name: "Пържени сладки картофи", price: 4.9, mods: ["+ Трюфелов майонез"] },
+  { name: "Пад тай", price: 13.5, mods: ["+ Лют", "- Без фъстъци"] },
+  { name: "Поке боул със сьомга", price: 14.2, mods: ["+ Авокадо"] },
+  { name: "Дюнер с халуми", price: 9.8 },
+  { name: "Суши сет (12 бр.)", price: 18.9, mods: ["+ Повече джинджифил"] },
+  { name: "Тирамису", price: 6.5 },
+  { name: "Айрян", price: 2.2 },
+  { name: "Кола 0,5 л", price: 2.9 },
+  { name: "Лимонада", price: 3.5 },
 ];
 
-const customers = ["Maria", "Georgi", "Ivana", "Nikolay", "Elena", "Dimitar", "Petya", "Alex", "Sofia", "Viktor", "Desi", "Kalin"];
+const customers = ["Мария", "Георги", "Ивана", "Николай", "Елена", "Димитър", "Петя", "Александър", "София", "Виктор", "Деси", "Калин"];
 
-const notes = ["No cutlery, please", "Ring the bell", "Extra napkins", "Leave at the door", "Call on arrival"];
+const notes = ["Без прибори, моля", "Позвънете на звънеца", "Допълнителни салфетки", "Оставете пред вратата", "Обадете се при пристигане"];
 
 type Rand = () => number;
 
@@ -101,6 +101,6 @@ export function makeOrder(seq: number, time: string, rand: Rand = Math.random, p
   };
 }
 
-export const money = (n: number) => `€${n.toFixed(2)}`;
+export const money = (n: number) => `${n.toFixed(2).replace(".", ",")} €`;
 
 export const itemCount = (o: Order) => o.lines.reduce((n, l) => n + l.qty, 0);

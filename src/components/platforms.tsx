@@ -3,15 +3,15 @@ import { channels } from "@/content/site";
 import { ClientLogo } from "./client-logos";
 import { ChannelDot, ChevronLink, Container } from "./ui";
 
-const systems = ["POS", "Kitchen display", "ERP", "Inventory", "Accounting"];
+const systems = ["касата", "кухненския принтер", "екрана"];
 
 /** Where orders come from, and where they can go: the whole business in one line. */
 export function Platforms() {
   return (
-    <section aria-label="Platforms and systems" className="border-y border-line">
+    <section aria-label="Платформи и системи" className="border-y border-line">
       <Container className="grid gap-6 py-10 lg:grid-cols-[auto_auto_minmax(0,1fr)] lg:items-end lg:gap-12 lg:py-12">
         <div>
-          <p className="type-label text-ink-faint">Orders from</p>
+          <p className="type-label text-ink-faint">Поръчки от</p>
           <ul className="mt-3 flex flex-wrap items-center gap-x-7 gap-y-1 text-[1.5rem] font-[650] tracking-[-0.032em] lg:text-[1.75rem]">
             {channels.map((c) => (
               <li key={c.id} className="inline-flex items-center gap-2.5">
@@ -34,7 +34,7 @@ export function Platforms() {
         </svg>
 
         <div>
-          <p className="type-label text-ink-faint">Into the systems you already run</p>
+          <p className="type-label text-ink-faint">Директно в</p>
           <ul className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-1 text-[1.5rem] font-[650] tracking-[-0.032em] lg:text-[1.75rem]">
             {systems.map((s) => (
               <li key={s}>{s}</li>
@@ -47,7 +47,7 @@ export function Platforms() {
         {showSampleProof ? (
           <Container className="grid gap-6 py-8 lg:grid-cols-[14rem_1fr] lg:items-center lg:gap-10">
             <p className="max-w-[16rem] text-[0.9375rem] leading-snug text-ink-soft">
-              Delivery orders already running through kov4
+              Поръчки, които вече минават през KOV4
             </p>
             <ul className="flex flex-wrap items-center gap-x-10 gap-y-6 text-ink/80 lg:justify-between">
               {clients.map((c) => (
@@ -60,10 +60,11 @@ export function Platforms() {
         ) : (
           <Container className="flex flex-col gap-1 py-6 sm:flex-row sm:items-center sm:justify-between">
             <p className="font-medium tracking-[-0.014em]">
-              Now taking on a small number of pilot partners in Bulgaria.
+              Свързваме се през официалните партньорски API на Glovo, Wolt и Bolt Food. Одобрението за България е в
+              процес.
             </p>
             <ChevronLink href="#contact" className="h-auto px-0">
-              Talk to us about a pilot
+              Заявете безплатен пилот
             </ChevronLink>
           </Container>
         )}

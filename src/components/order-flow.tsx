@@ -1,4 +1,5 @@
 import type { CSSProperties, ReactNode } from "react";
+import { site } from "@/content/site";
 import { LogoMark } from "./logo";
 import { Ticket, type TicketData } from "./ticket";
 import { ChannelDot, cx } from "./ui";
@@ -17,35 +18,35 @@ const incoming = [
     color: "var(--color-glovo)",
     ref: "4F7K2",
     time: "12:31",
-    lines: ["2 × Classic Burger + Cheddar extra"],
-    note: "No onion",
+    lines: ["2 × Класически бургер + чедър екстра"],
+    note: "Без лук",
   },
   {
     channel: "Wolt",
     color: "var(--color-wolt)",
     ref: "118-302",
     time: "12:33",
-    lines: ["1 × Burger Classic (extra cheese)"],
+    lines: ["1 × Бургер Класик (екстра кашкавал)"],
   },
   {
     channel: "Bolt Food",
     color: "var(--color-bolt)",
     ref: "77120",
     time: "12:34",
-    lines: ["1 × CLASSIC BURGER / add cheese", "1 × Cola 0,5"],
+    lines: ["1 × КЛАСИЧЕСКИ БУРГЕР / добави сирене", "1 × Кола 0,5"],
   },
 ];
 
 const mappings = [
   {
-    variants: ["Classic Burger", "Burger Classic", "CLASSIC BURGER"],
+    variants: ["Класически бургер", "Бургер Класик", "КЛАСИЧЕСКИ БУРГЕР"],
     code: "BRG-01",
-    name: "Classic burger",
+    name: "Класически бургер",
   },
   {
-    variants: ["Cheddar extra", "extra cheese", "add cheese"],
+    variants: ["Чедър екстра", "екстра кашкавал", "добави сирене"],
     code: "MOD-12",
-    name: "Extra cheddar",
+    name: "Допълнително чедър",
   },
 ];
 
@@ -54,21 +55,21 @@ const tickets: TicketData[] = [
     no: "0412",
     time: "12:31",
     channel: "Glovo",
-    items: [{ qty: 2, name: "Classic burger", mods: ["+ Extra cheddar", "– No onion"] }],
+    items: [{ qty: 2, name: "Класически бургер", mods: ["+ Допълнително чедър", "– Без лук"] }],
   },
   {
     no: "0413",
     time: "12:33",
     channel: "Wolt",
-    items: [{ qty: 1, name: "Classic burger", mods: ["+ Extra cheddar"] }],
+    items: [{ qty: 1, name: "Класически бургер", mods: ["+ Допълнително чедър"] }],
   },
   {
     no: "0414",
     time: "12:34",
     channel: "Bolt Food",
     items: [
-      { qty: 1, name: "Classic burger", mods: ["+ Extra cheddar"] },
-      { qty: 1, name: "Cola 0.5 L", mods: [] },
+      { qty: 1, name: "Класически бургер", mods: ["+ Допълнително чедър"] },
+      { qty: 1, name: "Кола 0,5 л", mods: [] },
     ],
   },
 ];
@@ -117,15 +118,15 @@ export function OrderFlow() {
     <figure className="m-0">
       <div className="grid lg:grid-cols-[minmax(0,1fr)_3.5rem_minmax(0,1.1fr)_3.5rem_minmax(0,1fr)] lg:grid-rows-[auto_1fr]">
         {/* Column labels (desktop) */}
-        <ColumnLabel className="hidden lg:block">As ordered on each marketplace</ColumnLabel>
+        <ColumnLabel className="hidden lg:block">Както е поръчано във всяка платформа</ColumnLabel>
         <span className="hidden lg:block" />
-        <ColumnLabel className="hidden lg:block">Matched to your menu</ColumnLabel>
+        <ColumnLabel className="hidden lg:block">Съпоставено с вашето меню</ColumnLabel>
         <span className="hidden lg:block" />
-        <ColumnLabel className="hidden lg:block">Printed in your POS</ColumnLabel>
+        <ColumnLabel className="hidden lg:block">Отпечатано в касата</ColumnLabel>
 
         {/* A: incoming */}
         <div>
-          <ColumnLabel className="lg:hidden">As ordered on each marketplace</ColumnLabel>
+          <ColumnLabel className="lg:hidden">Както е поръчано във всяка платформа</ColumnLabel>
           <ul className="grid gap-3 md:grid-cols-3 lg:h-full lg:grid-cols-1 lg:content-between">
             {incoming.map((order, i) => (
               <li
@@ -139,7 +140,7 @@ export function OrderFlow() {
                     {order.channel}
                   </span>
                   <span className="tabular text-on-dark-soft">
-                    #{order.ref} <span className="ml-1">{order.time}</span>
+                    №{order.ref} <span className="ml-1">{order.time}</span>
                   </span>
                 </div>
                 <ul className="mt-2 space-y-0.5 text-[0.9375rem] leading-snug text-on-dark">
@@ -147,7 +148,7 @@ export function OrderFlow() {
                     <li key={line}>{line}</li>
                   ))}
                 </ul>
-                {order.note ? <p className="mt-1 text-[0.8125rem] text-on-dark-soft">Note: {order.note}</p> : null}
+                {order.note ? <p className="mt-1 text-[0.8125rem] text-on-dark-soft">Бележка: {order.note}</p> : null}
               </li>
             ))}
           </ul>
@@ -157,7 +158,7 @@ export function OrderFlow() {
 
         {/* B: matching */}
         <div>
-          <ColumnLabel className="lg:hidden">Matched to your menu</ColumnLabel>
+          <ColumnLabel className="lg:hidden">Съпоставено с вашето меню</ColumnLabel>
           <div
             className="seq-rise flex h-full flex-col rounded-2xl bg-night-deep p-5 ring-1 ring-sky/45 sm:p-6"
             style={delay(0.85)}
@@ -165,9 +166,9 @@ export function OrderFlow() {
             <div className="flex items-center justify-between">
               <span className="inline-flex items-center gap-2 text-[0.875rem] font-semibold text-white">
                 <LogoMark className="size-6 rounded-[6px] ring-1 ring-night-line" />
-                kov4
+                {site.name}
               </span>
-              <span className="text-[0.75rem] text-on-dark-soft">3 orders in</span>
+              <span className="text-[0.75rem] text-on-dark-soft">3 получени поръчки</span>
             </div>
 
             <div className="my-6 space-y-4 lg:my-auto lg:py-6">
@@ -193,7 +194,7 @@ export function OrderFlow() {
             </div>
 
             <p className="border-t border-night-line pt-4 text-[0.8125rem] leading-relaxed text-on-dark-soft">
-              Logged, de-duplicated and sent to the POS at the right location.
+              Записани, без дубликати и изпратени към касата в правилния обект.
             </p>
           </div>
         </div>
@@ -202,7 +203,7 @@ export function OrderFlow() {
 
         {/* C: tickets */}
         <div>
-          <ColumnLabel className="lg:hidden">Printed in your POS</ColumnLabel>
+          <ColumnLabel className="lg:hidden">Отпечатано в касата</ColumnLabel>
           <div className="grid h-full gap-3 md:grid-cols-3 lg:grid-cols-1 lg:content-between">
             {tickets.map((t, i) => (
               <Ticket key={t.no} ticket={t} className="seq-rise" style={delay(1.65 + i * 0.14)} />
@@ -211,8 +212,8 @@ export function OrderFlow() {
         </div>
       </div>
       <figcaption className="mx-auto mt-12 max-w-2xl text-center text-[0.875rem] leading-relaxed text-on-dark-soft">
-        Illustration: the same dish, listed three ways on three marketplaces, reaching your POS as one menu item. What
-        can be connected depends on each platform&rsquo;s access and on your systems.
+        Илюстрация: едно и също ястие, записано по три различни начина в три платформи, стига до касата ви като един
+        артикул от менюто. Какво може да се свърже, зависи от достъпа на всяка платформа и от вашите системи.
       </figcaption>
     </figure>
   );

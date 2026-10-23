@@ -3,24 +3,24 @@ import { Container, PhotoFrame, SplitIntro } from "./ui";
 
 const situations = [
   {
-    title: "Re-entering orders",
-    body: "Each marketplace order is read off a tablet and typed into the POS, line by line, at the busiest time of day.",
+    title: "Трима таблета на бара",
+    body: "Всяка платформа има свой таблет, свой звук и свой екран, които персоналът следи едновременно.",
   },
   {
-    title: "Switching between apps",
-    body: "Staff watch a separate tablet for every platform, each with its own alerts and order screen.",
+    title: "Преписване на поръчки в касата в най-натовареното време",
+    body: "Поръчката се чете от таблета и се въвежда ред по ред в касата, тъкмо когато кухнята е най-заета.",
   },
   {
-    title: "Keeping availability in step",
-    body: "When a dish sells out, it has to be paused on every platform, one app at a time.",
+    title: "Спиране на изчерпан продукт в три приложения",
+    body: "Когато нещо свърши, трябва да се спре отделно във всяко приложение.",
   },
   {
-    title: "Running several locations",
-    body: "Each outlet has its own devices, menus and habits, and head office sees little of it.",
+    title: "Пропусната поръчка, защото таблетът е заглушен",
+    body: "Една неприета поръчка е недоволен клиент и загубен приход.",
   },
   {
-    title: "Consolidating order data",
-    body: "Daily and monthly totals are pieced together from separate platform exports.",
+    title: "Отчети от три различни места",
+    body: "Дневните и месечните суми се събират на ръка от отделни справки.",
   },
 ];
 
@@ -28,10 +28,10 @@ export function Problem() {
   return (
     <section aria-labelledby="problem-title" className="py-24 lg:py-32">
       <Container>
-        <SplitIntro id="problem-title" title="Every new app adds another tablet to the counter.">
+        <SplitIntro id="problem-title" title="Всяко ново приложение добавя още един таблет на плота.">
           <p>
-            Each marketplace brings its own menu and order format. When those don&rsquo;t connect to the rest of your
-            business, people fill the gap by hand.
+            Всяка платформа има свое меню и свой формат на поръчките. Когато не са свързани с останалото във вашия
+            бизнес, хората запълват празнината на ръка.
           </p>
         </SplitIntro>
 
@@ -53,8 +53,11 @@ export function Problem() {
               ))}
             </ul>
             <p className="mt-6 text-[0.9375rem] leading-relaxed text-ink-soft lg:mt-auto lg:pt-8">
-              Not every business has these problems. Some already run well-connected setups, and if that&rsquo;s you,
-              we&rsquo;ll tell you.
+              <span className="font-semibold text-ink">Пример:</span> 80 поръчки на ден × 1 минута преписване = 40
+              часа на месец. Ориентировъчно, за илюстрация.
+            </p>
+            <p className="mt-3 text-[0.9375rem] leading-relaxed text-ink-soft">
+              Не всеки бизнес има тези проблеми. Ако при вас всичко вече е свързано, ще ви го кажем.
             </p>
           </div>
         </div>

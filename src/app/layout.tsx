@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, IBM_Plex_Mono, Inter, Instrument_Serif } from "next/font/google";
+import { IBM_Plex_Mono, Inter, Instrument_Serif, Source_Serif_4 } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { site } from "@/content/site";
@@ -21,11 +21,11 @@ const plexMono = IBM_Plex_Mono({
   display: "swap",
 });
 
-// Headlines: a high-contrast serif with an optical-size axis.
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
-  subsets: ["latin", "latin-ext"],
-  axes: ["opsz", "SOFT", "WONK"],
+// Headlines: a serif with an optical-size axis and Cyrillic, since the site leads in Bulgarian.
+const sourceSerif = Source_Serif_4({
+  variable: "--font-display-serif",
+  subsets: ["latin", "latin-ext", "cyrillic", "cyrillic-ext"],
+  axes: ["opsz"],
   display: "swap",
 });
 
@@ -42,12 +42,12 @@ const instrument = Instrument_Serif({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name}: delivery platform integration for merchants`,
+    default: `${site.name}: Glovo, Wolt и Bolt Food на един екран`,
     template: `%s | ${site.name}`,
   },
   description: site.description,
   openGraph: {
-    title: `${site.name}: your delivery channels, one connected operation`,
+    title: `${site.name}: Glovo, Wolt и Bolt Food на един екран`,
     description: site.description,
     type: "website",
     siteName: site.name,
@@ -75,9 +75,9 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
-      lang="en"
+      lang="bg"
       suppressHydrationWarning
-      className={`${inter.variable} ${fraunces.variable} ${plexMono.variable} ${instrument.variable} antialiased`}
+      className={`${inter.variable} ${sourceSerif.variable} ${plexMono.variable} ${instrument.variable} antialiased`}
     >
       <head>
         {/* Lets CSS hold scroll-triggered sequences until they're in view; without JS everything simply shows. */}
@@ -88,7 +88,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           href="#main"
           className="sr-only z-[60] rounded-full bg-brand px-4 py-2 text-white focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
         >
-          Skip to content
+          Към съдържанието
         </a>
         <SiteHeader />
         <main id="main" className="flex-1">

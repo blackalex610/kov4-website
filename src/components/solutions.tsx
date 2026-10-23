@@ -16,61 +16,61 @@ type Industry = {
 const industries: Industry[] = [
   {
     id: "food",
-    label: "Food service",
-    who: "Restaurants, cafés and fast food",
+    label: "Хранене и кетъринг",
+    who: "Ресторанти, кафенета и бързо хранене",
     friction:
-      "Orders re-typed from tablets into the POS during the rush, with sizes, extras and notes like “no onion” lost on the way to the kitchen.",
+      "Поръчки, преписвани от таблетите в касата в най-натоварения момент, при което размери, добавки и бележки като „без лук“ се губят по пътя към кухнята.",
     could: [
-      "Send marketplace orders to the POS or kitchen display as tickets, with modifiers mapped.",
-      "Use your own menu as the reference for availability, where platforms allow updates.",
-      "Return preparation status to the platform, if it supports status updates.",
+      "Изпращане на поръчките от платформите към касата или кухненския екран като бележки, със съпоставени добавки.",
+      "Вашето меню като основа за наличността, където платформите позволяват обновяване.",
+      "Връщане на статуса на приготвяне към платформата, ако тя поддържа това.",
     ],
-    systems: "POS, kitchen printer or display, menu management",
+    systems: "каса, кухненски принтер или екран и управление на менюто",
     photo: photos.foodService,
     position: "55% 50%",
   },
   {
     id: "grocery",
-    label: "Grocery and convenience",
-    who: "Supermarkets, local shops and minimarkets",
+    label: "Хранителни и магазини за бързо пазаруване",
+    who: "Супермаркети, квартални магазини и минимаркети",
     friction:
-      "Large catalogues where stock changes faster than listings, so out-of-stock items turn up during picking and get sorted out by phone.",
+      "Големи каталози, в които наличностите се променят по-бързо от обявите, затова липсващите артикули излизат наяве чак при комплектоването и се уреждат по телефона.",
     could: [
-      "Pass stock levels from your inventory system to marketplace catalogues where supported.",
-      "Record marketplace sales against inventory as orders arrive.",
-      "Flag unavailable items before picking starts.",
+      "Предаване на наличностите от вашата складова система към каталозите на платформите, където е поддържано.",
+      "Отчитане на продажбите от платформите спрямо склада в момента на постъпване на поръчките.",
+      "Отбелязване на липсващите артикули, преди да започне комплектоването.",
     ],
-    systems: "inventory or ERP, POS, catalogue management",
+    systems: "складова система или ERP, каса и управление на каталога",
     photo: photos.grocery,
     position: "50% 50%",
   },
   {
     id: "retail",
-    label: "Retail and specialty",
-    who: "Eligible retailers, flower shops and gift stores",
+    label: "Търговия на дребно и специализирани магазини",
+    who: "Търговци, цветарници и магазини за подаръци",
     friction:
-      "Delivery windows and card messages copied by hand between screens, and sales split between your webshop and the marketplaces.",
+      "Часове за доставка и текстове към картички, преписвани на ръка между екрани, и продажби, разделени между онлайн магазина и платформите.",
     could: [
-      "Carry delivery windows and gift notes straight into your order system.",
-      "Map marketplace listings to products in your webshop or POS.",
-      "Bring channel sales together into one daily view of orders.",
+      "Пренасяне на часовете за доставка и бележките към подаръците директно във вашата система за поръчки.",
+      "Съпоставяне на обявите в платформите с продуктите във вашия онлайн магазин или каса.",
+      "Събиране на продажбите по канали в един дневен преглед на поръчките.",
     ],
-    systems: "e-commerce platform, order management, POS",
+    systems: "платформа за онлайн търговия, управление на поръчки и каса",
     photo: photos.florist,
     position: "38% 60%",
   },
   {
     id: "multi",
-    label: "Multi-location operators",
-    who: "Chains, franchises and multi-brand kitchens",
+    label: "Вериги с повече обекти",
+    who: "Вериги, франчайзи и кухни с няколко марки",
     friction:
-      "Each outlet runs its own devices and procedures for marketplace orders, and head office has no consolidated view by channel and location.",
+      "Всеки обект работи със свои устройства и процедури за поръчките от платформите, а централата няма общ поглед по канал и по обект.",
     could: [
-      "Route every order to the systems of the location that fulfils it.",
-      "Apply one product mapping and one set of rules across all outlets.",
-      "Consolidate order data across locations and platforms for reporting.",
+      "Насочване на всяка поръчка към системите на обекта, който я изпълнява.",
+      "Едно съпоставяне на продуктите и един набор от правила за всички обекти.",
+      "Обединяване на данните за поръчките от всички обекти и платформи за отчети.",
     ],
-    systems: "POS per location, central ERP, reporting or BI",
+    systems: "каса във всеки обект, централен ERP и отчети",
     photo: photos.multiLocation,
     position: "50% 45%",
   },
@@ -93,21 +93,21 @@ export function Solutions() {
   return (
     <section id="solutions" aria-labelledby="solutions-title" className="overflow-hidden bg-mist py-24 lg:py-32">
       <Container>
-        <SplitIntro id="solutions-title" title="Not only for restaurants.">
+        <SplitIntro id="solutions-title" title="Не само за ресторанти.">
           <p>
-            Any merchant that sells through delivery marketplaces and runs its own systems can end up with the same
-            gaps. The details differ by trade.
+            Всеки търговец, който продава през платформи за доставка и работи със собствени системи, може да се сблъска
+            със същите пропуски. Подробностите се различават според вида бизнес.
           </p>
         </SplitIntro>
       </Container>
 
       <div className="mt-14 lg:mt-20">
         <Rail
-          label="Industries"
+          label="Видове бизнес"
           aside={
             <p className="max-w-xl text-[0.875rem] text-ink-faint">
-              Which product categories a marketplace accepts varies by platform and country. We check what&rsquo;s
-              available for your type of business.
+              Кои категории продукти приема една платформа, зависи от платформата и от държавата. Проверяваме какво е
+              възможно за вашия вид бизнес.
             </p>
           }
         >
@@ -131,7 +131,7 @@ export function Solutions() {
                 <p className="mt-6 text-ink-soft">{ind.friction}</p>
                 <details className="disclosure mt-5 border-t border-line-strong/70">
                   <summary className="flex cursor-pointer items-center justify-between gap-4 rounded-md py-4 font-medium tracking-[-0.014em]">
-                    What an integration could do
+                    Какво може да направи интеграцията
                     <PlusIcon />
                   </summary>
                   <ul className="space-y-2.5 pb-2">
@@ -142,7 +142,7 @@ export function Solutions() {
                       </li>
                     ))}
                   </ul>
-                  <p className="mt-3 pb-2 text-[0.875rem] text-ink-faint">Usually involves {ind.systems}.</p>
+                  <p className="mt-3 pb-2 text-[0.875rem] text-ink-faint">Обикновено включва: {ind.systems}.</p>
                 </details>
               </article>
             </li>

@@ -76,15 +76,15 @@ const tickets: TicketData[] = [
     no: "0412",
     time: "12:31",
     channel: "Glovo",
-    items: [{ qty: 2, name: "Classic burger", mods: ["+ Extra cheddar", "– No onion"] }],
+    items: [{ qty: 2, name: "Класически бургер", mods: ["+ Допълнително чедър", "– Без лук"] }],
   },
   {
     no: "0413",
     time: "12:33",
     channel: "Wolt",
     items: [
-      { qty: 1, name: "Halloumi wrap", mods: ["+ Chilli mayo"] },
-      { qty: 1, name: "Sweet potato fries", mods: [] },
+      { qty: 1, name: "Дюнер с халуми", mods: ["+ Лютив майонез"] },
+      { qty: 1, name: "Пържени сладки картофи", mods: [] },
     ],
   },
   {
@@ -92,8 +92,8 @@ const tickets: TicketData[] = [
     time: "12:34",
     channel: "Bolt Food",
     items: [
-      { qty: 1, name: "Classic burger", mods: ["+ Extra cheddar"] },
-      { qty: 1, name: "Cola 0.5 L", mods: [] },
+      { qty: 1, name: "Класически бургер", mods: ["+ Допълнително чедър"] },
+      { qty: 1, name: "Кола 0,5 л", mods: [] },
     ],
   },
 ];
@@ -119,8 +119,8 @@ function MenuVisual() {
   return (
     <Card>
       <div className="flex items-baseline justify-between gap-3 border-b border-line pb-3">
-        <p className="font-semibold tracking-[-0.016em]">Classic burger</p>
-        <p className="tabular text-[0.9375rem] font-medium">€7.90</p>
+        <p className="font-semibold tracking-[-0.016em]">Класически бургер</p>
+        <p className="tabular text-[0.9375rem] font-medium">7,90 €</p>
       </div>
       <ul className="mt-2 space-y-2 text-[0.875rem]">
         {channels.map((c) => (
@@ -130,7 +130,7 @@ function MenuVisual() {
               {c.name}
             </span>
             <span className="inline-flex items-center gap-2 text-ink-soft">
-              <span className="tabular">€7.90</span>
+              <span className="tabular">7,90 €</span>
               <Check className="text-brand" />
             </span>
           </li>
@@ -145,8 +145,8 @@ function AvailabilityVisual() {
     <Card>
       <div className="flex items-center justify-between gap-3 border-b border-line pb-3">
         <div>
-          <p className="font-semibold tracking-[-0.016em]">Pistachio croissant</p>
-          <p className="text-[0.8125rem] text-signal">Sold out</p>
+          <p className="font-semibold tracking-[-0.016em]">Кроасан с шам фъстък</p>
+          <p className="text-[0.8125rem] text-signal">Изчерпан</p>
         </div>
         {/* Switch, off */}
         <span aria-hidden className="relative h-6 w-10 shrink-0 rounded-full bg-line-strong">
@@ -164,7 +164,7 @@ function AvailabilityVisual() {
               <svg viewBox="0 0 12 12" aria-hidden className="size-3">
                 <path d="M4 2.5v7M8 2.5v7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
               </svg>
-              Paused
+              На пауза
             </span>
           </li>
         ))}
@@ -174,9 +174,9 @@ function AvailabilityVisual() {
 }
 
 const locations = [
-  { name: "Sofia Centre", counts: [18, 12, 7] },
-  { name: "Lozenets", counts: [11, 9, 6] },
-  { name: "Plovdiv", counts: [8, 5, 4] },
+  { name: "София, център", counts: [18, 12, 7] },
+  { name: "Лозенец", counts: [11, 9, 6] },
+  { name: "Пловдив", counts: [8, 5, 4] },
 ];
 const maxTotal = Math.max(...locations.map((l) => l.counts.reduce((a, b) => a + b, 0)));
 
@@ -184,8 +184,8 @@ function LocationsVisual() {
   return (
     <Card>
       <p className="flex items-baseline justify-between text-[0.8125rem] text-ink-faint">
-        <span>Orders today by location</span>
-        <span>Example</span>
+        <span>Поръчки днес по обекти</span>
+        <span>Пример</span>
       </p>
       <ul className="mt-3 space-y-3">
         {locations.map((l) => {
@@ -213,11 +213,11 @@ function LocationsVisual() {
 }
 
 const events = [
-  { time: "12:31:04", text: "Glovo #4F7K2 received", state: "ok" },
-  { time: "12:31:05", text: "Sent to POS, Sofia Centre", state: "ok" },
-  { time: "12:33:12", text: "POS not responding, retrying", state: "warn" },
-  { time: "12:33:20", text: "Sent to POS on retry", state: "ok" },
-  { time: "12:34:02", text: "Bolt Food #77120 received", state: "ok" },
+  { time: "12:31:04", text: "Получена поръчка от Glovo №4F7K2", state: "ok" },
+  { time: "12:31:05", text: "Изпратена към POS, София, център", state: "ok" },
+  { time: "12:33:12", text: "POS не отговаря, опитваме отново", state: "warn" },
+  { time: "12:33:20", text: "Изпратена към POS при повторен опит", state: "ok" },
+  { time: "12:34:02", text: "Получена поръчка от Bolt Food №77120", state: "ok" },
 ] as const;
 
 function LogVisual() {
@@ -238,9 +238,9 @@ function LogVisual() {
 }
 
 const totals = [
-  { channel: channels[0], orders: 42, gross: "1,104.60" },
-  { channel: channels[1], orders: 31, gross: "806.20" },
-  { channel: channels[2], orders: 18, gross: "462.90" },
+  { channel: channels[0], orders: 42, gross: "1 104,60" },
+  { channel: channels[1], orders: 31, gross: "806,20" },
+  { channel: channels[2], orders: 18, gross: "462,90" },
 ];
 
 function TotalsVisual() {
@@ -249,20 +249,20 @@ function TotalsVisual() {
       <table className="w-full text-left text-[0.875rem]">
         <caption className="px-4 pt-4 pb-2 text-left text-[0.8125rem] text-ink-faint">
           <span className="flex justify-between">
-            <span>Daily close, all channels</span>
-            <span>Example</span>
+            <span>Дневен отчет, всички канали</span>
+            <span>Пример</span>
           </span>
         </caption>
         <thead className="text-[0.8125rem] text-ink-faint">
           <tr className="border-b border-line">
             <th scope="col" className="px-4 py-2 font-normal">
-              Channel
+              Канал
             </th>
             <th scope="col" className="px-4 py-2 text-right font-normal">
-              Orders
+              Поръчки
             </th>
             <th scope="col" className="px-4 py-2 text-right font-normal">
-              Gross
+              Оборот
             </th>
           </tr>
         </thead>
@@ -276,17 +276,17 @@ function TotalsVisual() {
                 </span>
               </th>
               <td className="px-4 py-2 text-right">{t.orders}</td>
-              <td className="px-4 py-2 text-right">€{t.gross}</td>
+              <td className="px-4 py-2 text-right">{t.gross} €</td>
             </tr>
           ))}
         </tbody>
         <tfoot className="tabular font-semibold">
           <tr>
             <th scope="row" className="px-4 py-3 font-semibold">
-              Total
+              Общо
             </th>
             <td className="px-4 py-3 text-right">91</td>
-            <td className="px-4 py-3 text-right">€2,373.70</td>
+            <td className="px-4 py-3 text-right">2 373,70 €</td>
           </tr>
         </tfoot>
       </table>
@@ -298,10 +298,10 @@ export function Features() {
   return (
     <section id="what-it-does" aria-labelledby="features-title" className="py-24 lg:py-32">
       <Container>
-        <SectionIntro id="features-title" title="What a connected setup can do." align="center">
+        <SectionIntro id="features-title" title="Какво прави свързаната система." align="center">
           <p>
-            Depending on each platform&rsquo;s access and on what your software can receive, an integration takes over
-            the steps people do by hand today.
+            В зависимост от достъпа на всяка платформа и от това какво може да приеме вашият софтуер, интеграцията
+            поема стъпките, които днес се правят на ръка.
           </p>
         </SectionIntro>
 
@@ -309,24 +309,24 @@ export function Features() {
           <Tile
             tone="dark"
             className="lg:col-span-4 lg:min-h-[32rem]"
-            title="Orders arrive in your POS as tickets."
-            body="Items, sizes and extras matched to your own menu, whichever app the order came from."
+            title="Поръчките стигат в касата като бележки."
+            body="Артикули, размери и добавки, съпоставени с вашето меню, от което и приложение да идва поръчката."
           >
             <TicketsVisual />
           </Tile>
 
           <Tile
             className="lg:col-span-2"
-            title="One menu for every app."
-            body="Change a price or a dish once and pass it to each platform that accepts menu updates."
+            title="Едно меню за всички приложения."
+            body="Променяте цена или ястие веднъж и промяната стига до всяка платформа, която приема обновяване на менюто."
           >
             <MenuVisual />
           </Tile>
 
           <Tile
             className="lg:col-span-2"
-            title="Sold out once. Paused everywhere."
-            body="One change reaches every channel that supports availability updates."
+            title="Изчерпано веднъж. На пауза навсякъде."
+            body="Една промяна стига до всеки канал, който поддържа обновяване на наличността."
           >
             <AvailabilityVisual />
           </Tile>
@@ -342,16 +342,16 @@ export function Features() {
               aria-hidden
               className="absolute inset-0 -z-10 bg-[linear-gradient(to_top,rgb(27_30_36/0.9),rgb(27_30_36/0.2)_60%,transparent)]"
             />
-            <h3 className="type-tile max-w-[14ch]">Your kitchen reads one format.</h3>
+            <h3 className="type-tile max-w-[14ch]">Кухнята чете един формат.</h3>
             <p className="mt-3 max-w-xs text-[1rem] leading-relaxed text-on-dark">
-              The same ticket layout for every platform, printed where your team already looks.
+              Една и съща бележка за всички платформи, отпечатана там, където екипът ви вече гледа.
             </p>
           </article>
 
           <Tile
             className="lg:col-span-2"
-            title="Every order to the right location."
-            body="Orders reach the outlet they were placed with, and head office sees them all."
+            title="Всяка поръчка — в правилния обект."
+            body="Поръчките стигат до обекта, при който са направени, а централата вижда всички."
           >
             <LocationsVisual />
           </Tile>
@@ -359,24 +359,24 @@ export function Features() {
           <Tile
             tone="outline"
             className="lg:col-span-3"
-            title="Nothing goes missing quietly."
-            body="Every order event is logged. Failed deliveries are retried and raise an alert, so a lost order is visible, not silent."
+            title="Нищо не се губи безшумно."
+            body="Всяко събитие по поръчка се записва. Неуспешните изпращания се повтарят и пращат сигнал, така че изгубената поръчка е видима, а не тиха."
           >
             <LogVisual />
           </Tile>
 
           <Tile
             className="lg:col-span-3"
-            title="Totals that reconcile."
-            body="Orders from every channel brought together in one place, ready for the daily close."
+            title="Суми, които се засичат."
+            body="Поръчките от всички канали на едно място, готови за дневния отчет."
           >
             <TotalsVisual />
           </Tile>
         </div>
 
         <p className="mx-auto mt-8 max-w-2xl text-center text-[0.875rem] leading-relaxed text-ink-faint">
-          Illustrations with example data. Which of these apply depends on each platform&rsquo;s API, permissions and
-          terms, and on your systems.
+          Илюстрации с примерни данни. Кои от тези възможности се прилагат, зависи от API, разрешенията и условията на
+          всяка платформа, както и от вашите системи.
         </p>
       </Container>
     </section>

@@ -78,11 +78,11 @@ export function SiteHeader() {
       )}
     >
       <Container className="flex h-[4.5rem] items-center justify-between gap-6">
-        <Link href="/" aria-label="kov4 home" className="rounded-md" onClick={() => setOpen(false)}>
+        <Link href="/" aria-label="KOV4 — начало" className="rounded-md" onClick={() => setOpen(false)}>
           <Logo />
         </Link>
 
-        <nav aria-label="Main" className="hidden lg:block">
+        <nav aria-label="Основна навигация" className="hidden lg:block">
           <ul className="flex items-center gap-1 xl:gap-3">
             {navigation.map((item) => {
               const isActive = active === item.href;
@@ -109,7 +109,7 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-2">
           <ButtonLink href="/#contact" variant="dark" className="group h-11 px-6 text-[0.9375rem] max-sm:hidden">
-            Get started
+            Заявете пилот
             <Arrow className="transition-transform group-hover:translate-x-0.5" />
           </ButtonLink>
           <button
@@ -117,7 +117,7 @@ export function SiteHeader() {
             className="inline-flex size-10 items-center justify-center rounded-full border border-line-strong text-ink lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-menu"
-            aria-label={open ? "Close menu" : "Open menu"}
+            aria-label={open ? "Затвори менюто" : "Отвори менюто"}
             onClick={() => setOpen((v) => !v)}
           >
             <svg viewBox="0 0 20 20" className="size-5" aria-hidden>
@@ -133,7 +133,7 @@ export function SiteHeader() {
 
       <div id="mobile-menu" hidden={!open} className="border-t border-line bg-paper lg:hidden">
         <Container className="py-4">
-          <nav aria-label="Mobile">
+          <nav aria-label="Мобилна навигация">
             <ul className="divide-y divide-line">
               {navigation.map((item) => (
                 <li key={item.href}>
@@ -149,7 +149,7 @@ export function SiteHeader() {
             </ul>
           </nav>
           <ButtonLink href="/#contact" onClick={() => setOpen(false)} className="mt-4 mb-2 w-full">
-            Get started
+            Заявете пилот
             <Arrow />
           </ButtonLink>
         </Container>

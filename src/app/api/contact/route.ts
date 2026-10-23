@@ -26,14 +26,14 @@ export async function POST(request: Request) {
   const now = Date.now();
 
   if (!request.headers.get("content-type")?.includes("application/json")) {
-    return fail(415, "unsupported", "Send the form as JSON.");
+    return fail(415, "unsupported", "Изпратете формуляра във формат JSON.");
   }
 
   let body: Record<string, unknown>;
   try {
     body = await request.json();
   } catch {
-    return fail(400, "invalid_json", "The form data couldn’t be read. Reload the page and try again.");
+    return fail(400, "invalid_json", "Данните от формуляра не можаха да бъдат прочетени. Презаредете страницата и опитайте отново.");
   }
 
   // Honeypot: real visitors never see or fill this field.
@@ -45,23 +45,23 @@ export async function POST(request: Request) {
   const startedAt = Number(body.startedAt);
   const elapsed = now - startedAt;
   if (!Number.isFinite(startedAt) || elapsed < MIN_FILL_MS || elapsed > MAX_FILL_MS) {
-    return fail(400, "timing", "That was quicker than expected. Wait a moment and send the form again.");
+    return fail(400, "timing", "Формулярът е изпратен твърде бързо. Изчакайте малко и го изпратете отново.");
   }
 
   const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
   if (rateLimited(ip, now)) {
-    return fail(429, "rate_limited", "Too many requests from this connection. Try again in a few minutes.");
+    return fail(429, "rate_limited", "Твърде много заявки от тази връзка. Опитайте отново след няколко минути.");
   }
 
   const result = validateLead(body);
   if (!result.ok) {
-    return fail(422, "invalid", "Some fields need attention.", { errors: result.errors });
+    return fail(422, "invalid", "Някои полета изискват внимание.", { errors: result.errors });
   }
 
   const provider = getLeadProvider();
   if (!provider) {
     console.error("[contact] No lead provider configured. Set LEAD_PROVIDER (see .env.example).");
-    return fail(503, "not_configured", "The form isn’t connected to an inbox yet, so your details were not sent.");
+    return fail(503, "not_configured", "Формулярът все още не е свързан с пощенска кутия, затова данните ви не бяха изпратени.");
   }
 
   try {
@@ -72,7 +72,7 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     console.error(`[contact] Delivery via ${provider.id} failed`, error);
-    return fail(502, "delivery_failed", "Your details couldn’t be delivered. Nothing was saved.");
+    return fail(502, "delivery_failed", "Данните ви не можаха да бъдат доставени. Нищо не е запазено.");
   }
 
   return Response.json({ ok: true });

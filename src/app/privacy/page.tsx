@@ -3,8 +3,8 @@ import { Container } from "@/components/ui";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
-  title: "Privacy notice",
-  description: `How ${site.name} handles the details you send through the contact form.`,
+  title: "Политика за поверителност",
+  description: `Как ${site.name} обработва данните, които изпращате чрез формуляра за контакт.`,
 };
 
 /*
@@ -13,28 +13,28 @@ export const metadata: Metadata = {
  */
 const sections = [
   {
-    title: "Who we are",
-    body: `${site.name} helps merchants connect delivery marketplaces to their existing systems. For anything about your personal data, contact ${site.contactEmail}.`,
+    title: "Кои сме ние",
+    body: `${site.name} помага на търговци да свържат платформите за доставка със своите системи. За всичко, свързано с личните ви данни, пишете на ${site.contactEmail}.`,
   },
   {
-    title: "What we collect",
-    body: "When you use the contact form, we receive your name, work email, business name and type, number of locations, the delivery platforms and software you use, your main operational challenge and anything else you choose to tell us.",
+    title: "Какво събираме",
+    body: "Когато използвате формуляра за контакт, получаваме името ви, служебния ви имейл, името и вида на бизнеса, броя обекти, платформите за доставка и софтуера, който ползвате, основния ви проблем и всичко друго, което решите да ни споделите.",
   },
   {
-    title: "Why we use it",
-    body: "Only to reply to your enquiry, prepare for a workflow assessment and, if you go ahead, to take the steps needed before an agreement. The legal basis is taking steps at your request before entering into a contract, and our legitimate interest in responding to business enquiries.",
+    title: "Защо ги използваме",
+    body: "Само за да отговорим на запитването ви, да се подготвим за пилот и, ако решите да продължите, да предприемем стъпките, необходими преди сключване на договор. Правното основание е предприемането на стъпки по ваше искане преди сключване на договор, както и нашият законен интерес да отговаряме на бизнес запитвания.",
   },
   {
-    title: "Who receives it",
-    body: "Submissions are delivered to our inbox through an email or form-delivery service acting on our behalf. We don’t sell your data or share it for marketing.",
+    title: "Кой ги получава",
+    body: "Изпратеното се доставя до нашата пощенска кутия чрез услуга за имейл или формуляри, която действа от наше име. Не продаваме данните ви и не ги споделяме за маркетинг.",
   },
   {
-    title: "How long we keep it",
-    body: "Up to 12 months after our last contact, unless we start working together, in which case our agreement sets the retention period.",
+    title: "Колко дълго ги пазим",
+    body: "До 12 месеца след последния ни контакт, освен ако не започнем да работим заедно — тогава срокът се определя от договора ни.",
   },
   {
-    title: "Your rights",
-    body: "You can ask to access, correct or delete your data, or object to how we use it, by emailing us. You can also complain to the Bulgarian Commission for Personal Data Protection (КЗЛД) or the data protection authority where you live.",
+    title: "Вашите права",
+    body: "Можете да поискате достъп до данните си, тяхното коригиране или изтриване, или да възразите срещу начина, по който ги използваме, като ни пишете по имейл. Можете да подадете жалба и до Комисията за защита на личните данни (КЗЛД) или до надзорния орган по защита на данните там, където живеете.",
   },
 ];
 
@@ -42,9 +42,9 @@ export default function PrivacyPage() {
   return (
     <Container className="py-16 lg:py-24">
       <div className="max-w-2xl">
-        <h1 className="type-h2">Privacy notice</h1>
+        <h1 className="type-h2">Политика за поверителност</h1>
         <p className="type-lede mt-5 text-ink-soft">
-          This notice explains what happens to the details you send us through the contact form on this site.
+          Тук обясняваме какво се случва с данните, които ни изпращате чрез формуляра за контакт на този сайт.
         </p>
         <div className="mt-12 space-y-10">
           {sections.map((s) => (
@@ -54,7 +54,7 @@ export default function PrivacyPage() {
             </section>
           ))}
         </div>
-        <p className="mt-12 border-t border-line pt-6 text-[0.875rem] text-ink-faint">Last updated October 2026.</p>
+        <p className="mt-12 border-t border-line pt-6 text-[0.875rem] text-ink-faint">Последна актуализация: октомври 2026 г.</p>
       </div>
     </Container>
   );

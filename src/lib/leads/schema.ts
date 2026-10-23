@@ -4,12 +4,12 @@
  */
 
 export const BUSINESS_TYPES = [
-  { value: "restaurant", label: "Restaurant, café or fast food" },
-  { value: "grocery", label: "Grocery store or supermarket" },
-  { value: "convenience", label: "Convenience store or minimarket" },
-  { value: "retail", label: "Retail or specialty shop" },
-  { value: "chain", label: "Chain or multi-brand operator" },
-  { value: "other", label: "Other" },
+  { value: "restaurant", label: "Ресторант, кафене или бързо хранене" },
+  { value: "grocery", label: "Хранителен магазин или супермаркет" },
+  { value: "convenience", label: "Квартален магазин или минимаркет" },
+  { value: "retail", label: "Търговия на дребно или специализиран магазин" },
+  { value: "chain", label: "Верига или оператор с няколко марки" },
+  { value: "other", label: "Друго" },
 ] as const;
 
 export const LOCATION_RANGES = [
@@ -23,16 +23,16 @@ export const PLATFORMS = [
   { value: "glovo", label: "Glovo" },
   { value: "wolt", label: "Wolt" },
   { value: "bolt-food", label: "Bolt Food" },
-  { value: "other", label: "Other" },
+  { value: "other", label: "Други" },
 ] as const;
 
 export const CHALLENGES = [
-  { value: "manual-entry", label: "Re-entering orders by hand" },
-  { value: "too-many-apps", label: "Too many tablets and apps to watch" },
-  { value: "availability", label: "Keeping menus and stock in sync" },
-  { value: "locations", label: "Coordinating several locations" },
-  { value: "reconciliation", label: "Reconciling orders and sales" },
-  { value: "other", label: "Something else" },
+  { value: "manual-entry", label: "Ръчно преписване на поръчки" },
+  { value: "too-many-apps", label: "Твърде много таблети и приложения за следене" },
+  { value: "availability", label: "Синхронизиране на менюта и наличности" },
+  { value: "locations", label: "Координиране на няколко обекта" },
+  { value: "reconciliation", label: "Съгласуване на поръчки и продажби" },
+  { value: "other", label: "Нещо друго" },
 ] as const;
 
 type ValueOf<T extends readonly { value: string }[]> = T[number]["value"];
@@ -108,42 +108,42 @@ export function validateLead(raw: unknown): { ok: true; lead: Lead } | { ok: fal
   const errors: LeadErrors = {};
 
   const name = str(input.name);
-  if (!name) errors.name = "Enter your name.";
-  else if (name.length > LIMITS.name) errors.name = `Keep your name under ${LIMITS.name} characters.`;
+  if (!name) errors.name = "Въведете името си.";
+  else if (name.length > LIMITS.name) errors.name = `Името трябва да е до ${LIMITS.name} знака.`;
 
   const businessName = str(input.businessName);
-  if (!businessName) errors.businessName = "Enter your business name.";
+  if (!businessName) errors.businessName = "Въведете името на бизнеса.";
   else if (businessName.length > LIMITS.businessName)
-    errors.businessName = `Keep the business name under ${LIMITS.businessName} characters.`;
+    errors.businessName = `Името на бизнеса трябва да е до ${LIMITS.businessName} знака.`;
 
   const businessType = str(input.businessType);
-  if (!oneOf(BUSINESS_TYPES, businessType)) errors.businessType = "Choose the type of business.";
+  if (!oneOf(BUSINESS_TYPES, businessType)) errors.businessType = "Изберете вида на бизнеса.";
 
   const email = str(input.email);
-  if (!email) errors.email = "Enter your email address.";
+  if (!email) errors.email = "Въведете имейл адрес.";
   else if (email.length > LIMITS.email || !EMAIL_RE.test(email))
-    errors.email = "Enter an email address like name@business.bg.";
+    errors.email = "Въведете имейл адрес във вида име@фирма.bg.";
 
   const locations = str(input.locations);
-  if (!oneOf(LOCATION_RANGES, locations)) errors.locations = "Choose how many locations you run.";
+  if (!oneOf(LOCATION_RANGES, locations)) errors.locations = "Изберете колко обекта имате.";
 
   const platformsRaw = Array.isArray(input.platforms) ? input.platforms : [];
   const platforms = [...new Set(platformsRaw.map(str))].filter((p) => oneOf(PLATFORMS, p)) as Lead["platforms"];
-  if (platforms.length === 0) errors.platforms = "Choose at least one platform you sell on.";
+  if (platforms.length === 0) errors.platforms = "Изберете поне една платформа, през която продавате.";
 
   const otherPlatforms = str(input.otherPlatforms);
-  if (platforms.includes("other") && !otherPlatforms) errors.otherPlatforms = "Tell us which other platforms you use.";
+  if (platforms.includes("other") && !otherPlatforms) errors.otherPlatforms = "Напишете кои други платформи ползвате.";
   else if (otherPlatforms.length > LIMITS.otherPlatforms)
-    errors.otherPlatforms = `Keep this under ${LIMITS.otherPlatforms} characters.`;
+    errors.otherPlatforms = `Текстът трябва да е до ${LIMITS.otherPlatforms} знака.`;
 
   const software = str(input.software);
-  if (software.length > LIMITS.software) errors.software = `Keep this under ${LIMITS.software} characters.`;
+  if (software.length > LIMITS.software) errors.software = `Текстът трябва да е до ${LIMITS.software} знака.`;
 
   const challenge = str(input.challenge);
-  if (!oneOf(CHALLENGES, challenge)) errors.challenge = "Choose the challenge that fits best.";
+  if (!oneOf(CHALLENGES, challenge)) errors.challenge = "Изберете проблема, който ви засяга най-много.";
 
   const details = str(input.details);
-  if (details.length > LIMITS.details) errors.details = `Keep this under ${LIMITS.details} characters.`;
+  if (details.length > LIMITS.details) errors.details = `Текстът трябва да е до ${LIMITS.details} знака.`;
 
   if (Object.keys(errors).length > 0) return { ok: false, errors };
 
@@ -167,19 +167,19 @@ export function validateLead(raw: unknown): { ok: true; lead: Lead } | { ok: fal
 /** Plain-text summary, used for email delivery and the mailto fallback. */
 export function summarizeLead(lead: Record<LeadField, string | string[]>) {
   const platforms = (Array.isArray(lead.platforms) ? lead.platforms : [])
-    .map((p) => (p === "other" ? `Other (${lead.otherPlatforms || "not specified"})` : labelFor(PLATFORMS, p)))
+    .map((p) => (p === "other" ? `Други (${lead.otherPlatforms || "не е посочено"})` : labelFor(PLATFORMS, p)))
     .join(", ");
   return [
-    `Name: ${lead.name}`,
-    `Business: ${lead.businessName}`,
-    `Business type: ${labelFor(BUSINESS_TYPES, String(lead.businessType))}`,
-    `Email: ${lead.email}`,
-    `Locations: ${labelFor(LOCATION_RANGES, String(lead.locations))}`,
-    `Delivery platforms: ${platforms || "not specified"}`,
-    `POS / business software: ${lead.software || "not specified"}`,
-    `Main challenge: ${labelFor(CHALLENGES, String(lead.challenge))}`,
+    `Име: ${lead.name}`,
+    `Бизнес: ${lead.businessName}`,
+    `Вид бизнес: ${labelFor(BUSINESS_TYPES, String(lead.businessType))}`,
+    `Имейл: ${lead.email}`,
+    `Обекти: ${labelFor(LOCATION_RANGES, String(lead.locations))}`,
+    `Платформи за доставка: ${platforms || "не е посочено"}`,
+    `Каса / бизнес софтуер: ${lead.software || "не е посочено"}`,
+    `Основен проблем: ${labelFor(CHALLENGES, String(lead.challenge))}`,
     "",
-    `Additional context:`,
-    String(lead.details || "none"),
+    `Допълнителна информация:`,
+    String(lead.details || "няма"),
   ].join("\n");
 }
